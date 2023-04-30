@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+
+import { StatusBar } from 'react-native';
+
+import * as SplashScreen from 'expo-splash-screen';
+import * as SystemUI from 'expo-system-ui';
+import { useFonts } from 'expo-font';
+
+import { Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins';
+import { Roboto_400Regular } from '@expo-google-fonts/roboto';
+import { Routes } from './src/routes';
+
+SystemUI.setBackgroundColorAsync("black");
+SplashScreen.hideAsync();
 
 export default function App() {
+   const [fontsLoaded] = useFonts({
+      Roboto_400Regular,
+      Poppins_500Medium,
+      Poppins_700Bold
+   });
+
    return (
-      <View style={styles.container}>
-         <Text>Open up App.js to start working on your app!</Text>
-         <StatusBar style="auto" />
-      </View>
+      <>
+         <StatusBar
+            barStyle="light-content"
+            backgroundColor="transparent"
+            translucent
+         />
+         <Routes />
+      </>
    );
 }
-
-const styles = StyleSheet.create({
-   container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center'
-   }
-});
