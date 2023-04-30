@@ -1,2 +1,3 @@
 import { Splash } from './Splash';
-export { Splash };
+import { Welcome } from './Welcome';
+export { Splash, Welcome };

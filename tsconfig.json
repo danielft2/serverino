@@ -3,7 +3,8 @@
       "paths": {
          "@screens/*": ["./src/screens/*"],
          "@components/*": ["./src/components/*"],
-			"@assets/*": ["./assets/*"],
+         "@styles/*": ["./src/styles/*"],
+			"@assets/*": ["./assets/*"]
       }
    },
    "extends": "expo/tsconfig.base",
