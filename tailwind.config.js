@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
    content: ['./src/**/*.tsx'],
    theme: {
@@ -7,15 +6,20 @@ module.exports = {
             gray: {
                900: '#0E0E0E',
                800: '#1B1B1B',
+               700: '#252525',
                600: '#484848',
                500: '#71717A',
                400: '#A1A1AA',
                300: '#D4D4D8'
             },
             green: {
+               900: '#09140E',
                700: '#0B964B',
                600: '#0DC763',
                300: '#18EC79'
+            },
+            red: {
+               900: '#1A1215'
             }
          },
          fontFamily: {
