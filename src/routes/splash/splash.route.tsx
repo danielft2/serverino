@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Splash } from '@screens/public';
-import { Feed } from '@screens/private';
+import { Welcome } from '@screens/public/Welcome';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -14,7 +14,7 @@ export function SplashRoutes() {
          }}
       >
          <Screen name="splash" component={Splash} />
-         <Screen name="feed" component={Feed} />
+         <Screen name="welcome" component={Welcome} />
       </Navigator>
    );
 }

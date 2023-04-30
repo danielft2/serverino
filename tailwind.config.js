@@ -7,7 +7,6 @@ module.exports = {
             gray: {
                900: '#0E0E0E',
                800: '#1B1B1B',
-               700: '#2B2B2B',
                600: '#484848',
                500: '#71717A',
                400: '#A1A1AA',
@@ -28,7 +27,7 @@ module.exports = {
             base: '280px',
             sm: '340px',
             md: '380px',
-            lg: '420px',
+            lg: '410px',
             xl: '1280px'
          }
       }
