@@ -35,6 +35,7 @@ function ButtonRoot({
             }
          )}
          {...rest}
+         disabled={disabled}
       >
          {isLoading ? <ActivityIndicator color="green" /> : children}
       </TouchableOpacity>

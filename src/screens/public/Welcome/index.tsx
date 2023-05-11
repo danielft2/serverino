@@ -3,14 +3,14 @@ import { Button } from '@components/Button';
 import { useNavigation } from '@react-navigation/native';
 import { background } from '@styles/background-image';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ImageBackground, Text, View } from 'react-native';
+import { ImageBackground, SafeAreaView, Text, View } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 export function Welcome() {
    const { navigate } = useNavigation();
 
    return (
-      <View className="flex-1 bg-gray-950 static">
+      <SafeAreaView className="flex-1 bg-gray-950 static">
          <ImageBackground
             source={require('@assets/backgrounds/welcome.jpg')}
             style={background.backgroundImage}
@@ -62,6 +62,6 @@ export function Welcome() {
                </Button.Root>
             </View>
          </ImageBackground>
-      </View>
+      </SafeAreaView>
    );
 }

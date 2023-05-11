@@ -3,7 +3,7 @@ import { InputPassword } from '@components/Form/Password';
 import { InputText } from '@components/Form/Text';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity, View, Text, Keyboard } from 'react-native';
 import { SingInScheme } from '../validations/scheme';
 import { SigninDTO } from '@domain/dtos/signin.dto';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -66,7 +66,9 @@ export function Form() {
                variant="primary"
                disabled={!isValid}
                isLoading={isLoading}
-               onPress={() => handleSignin(getValues())}
+               onPress={() => {
+                  Keyboard.dismiss(), handleSignin(getValues());
+               }}
             >
                <Button.Text>Entrar</Button.Text>
             </Button.Root>
