@@ -4,6 +4,7 @@ module.exports = function (api) {
       presets: ['babel-preset-expo'],
       plugins: [
          'nativewind/babel',
+         'module:react-native-dotenv',
          [
             'module-resolver',
             {
@@ -11,6 +12,13 @@ module.exports = function (api) {
                alias: {
                   '@screens': './src/screens',
                   '@components': './src/components',
+                  '@hooks': './src/hooks',
+                  '@services': './src/services',
+                  '@domain': './src/domain',
+                  '@lib': './src/lib',
+                  '@storage': './src/storage',
+                  '@utils': './src/utils',
+                  '@constants': './src/constants',
                   '@assets': './assets',
                   '@styles': './src/styles'
                }

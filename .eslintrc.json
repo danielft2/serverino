@@ -29,7 +29,9 @@
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-var-requires": "off",
+        "no-useless-escape": "off",
         "no-undef": "off",
         "prettier/prettier": [
             "error",

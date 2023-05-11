@@ -54,7 +54,10 @@ export function Welcome() {
                      encontre profissionais de diferentes áreas e lugares.
                   </Text>
                </View>
-               <Button.Root variant="primary" onPress={() => navigate('auth')}>
+               <Button.Root
+                  variant="primary"
+                  onPress={() => navigate('signin')}
+               >
                   <Button.Text>Acessar</Button.Text>
                </Button.Root>
             </View>

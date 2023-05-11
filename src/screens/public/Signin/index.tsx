@@ -1,17 +1,16 @@
 import Logo from '@assets/logo.svg';
-import { InputText } from '@components/Form/Text';
 import { background } from '@styles/background-image';
 import {
    ImageBackground,
-   View,
+   Keyboard,
    Text,
    TouchableOpacity,
-   TouchableWithoutFeedback
+   TouchableWithoutFeedback,
+   View
 } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import { InputPassword } from '@components/Form/Password';
-import { Button } from '@components/Button';
-import { Keyboard } from 'react-native';
+
+import { Form } from './components/Form';
 
 export function Signin() {
    return (
@@ -37,37 +36,7 @@ export function Signin() {
                         Ficamos felizes em tê-lo aqui, continue no aplicativo
                         usando seu usuário e senha.
                      </Text>
-
-                     <View className="w-full space-y-3 mt-12">
-                        <View>
-                           <InputText.Root
-                              placeholder="Telefone"
-                              maxLength={11}
-                              keyboardType="phone-pad"
-                           />
-                        </View>
-                        <View>
-                           <InputPassword.Root
-                              placeholder="Senha"
-                              isIconVisible
-                              maxLength={6}
-                           />
-                        </View>
-                        <TouchableOpacity>
-                           <Text
-                              className="text-green-800 font-heading_md ml-1"
-                              style={{ fontSize: RFValue(11) }}
-                           >
-                              Esqueceu a senha?
-                           </Text>
-                        </TouchableOpacity>
-
-                        <View>
-                           <Button.Root variant="primary">
-                              <Button.Text>Entrar</Button.Text>
-                           </Button.Root>
-                        </View>
-                     </View>
+                     <Form />
                   </View>
                   <View className="flex-row justify-center items-center space-x-1">
                      <Text

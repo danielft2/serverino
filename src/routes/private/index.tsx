@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Signin } from '@screens/public';
+import { Feed } from '@screens/private';
 import { useEffect } from 'react';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
-export function PublicRoutes() {
+export function PrivateRoutes() {
    const { addListener } = useNavigation();
 
    useEffect(() => {
@@ -21,7 +21,7 @@ export function PublicRoutes() {
             contentStyle: { backgroundColor: 'black' }
          }}
       >
-         <Screen name="signin" component={Signin} />
+         <Screen name="feed" component={Feed} />
       </Navigator>
    );
 }
