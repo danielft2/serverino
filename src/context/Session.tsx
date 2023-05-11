@@ -1,10 +1,12 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useEffect, useState } from 'react';
 import { Context } from '../@types/context';
 import { UserModel } from '@domain/models';
-import { retrieveSession } from '@storage/session/retrieve-session';
+import { SessionStorage } from '@storage/SessionStorage';
+import { AppError } from '@utils';
 
 interface SessionContextData {
    user: Partial<UserModel>;
+   updateUserStorage: (user: UserModel) => Promise<void>;
 }
 
 export const SessionContext = createContext<SessionContextData>(
@@ -19,11 +21,23 @@ export function SessionProvider({ children }: Context) {
    }, []);
 
    async function getUserStorage() {
-      const userStorage = await retrieveSession();
-      console.log(userStorage);
+      const userStorage = await SessionStorage.retrieveSession();
+      setUser(userStorage);
    }
 
+   const updateUserStorage = useCallback(async (user: UserModel) => {
+      try {
+         await SessionStorage.saveSession(user);
+      } catch (error) {
+         if (error instanceof AppError) {
+            console.log(error.message());
+         }
+      }
+   }, []);
+
    return (
-      <SessionContext.Provider value={null}>{children}</SessionContext.Provider>
+      <SessionContext.Provider value={{ user, updateUserStorage }}>
+         {children}
+      </SessionContext.Provider>
    );
 }

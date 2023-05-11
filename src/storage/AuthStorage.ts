@@ -1,9 +1,9 @@
 import * as SecureStore from 'expo-secure-store';
-import { TOKEN_KEY } from './config/storage.config';
 import { AppError } from '@utils';
 import { APP_ERROS_TYPES } from '@constants';
+import { TOKEN_KEY } from './storage.config';
 
-export async function saveToken(token: string) {
+async function saveToken(token: string) {
    try {
       await SecureStore.setItemAsync(TOKEN_KEY, token);
    } catch (error) {
@@ -13,3 +13,14 @@ export async function saveToken(token: string) {
       );
    }
 }
+
+async function retrieveToken() {
+   const token = await SecureStore.getItemAsync(TOKEN_KEY);
+   if (token) return token;
+   else return null;
+}
+
+export const AuthStorage = {
+   saveToken,
+   retrieveToken
+};

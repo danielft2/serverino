@@ -1,10 +1,16 @@
 import * as SecureStore from 'expo-secure-store';
 import { UserModel } from '@domain/models';
-import { SESSION_KEY } from './config/storage.config';
 import { AppError } from '@utils';
 import { APP_ERROS_TYPES } from '@constants';
+import { SESSION_KEY } from './storage.config';
 
-export async function saveSession(user: UserModel) {
+async function retrieveSession() {
+   const session = await SecureStore.getItemAsync(SESSION_KEY);
+   if (session) return JSON.parse(session);
+   else return null;
+}
+
+async function saveSession(user: UserModel) {
    try {
       const userSession = {
          nome: user.nome,
@@ -24,3 +30,8 @@ export async function saveSession(user: UserModel) {
       );
    }
 }
+
+export const SessionStorage = {
+   saveSession,
+   retrieveSession
+};
