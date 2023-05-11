@@ -1,2 +1,3 @@
 import { useAuth } from './useAuth';
-export { useAuth };
+import { useSession } from './useSession';
+export { useAuth, useSession };

@@ -10,12 +10,12 @@ import { UserModel } from '@domain/models';
 import { Context } from '../@types/context';
 import { UseMutateAsyncFunction, useMutation } from '@tanstack/react-query';
 
-import { saveToken, retrieveToken } from '@storage/auth';
-import { saveSession } from '@storage/session';
 import { AppError } from '@utils';
+import { AuthStorage } from '@storage/AuthStorage';
+import { SessionStorage } from '@storage/SessionStorage';
 
 interface AuthContextData {
-   token: string;
+   user: UserModel;
    signin: UseMutateAsyncFunction<SingInResponse, unknown, SigninDTO, unknown>;
 }
 
@@ -24,27 +24,33 @@ export const AuthContext = createContext<AuthContextData>(
 );
 
 export function AuthProvider({ children }: Context) {
-   const [token, setToken] = useState(null);
+   const [user, setUser] = useState<UserModel>(null);
 
-   const getTokenStorage = useCallback(async () => {
-      const acess_token = await retrieveToken();
-      if (acess_token) setToken(acess_token);
+   const getTokenAndUserStorage = useCallback(async () => {
+      const storage = await Promise.all([
+         await AuthStorage.retrieveToken(),
+         await SessionStorage.retrieveSession()
+      ]);
+      if (storage[1]) setUser(storage[1]);
    }, []);
 
-   const updateToken = useCallback(async (token: string) => {
-      try {
-         await saveToken(token);
-         setToken(token);
-      } catch (error) {
-         if (error instanceof AppError) {
-            if (token) setToken(null);
+   const updateaTokenAndUser = useCallback(
+      async (token: string, user: UserModel) => {
+         try {
+            await Promise.all([
+               (AuthStorage.saveToken(token), SessionStorage.saveSession(user))
+            ]);
+            setUser(user);
+         } catch (error) {
+            console.log(error);
          }
-      }
-   }, []);
+      },
+      []
+   );
 
    const storageSession = useCallback(async (user: UserModel) => {
       try {
-         await saveSession(user);
+         await SessionStorage.saveSession(user);
       } catch (error) {
          if (error instanceof AppError) {
             console.log(error.message());
@@ -52,34 +58,24 @@ export function AuthProvider({ children }: Context) {
       }
    }, []);
 
-   const { mutateAsync: signin } = useMutation(
-      async (data: SigninDTO) => {
-         try {
-            const response = (await AuthService.singIn(data)).data;
-            await Promise.all([
-               storageSession(response.user),
-               updateToken(response.token.access_token)
-            ]);
-            return response;
-         } catch (error) {
-            if (error.response.status == 401)
-               throw new Error(ERRORS_MESSAGES.CREDENCIALS_INVALID.message);
-            else throw new Error(ERRORS_MESSAGES.GENERIC_ERROR.message);
-         }
-      },
-      {
-         onSuccess(data: SingInResponse) {
-            console.log(data);
-         }
+   const { mutateAsync: signin } = useMutation(async (data: SigninDTO) => {
+      try {
+         const response = (await AuthService.singIn(data)).data;
+         await updateaTokenAndUser(response.token.access_token, response.user);
+         return response;
+      } catch (error) {
+         if (error.response.status == 401)
+            throw new Error(ERRORS_MESSAGES.CREDENCIALS_INVALID.message);
+         else throw new Error(ERRORS_MESSAGES.GENERIC_ERROR.message);
       }
-   );
+   });
 
    useEffect(() => {
-      getTokenStorage();
-   }, [getTokenStorage]);
+      getTokenAndUserStorage();
+   }, [getTokenAndUserStorage]);
 
    return (
-      <AuthContext.Provider value={{ token, signin }}>
+      <AuthContext.Provider value={{ user, signin }}>
          {children}
       </AuthContext.Provider>
    );
