@@ -9,7 +9,7 @@ export function Splash() {
 
    function handleNavigate() {
       setTimeout(() => {
-         navigate('welcome');
+         navigate('aplication');
       }, 2000);
    }
 
