@@ -20,7 +20,8 @@ module.exports = function (api) {
                   '@utils': './src/utils',
                   '@constants': './src/constants',
                   '@assets': './assets',
-                  '@styles': './src/styles'
+                  '@styles': './src/styles',
+                  '@theme:': './src/theme'
                }
             }
          ]

@@ -1,22 +1,20 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
 
-import { AuthService } from '@services/http/auth';
-import { SingInResponse } from '@services/http/auth/responses';
-import { ERRORS_MESSAGES } from '@services/http/errors';
-
-import { SigninDTO } from '@domain/dtos';
-import { UserModel } from '@domain/models';
-
-import { Context } from '../@types/context';
-import { UseMutateAsyncFunction, useMutation } from '@tanstack/react-query';
-
-import { AppError } from '@utils';
 import { AuthStorage } from '@storage/AuthStorage';
 import { SessionStorage } from '@storage/SessionStorage';
 
+import { AuthService } from '@services/http/auth';
+import { ERRORS_MESSAGES } from '@services/http/errors';
+
+import { Context } from '../@types/context';
+import { SigninDTO } from '@domain/dtos';
+import { UserModel } from '@domain/models';
+import { AppError } from '../utils/AppError';
+import { AxiosError } from 'axios';
+
 interface AuthContextData {
    user: UserModel;
-   signin: UseMutateAsyncFunction<SingInResponse, unknown, SigninDTO, unknown>;
+   signin: (data: SigninDTO) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextData>(
@@ -48,27 +46,16 @@ export function AuthProvider({ children }: Context) {
       []
    );
 
-   const storageSession = useCallback(async (user: UserModel) => {
-      try {
-         await SessionStorage.saveSession(user);
-      } catch (error) {
-         if (error instanceof AppError) {
-            console.log(error.message());
-         }
-      }
-   }, []);
-
-   const { mutateAsync: signin } = useMutation(async (data: SigninDTO) => {
+   async function signin(data: SigninDTO) {
       try {
          const response = (await AuthService.singIn(data)).data;
          await updateaTokenAndUser(response.token.access_token, response.user);
-         return response;
       } catch (error) {
-         if (error.response.status == 401)
-            throw new Error(ERRORS_MESSAGES.CREDENCIALS_INVALID.message);
+         if (error instanceof AxiosError && error.response.status == 401)
+            throw new AppError(ERRORS_MESSAGES.CREDENCIALS_INVALID.message);
          else throw new Error(ERRORS_MESSAGES.GENERIC_ERROR.message);
       }
-   });
+   }
 
    useEffect(() => {
       getTokenAndUserStorage();
