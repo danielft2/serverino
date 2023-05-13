@@ -9,6 +9,7 @@
          "@storage/*": ["./src/storage/*"],
          "@utils": ["./src/utils"],
          "@constants": ["./src/constants"],
+         "@validation": ["./src/validation"],
          "@lib/*": ["./src/lib/*"],
          "@styles/*": ["./src/styles/*"],
 			"@assets/*": ["./assets/*"],

@@ -19,6 +19,7 @@ module.exports = function (api) {
                   '@storage': './src/storage',
                   '@utils': './src/utils',
                   '@constants': './src/constants',
+                  '@validation': './src/validation',
                   '@assets': './assets',
                   '@styles': './src/styles',
                   '@theme:': './src/theme'

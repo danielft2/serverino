@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const SingInScheme = yup.object({
+export const SinginScheme = yup.object({
    telefone: yup
       .string()
       .required('Informe seu Telefone')

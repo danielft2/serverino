@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
+
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Signin, Welcome } from '@screens/public';
-import { useEffect } from 'react';
+import { Welcome, Signin } from '@screens/public';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -9,7 +10,8 @@ export function PublicRoutes() {
    const { addListener } = useNavigation();
 
    useEffect(() => {
-      addListener('beforeRemove', (e) => e.preventDefault());
+      const subscribe = addListener('beforeRemove', (e) => e.preventDefault());
+      return () => subscribe();
    }, [addListener]);
 
    return (

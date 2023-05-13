@@ -9,7 +9,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { theme } from '../../theme';
 
-interface InputPasswordProps extends TextInputProps {
+export interface InputPasswordProps extends TextInputProps {
    children?: React.ReactNode;
    error?: boolean;
    isIconVisible: boolean;
