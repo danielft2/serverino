@@ -24,10 +24,7 @@ async function saveSession(user: UserModel) {
       };
       await SecureStore.setItemAsync(SESSION_KEY, JSON.stringify(userSession));
    } catch (error) {
-      throw new AppError(
-         'Ocorreu um erro inesperado no login.',
-         APP_ERROS_TYPES.SAVED_SESSION
-      );
+      throw new AppError('Ocorreu um erro inesperado no login.');
    }
 }
 

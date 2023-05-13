@@ -1,9 +1,7 @@
-import { APP_ERROS_TYPES } from '@constants';
-
 export class AppError {
-   constructor(private msg: string, private type: APP_ERROS_TYPES) {}
+   constructor(private msg: string) {}
 
    public message() {
-      return this.message;
+      return this.msg;
    }
 }

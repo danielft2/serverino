@@ -21,13 +21,17 @@ export default function App() {
    });
 
    return (
-      <AppProvider>
-         <StatusBar
-            barStyle="light-content"
-            backgroundColor="transparent"
-            translucent
-         />
-         <Routes />
-      </AppProvider>
+      <>
+         {fontsLoaded ? (
+            <AppProvider>
+               <StatusBar
+                  barStyle="light-content"
+                  backgroundColor="transparent"
+                  translucent
+               />
+               <Routes />
+            </AppProvider>
+         ) : null}
+      </>
    );
 }

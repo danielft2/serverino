@@ -11,7 +11,8 @@
          "@constants": ["./src/constants"],
          "@lib/*": ["./src/lib/*"],
          "@styles/*": ["./src/styles/*"],
-			"@assets/*": ["./assets/*"]
+			"@assets/*": ["./assets/*"],
+         "@theme": ["./src/theme"]
       }
    },
    "extends": "expo/tsconfig.base",

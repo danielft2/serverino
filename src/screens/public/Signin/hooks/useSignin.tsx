@@ -1,10 +1,13 @@
-import { SigninDTO } from '@domain/dtos/signin.dto';
-import { useAuth } from '@hooks';
 import { useState } from 'react';
-import { Alert } from 'react-native';
+
+import { useAuth, useToast } from '@hooks';
+import { AppError } from '@utils';
+
+import { SigninDTO } from '@domain/dtos/signin.dto';
 
 export function useSignin() {
    const [isLoading, setIsLoading] = useState(false);
+   const { onErrorMessage } = useToast();
 
    const { signin } = useAuth();
    async function handleSignin(data: SigninDTO) {
@@ -12,7 +15,9 @@ export function useSignin() {
       try {
          await signin(data);
       } catch (error) {
-         Alert.alert(error.message);
+         if (error instanceof AppError) {
+            onErrorMessage(error.message());
+         }
       } finally {
          setIsLoading(false);
       }
