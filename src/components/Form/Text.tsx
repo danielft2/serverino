@@ -2,7 +2,7 @@ import { TextInput, TextInputProps, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { theme } from '../../theme';
 
-interface InputTextProps extends TextInputProps {
+export interface InputTextProps extends TextInputProps {
    children?: React.ReactNode;
    error?: boolean;
 }
