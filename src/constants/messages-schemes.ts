@@ -1,4 +1,4 @@
-export const MESSAGES_VALIDATIONS = {
+export const MESSAGES_SCHEMES = {
    FIELD_REQUIRED: 'Campo obrigatório.',
    PHONE_INVALID: 'O telefone precisa ser válido.',
    EMAIL_INVALID: 'O email precisa ser váilido.',
