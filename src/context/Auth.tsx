@@ -1,4 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
+import { AxiosError } from 'axios';
 
 import { AuthStorage } from '@storage/AuthStorage';
 import { SessionStorage } from '@storage/SessionStorage';
@@ -9,8 +10,7 @@ import { ERRORS_MESSAGES } from '@services/http/errors';
 import { Context } from '../@types/context';
 import { SigninDTO } from '@domain/dtos';
 import { UserModel } from '@domain/models';
-import { AppError } from '../utils/AppError';
-import { AxiosError } from 'axios';
+import { AppError } from '@utils';
 
 interface AuthContextData {
    user: UserModel;

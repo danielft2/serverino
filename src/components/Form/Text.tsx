@@ -5,6 +5,7 @@ import { theme } from '../../theme';
 export interface InputTextProps extends TextInputProps {
    children?: React.ReactNode;
    error?: boolean;
+   isLogin?: boolean;
 }
 
 interface InputTextIconProps {
@@ -14,7 +15,8 @@ interface InputTextIconProps {
 function InputTextRoot({
    children,
    error = false,
-   editable,
+   editable = true,
+   isLogin,
    ...rest
 }: InputTextProps) {
    return (
@@ -25,13 +27,16 @@ function InputTextRoot({
                ${
                   error
                      ? 'bg-red-900 border-red-800 focus:bg-red-900 focus:border-red-800'
-                     : 'bg-zinc-800 border-gray-700 focus:bg-green-900 focus:border-green-800'
+                     : `${
+                          isLogin ? 'bg-zinc-800' : 'bg-zinc-900'
+                       }  border-gray-700 focus:bg-green-900 focus:border-green-800`
                }
-               ${!editable ? 'opacity-100' : 'opacity-50'}
+               ${editable ? 'opacity-100' : 'opacity-50'}
 
             `}
             placeholderTextColor={theme.colors.gray[400]}
             style={{ fontSize: RFValue(12) }}
+            editable={editable}
             {...rest}
          />
          {children && children}

@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { useAuth, useToast } from '@hooks';
 import { AppError } from '@utils';
-
-import { SigninDTO } from '@domain/dtos/signin.dto';
+import { useAuth, useToast } from '@hooks';
+import { SigninDTO } from '@domain/dtos';
 
 export function useSignin() {
    const [isLoading, setIsLoading] = useState(false);

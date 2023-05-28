@@ -12,12 +12,14 @@ import { theme } from '../../theme';
 export interface InputPasswordProps extends TextInputProps {
    children?: React.ReactNode;
    error?: boolean;
-   isIconVisible: boolean;
+   isIconVisible?: boolean;
+   isLogin?: boolean;
 }
 
 function InputPasswordRoot({
    error = false,
-   isIconVisible,
+   isIconVisible = false,
+   isLogin,
    ...rest
 }: InputPasswordProps) {
    const [show, setShow] = useState(false);
@@ -29,7 +31,9 @@ function InputPasswordRoot({
                ${
                   error
                      ? 'bg-red-900 border-red-800 focus:bg-red-900 focus:border-red-800'
-                     : 'bg-zinc-800 border-gray-700 focus:bg-green-900 focus:border-green-800'
+                     : `${
+                          isLogin ? 'bg-zinc-800' : 'bg-zinc-900'
+                       } border-gray-700 focus:bg-green-900 focus:border-green-800`
                }
             `}
             style={{ fontSize: RFValue(12) }}
@@ -40,13 +44,13 @@ function InputPasswordRoot({
          />
          {isIconVisible && (
             <TouchableOpacity
-               className="absolute right-0 top-[30%] mr-5"
+               className="absolute right-0 top-[30%] -translate-y-1/2 mr-5"
                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                onPress={() => setShow(!show)}
             >
                <MaterialCommunityIcons
                   name={show ? 'eye' : 'eye-off'}
-                  size={RFValue(18)}
+                  size={RFValue(20)}
                   color={theme.colors.gray[400]}
                />
             </TouchableOpacity>

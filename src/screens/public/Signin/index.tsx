@@ -1,5 +1,3 @@
-import Logo from '@assets/logo.svg';
-import { background } from '@styles/background-image';
 import {
    ImageBackground,
    Keyboard,
@@ -11,9 +9,15 @@ import {
 } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
+import { useNavigation } from '@react-navigation/native';
+import { background } from '@styles/background-image';
+
 import { Form } from './components/Form';
 
+import Logo from '@assets/logo.svg';
+
 export function Signin() {
+   const { navigate } = useNavigation();
    return (
       <SafeAreaView className="flex-1 bg-gray-950">
          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -54,6 +58,7 @@ export function Signin() {
                               bottom: 16,
                               right: 16
                            }}
+                           onPress={() => navigate('register')}
                         >
                            <Text
                               className="text-green-700 font-heading_md"
