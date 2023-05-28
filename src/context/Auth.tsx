@@ -1,8 +1,8 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
 
-import { AuthStorage } from '@storage/AuthStorage';
-import { SessionStorage } from '@storage/SessionStorage';
+import { AuthStorage } from '@storage/auth-storage';
+import { SessionStorage } from '@storage/session-storage';
 
 import { AuthService } from '@services/http/auth';
 import { ERRORS_MESSAGES } from '@services/http/errors';

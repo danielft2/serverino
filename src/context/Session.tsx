@@ -1,7 +1,7 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
 import { Context } from '../@types/context';
 import { UserModel } from '@domain/models';
-import { SessionStorage } from '@storage/SessionStorage';
+import { SessionStorage } from '@storage/session-storage';
 import { AppError } from '@utils';
 
 interface SessionContextData {

@@ -1,20 +1,20 @@
 import { z } from 'zod';
 
-import { MESSAGES_VALIDATIONS } from '@constants';
 import { PhoneRegex } from '@utils';
+import { MESSAGES_SCHEMES } from '@constants';
 
 export const RegisterScheme = z
    .object({
-      nome: z.string().nonempty(MESSAGES_VALIDATIONS.FIELD_REQUIRED),
+      nome: z.string().nonempty(MESSAGES_SCHEMES.FIELD_REQUIRED),
       telefone: z
          .string()
-         .nonempty(MESSAGES_VALIDATIONS.FIELD_REQUIRED)
-         .regex(PhoneRegex, MESSAGES_VALIDATIONS.PHONE_INVALID),
+         .nonempty(MESSAGES_SCHEMES.FIELD_REQUIRED)
+         .regex(PhoneRegex, MESSAGES_SCHEMES.PHONE_INVALID),
       email: z.string().optional(),
       password: z
          .string()
-         .nonempty(MESSAGES_VALIDATIONS.FIELD_REQUIRED)
-         .min(6, MESSAGES_VALIDATIONS.PASSWORD_MIN_LENGTH),
+         .nonempty(MESSAGES_SCHEMES.FIELD_REQUIRED)
+         .min(6, MESSAGES_SCHEMES.PASSWORD_MIN_LENGTH),
       passwordConfirm: z.string(),
       endereco_step: z.boolean().default(false).optional(),
       endereco: z.object({
@@ -26,7 +26,7 @@ export const RegisterScheme = z
    })
    .refine((value) => value.password === value.passwordConfirm, {
       path: ['passwordConfirm'],
-      message: MESSAGES_VALIDATIONS.PASSWORD_DONT_MATCH
+      message: MESSAGES_SCHEMES.PASSWORD_DONT_MATCH
    })
    .superRefine((value, ctx) => {
       if (value.endereco_step && !value.endereco?.cep) {

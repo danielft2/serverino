@@ -1,3 +1,3 @@
-import { AuthStorage } from './AuthStorage';
-import { SessionStorage } from './SessionStorage';
+import { AuthStorage } from './auth-storage';
+import { SessionStorage } from './session-storage';
 export { AuthStorage, SessionStorage };

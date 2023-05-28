@@ -6,7 +6,7 @@ import { SigninDTO } from '@domain/dtos';
 
 export function useSignin() {
    const [isLoading, setIsLoading] = useState(false);
-   const { onErrorMessage } = useToast();
+   const { showErrorMessage } = useToast();
 
    const { signin } = useAuth();
    async function handleSignin(data: SigninDTO) {
@@ -15,7 +15,7 @@ export function useSignin() {
          await signin(data);
       } catch (error) {
          if (error instanceof AppError) {
-            onErrorMessage(error.message());
+            showErrorMessage(error.message);
          }
       } finally {
          setIsLoading(false);
