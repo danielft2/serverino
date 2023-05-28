@@ -1,2 +1,3 @@
 import { SinginScheme } from './signin.scheme';
-export { SinginScheme };
+import { RegisterScheme } from './register.scheme';
+export { SinginScheme, RegisterScheme };
