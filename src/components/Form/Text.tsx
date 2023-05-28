@@ -45,7 +45,11 @@ function InputTextRoot({
 }
 
 function InputTextIcon({ children }: InputTextIconProps) {
-   return <View className="mr-2">{children}</View>;
+   return (
+      <View className="mr-2 absolute right-3 top-[35%] -translate-y-1/2">
+         {children}
+      </View>
+   );
 }
 
 export const InputText = {
