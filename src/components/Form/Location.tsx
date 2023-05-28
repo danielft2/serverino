@@ -5,6 +5,7 @@ import { Label } from './Label';
 import { UserAdressModel } from '@domain/models/user-adress.model';
 import { useAdress, useErrorMessageForm } from '@hooks';
 import { ErrorMessage } from './ErrorMessage';
+import { Loading } from '@components/Loading';
 
 interface LocationInputProps {
    onSearchCompleted: (data: UserLocation) => void;
@@ -36,7 +37,13 @@ function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
                value={cep}
                maxLength={8}
                editable={!loading}
-            />
+            >
+               {loading && (
+                  <InputText.Icon>
+                     <Loading.default />
+                  </InputText.Icon>
+               )}
+            </InputText.Root>
             {cep.length === 8 && <ErrorMessage message={get('endereco.cep')} />}
          </View>
          <View>
