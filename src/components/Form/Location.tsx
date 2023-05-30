@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { InputText } from './Text';
-import { Label } from './Label';
 import { UserAdressModel } from '@domain/models/user-adress.model';
 import { useAdress, useErrorMessageForm } from '@hooks';
-import { ErrorMessage } from './ErrorMessage';
 import { Loading } from '@components/Loading';
+import { InputLabel } from './Label';
+import { InputErrorMessage } from './ErrorMessage';
 
 interface LocationInputProps {
    onSearchCompleted: (data: UserLocation) => void;
@@ -31,7 +31,7 @@ function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
    return (
       <View className="space-y-3">
          <View>
-            <Label>CEP</Label>
+            <InputLabel>CEP</InputLabel>
             <InputText.Root
                onChangeText={setCep}
                value={cep}
@@ -44,26 +44,28 @@ function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
                   </InputText.Icon>
                )}
             </InputText.Root>
-            {cep.length === 8 && <ErrorMessage message={get('endereco.cep')} />}
+            {cep.length === 8 && (
+               <InputErrorMessage message={get('endereco.cep')} />
+            )}
          </View>
          <View>
-            <Label>UF</Label>
+            <InputLabel>UF</InputLabel>
             <InputText.Root
                value={
                   values?.uf && cep.length === 8 && !loading ? values.uf : ''
                }
-               editable={!loading}
+               editable={false}
             />
          </View>
          <View>
-            <Label>Cidade</Label>
+            <InputLabel>Cidade</InputLabel>
             <InputText.Root
                value={
                   values?.cidade && cep.length === 8 && !loading
                      ? values.cidade
                      : ''
                }
-               editable={!loading}
+               editable={false}
             />
          </View>
       </View>
