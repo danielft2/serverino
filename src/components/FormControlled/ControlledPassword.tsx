@@ -1,14 +1,11 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { InputPassword, InputPasswordProps } from '@components/Form/Password';
 
-interface UnocontrolledPasswordProps extends InputPasswordProps {
+interface ControlledPasswordProps extends InputPasswordProps {
    name: string;
 }
 
-export function UnocontrolledPassword({
-   name,
-   ...rest
-}: UnocontrolledPasswordProps) {
+export function ControlledPassword({ name, ...rest }: ControlledPasswordProps) {
    const { control } = useFormContext();
 
    return (

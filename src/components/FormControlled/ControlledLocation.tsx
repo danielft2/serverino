@@ -10,11 +10,11 @@ interface UserLocation {
    error: string;
 }
 
-interface UncontrolledLocationProps {
+interface ControlledLocationProps {
    name: string;
 }
 
-export function UncontrolledLocation({ name }: UncontrolledLocationProps) {
+export function ControlledLocation({ name }: ControlledLocationProps) {
    const { control, setValue, setError } = useFormContext();
    const { get } = useErrorMessageForm();
 

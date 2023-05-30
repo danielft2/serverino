@@ -10,8 +10,8 @@ import { SinginScheme } from '@validation';
 import { SigninDTO } from '@domain/dtos/signin.dto';
 
 import { useSignin } from '../hooks/useSignin';
-import { UnocontrolledText } from '@components/FormUncontrolled/UncontrolledText';
-import { UnocontrolledPassword } from '@components/FormUncontrolled/UncontrolledPassword';
+import { ControlledText } from '@components/FormControlled/ControlledText';
+import { ControlledPassword } from '@components/FormControlled/ControlledPassword';
 
 export function Form() {
    const createSigninForm = useForm<SigninDTO>({
@@ -28,7 +28,7 @@ export function Form() {
          <FormProvider {...createSigninForm}>
             <View className="space-y-3">
                <View>
-                  <UnocontrolledText
+                  <ControlledText
                      name="telefone"
                      placeholder="Telefone"
                      maxLength={11}
@@ -37,7 +37,7 @@ export function Form() {
                   />
                </View>
                <View>
-                  <UnocontrolledPassword
+                  <ControlledPassword
                      name="password"
                      isIconVisible
                      placeholder="Senha"

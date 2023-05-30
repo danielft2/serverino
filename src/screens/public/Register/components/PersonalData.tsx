@@ -1,7 +1,7 @@
 import { SafeAreaView, View } from 'react-native';
 import { Label } from '@components/Form/Label';
-import { UnocontrolledPassword } from '@components/FormUncontrolled/UncontrolledPassword';
-import { UnocontrolledText } from '@components/FormUncontrolled/UncontrolledText';
+import { ControlledPassword } from '@components/FormControlled/ControlledPassword';
+import { ControlledText } from '@components/FormControlled/ControlledText';
 import { ErrorMessage } from '@components/Form/ErrorMessage';
 import { useErrorMessageForm } from '@hooks';
 
@@ -12,21 +12,21 @@ export function PersonalData() {
       <SafeAreaView className="space-y-4">
          <View>
             <Label>Nome completo</Label>
-            <UnocontrolledText name="nome" />
+            <ControlledText name="nome" />
             <ErrorMessage message={get('nome')} />
          </View>
          <View>
             <Label>Telefone</Label>
-            <UnocontrolledText name="telefone" maxLength={11} />
+            <ControlledText name="telefone" maxLength={11} />
             <ErrorMessage message={get('telefone')} />
          </View>
          <View>
             <Label>Email</Label>
-            <UnocontrolledText name="email" />
+            <ControlledText name="email" />
          </View>
          <View>
             <Label>Senha</Label>
-            <UnocontrolledPassword
+            <ControlledPassword
                isIconVisible
                name="password"
                maxLength={6}
@@ -36,7 +36,7 @@ export function PersonalData() {
          </View>
          <View>
             <Label>Confirmar Senha</Label>
-            <UnocontrolledPassword
+            <ControlledPassword
                name="passwordConfirm"
                maxLength={6}
                keyboardType="number-pad"
