@@ -4,7 +4,7 @@ interface LabelProps extends TextProps {
    children: React.ReactNode;
 }
 
-export function Label({ children, ...rest }: LabelProps) {
+export function InputLabel({ children, ...rest }: LabelProps) {
    return (
       <Text
          className="text-white font-heading_md mb-1 ml-1"

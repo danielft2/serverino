@@ -1,8 +1,7 @@
 import { SafeAreaView, View } from 'react-native';
-import { Label } from '@components/Form/Label';
-import { ControlledPassword } from '@components/FormControlled/ControlledPassword';
-import { ControlledText } from '@components/FormControlled/ControlledText';
-import { ErrorMessage } from '@components/Form/ErrorMessage';
+import { Masks } from 'react-native-mask-input';
+import { Form } from '@components/Form';
+import { FormControlled } from '@components/FormControlled';
 import { useErrorMessageForm } from '@hooks';
 
 export function PersonalData() {
@@ -11,37 +10,42 @@ export function PersonalData() {
    return (
       <SafeAreaView className="space-y-4">
          <View>
-            <Label>Nome completo</Label>
-            <ControlledText name="nome" />
-            <ErrorMessage message={get('nome')} />
+            <Form.Label>Nome completo</Form.Label>
+            <FormControlled.Text name="nome" />
+            <Form.ErrorMessage message={get('nome')} />
          </View>
          <View>
-            <Label>Telefone</Label>
-            <ControlledText name="telefone" maxLength={11} />
-            <ErrorMessage message={get('telefone')} />
+            <Form.Label>Telefone</Form.Label>
+            <FormControlled.TextMask
+               name="telefone"
+               keyboardType="name-phone-pad"
+               maxLength={15}
+               mask={Masks.BRL_PHONE}
+            />
+            <Form.ErrorMessage message={get('telefone')} />
          </View>
          <View>
-            <Label>Email</Label>
-            <ControlledText name="email" />
+            <Form.Label>Email</Form.Label>
+            <FormControlled.Text name="email" />
          </View>
          <View>
-            <Label>Senha</Label>
-            <ControlledPassword
+            <Form.Label>Senha</Form.Label>
+            <FormControlled.Password
                isIconVisible
                name="password"
                maxLength={6}
                keyboardType="number-pad"
             />
-            <ErrorMessage message={get('password')} />
+            <Form.ErrorMessage message={get('password')} />
          </View>
          <View>
-            <Label>Confirmar Senha</Label>
-            <ControlledPassword
+            <Form.Label>Confirmar Senha</Form.Label>
+            <FormControlled.Password
                name="passwordConfirm"
                maxLength={6}
                keyboardType="number-pad"
             />
-            <ErrorMessage message={get('passwordConfirm')} />
+            <Form.ErrorMessage message={get('passwordConfirm')} />
          </View>
       </SafeAreaView>
    );

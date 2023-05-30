@@ -4,7 +4,7 @@ interface ErrroMessageProps {
    message: string;
 }
 
-export function ErrorMessage({ message }: ErrroMessageProps) {
+export function InputErrorMessage({ message }: ErrroMessageProps) {
    return (
       <>
          {message && (

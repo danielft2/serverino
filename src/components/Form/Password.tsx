@@ -8,6 +8,7 @@ import {
 import { RFValue } from 'react-native-responsive-fontsize';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { theme } from '../../theme';
+import { inputStyle } from '@styles/inputs';
 
 export interface InputPasswordProps extends TextInputProps {
    children?: React.ReactNode;
@@ -20,26 +21,23 @@ function InputPasswordRoot({
    error = false,
    isIconVisible = false,
    isLogin,
+   editable = true,
    ...rest
 }: InputPasswordProps) {
    const [show, setShow] = useState(false);
    return (
       <View className="w-full relative">
          <TextInput
-            className={`
-               base:h-11 sm:h-[52px] lg:h-14 rounded-full px-6 border-[0.5px] text-gray-300
-               ${
-                  error
-                     ? 'bg-red-900 border-red-800 focus:bg-red-900 focus:border-red-800'
-                     : `${
-                          isLogin ? 'bg-zinc-800' : 'bg-zinc-900'
-                       } border-gray-700 focus:bg-green-900 focus:border-green-800`
-               }
-            `}
+            className={`${inputStyle.default} ${inputStyle.dinamic(
+               error,
+               editable,
+               isLogin
+            )}`}
             style={{ fontSize: RFValue(12) }}
+            placeholderTextColor={theme.colors.gray[400]}
             secureTextEntry={!show}
             keyboardType="decimal-pad"
-            placeholderTextColor={theme.colors.gray[400]}
+            editable={editable}
             {...rest}
          />
          {isIconVisible && (
