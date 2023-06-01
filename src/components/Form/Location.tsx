@@ -31,7 +31,7 @@ function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
    return (
       <View className="space-y-3">
          <View>
-            <InputLabel>CEP</InputLabel>
+            <InputLabel required>CEP</InputLabel>
             <InputText.Root
                onChangeText={setCep}
                value={cep}
@@ -49,7 +49,7 @@ function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
             )}
          </View>
          <View>
-            <InputLabel>UF</InputLabel>
+            <InputLabel required>UF</InputLabel>
             <InputText.Root
                value={
                   values?.uf && cep.length === 8 && !loading ? values.uf : ''
@@ -58,7 +58,7 @@ function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
             />
          </View>
          <View>
-            <InputLabel>Cidade</InputLabel>
+            <InputLabel required>Cidade</InputLabel>
             <InputText.Root
                value={
                   values?.cidade && cep.length === 8 && !loading
