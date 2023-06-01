@@ -1,17 +1,32 @@
-import { Text, TextProps } from 'react-native';
+import { Text, TextProps, View } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 interface LabelProps extends TextProps {
    children: React.ReactNode;
+   required?: boolean;
 }
 
-export function InputLabel({ children, ...rest }: LabelProps) {
+export function InputLabel({
+   children,
+   required = false,
+   ...rest
+}: LabelProps) {
    return (
-      <Text
-         className="text-white font-heading_md mb-1 ml-1"
-         style={{ fontSize: 12.8 }}
-         {...rest}
-      >
-         {children}
-      </Text>
+      <View className="flex-row space-x-1">
+         <Text
+            className="text-white font-heading_md mb-1 ml-1"
+            style={{ fontSize: 12.8 }}
+            {...rest}
+         >
+            {children}
+         </Text>
+         {required ? (
+            <Text className="text-red-400" style={{ fontSize: RFValue(12) }}>
+               *
+            </Text>
+         ) : (
+            ''
+         )}
+      </View>
    );
 }

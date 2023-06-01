@@ -10,12 +10,12 @@ export function PersonalData() {
    return (
       <SafeAreaView className="space-y-4">
          <View>
-            <Form.Label>Nome completo</Form.Label>
+            <Form.Label required>Nome completo</Form.Label>
             <FormControlled.Text name="nome" />
             <Form.ErrorMessage message={get('nome')} />
          </View>
          <View>
-            <Form.Label>Telefone</Form.Label>
+            <Form.Label required>Telefone</Form.Label>
             <FormControlled.TextMask
                name="telefone"
                keyboardType="name-phone-pad"
@@ -29,7 +29,7 @@ export function PersonalData() {
             <FormControlled.Text name="email" />
          </View>
          <View>
-            <Form.Label>Senha</Form.Label>
+            <Form.Label required>Senha</Form.Label>
             <FormControlled.Password
                isIconVisible
                name="password"
@@ -39,7 +39,7 @@ export function PersonalData() {
             <Form.ErrorMessage message={get('password')} />
          </View>
          <View>
-            <Form.Label>Confirmar Senha</Form.Label>
+            <Form.Label required>Confirmar Senha</Form.Label>
             <FormControlled.Password
                name="passwordConfirm"
                maxLength={6}
