@@ -11,10 +11,12 @@ import { Context } from '../@types/context';
 import { SigninDTO } from '@domain/dtos';
 import { UserModel } from '@domain/models';
 import { AppError } from '@utils';
+import { RegisterDTO } from '@domain/dtos/register.dto';
 
 interface AuthContextData {
    user: UserModel;
    signin: (data: SigninDTO) => Promise<void>;
+   register: (data: RegisterDTO) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextData>(
@@ -52,8 +54,21 @@ export function AuthProvider({ children }: Context) {
          await updateaTokenAndUser(response.token.access_token, response.user);
       } catch (error) {
          if (error instanceof AxiosError && error.response.status == 401)
-            throw new AppError(ERRORS_MESSAGES.CREDENCIALS_INVALID.message);
-         else throw new Error(ERRORS_MESSAGES.GENERIC_ERROR.message);
+            throw new AppError(ERRORS_MESSAGES.CREDENCIALS_INVALID);
+         else throw new AppError(ERRORS_MESSAGES.GENERIC_ERROR);
+      }
+   }
+
+   async function register(data: RegisterDTO) {
+      try {
+         const response = await AuthService.register(data);
+         if (response.data.meta.results.telefone[0]) {
+            throw new Error('400');
+         }
+      } catch (error) {
+         if (error.message === '400')
+            throw new AppError(ERRORS_MESSAGES.PHONE_ALREDY_EXISTS);
+         throw new AppError(ERRORS_MESSAGES.GENERIC_ERROR);
       }
    }
 
@@ -62,7 +77,7 @@ export function AuthProvider({ children }: Context) {
    }, [getTokenAndUserStorage]);
 
    return (
-      <AuthContext.Provider value={{ user, signin }}>
+      <AuthContext.Provider value={{ user, signin, register }}>
          {children}
       </AuthContext.Provider>
    );
