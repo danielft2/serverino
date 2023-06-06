@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { View } from 'moti';
 
 interface ProgressBarProps {
@@ -19,7 +20,7 @@ export function ProgessBar({
    }, [totalItems, totalItemsCompleted, progress]);
 
    return (
-      <View className={`w-full h-1.5 bg-gray-700 overflow-hidden`}>
+      <View className={`h-1.5 w-full overflow-hidden bg-gray-700`}>
          <View
             from={{
                width: `${progressOld}%`
@@ -31,7 +32,7 @@ export function ProgessBar({
                type: 'timing',
                duration: 300
             }}
-            className={`h-1.5 bg-green-500 transition-all rounded-full`}
+            className={`h-1.5 rounded-full bg-green-500 transition-all`}
          ></View>
       </View>
    );

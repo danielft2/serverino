@@ -1,6 +1,7 @@
-import { privateAPI, publicAPI } from '@lib/axios';
-import { RegisterResponse, SingInResponse } from './responses';
 import { RegisterDTO } from '@domain/dtos/register.dto';
+import { privateAPI, publicAPI } from '@lib/axios';
+
+import { RegisterResponse, SingInResponse } from './responses';
 
 export const AuthService = {
    singIn(data: any) {

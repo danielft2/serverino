@@ -1,7 +1,9 @@
 import { TextInput, TextInputProps, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { theme } from '../../theme';
+
 import { inputStyle } from '@styles/inputs';
+
+import { theme } from '../../theme';
 
 export interface InputTextProps extends TextInputProps {
    children?: React.ReactNode;
@@ -21,7 +23,7 @@ function InputTextRoot({
    ...rest
 }: InputTextProps) {
    return (
-      <View className="w-full relative">
+      <View className="relative w-full">
          <TextInput
             className={`${inputStyle.default} ${inputStyle.dinamic(
                error,
@@ -40,7 +42,7 @@ function InputTextRoot({
 
 function InputTextIcon({ children }: InputTextIconProps) {
    return (
-      <View className="mr-2 absolute right-3 top-[35%] -translate-y-1/2">
+      <View className="absolute right-3 top-[35%] mr-2 -translate-y-1/2">
          {children}
       </View>
    );

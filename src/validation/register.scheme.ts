@@ -1,7 +1,7 @@
-import { z } from 'zod';
-
-import { PhoneRegex } from '@utils';
 import { MESSAGES_SCHEMES } from '@constants';
+import { PhoneRegex } from '@utils';
+
+import { z } from 'zod';
 
 export const RegisterScheme = z
    .object({

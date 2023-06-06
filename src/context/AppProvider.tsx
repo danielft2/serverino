@@ -1,10 +1,13 @@
-import { QueryClientProvider } from '@tanstack/react-query';
+import Toast from 'react-native-toast-message';
+
+import { toastConfig } from '@components/ToastMessage';
+import { queryClient } from '@lib/react-query';
+
 import { Context } from '../@types/context';
-import { queryClient } from '../lib/react-query';
 import { AuthProvider } from './Auth';
 import { SessionProvider } from './Session';
-import Toast from 'react-native-toast-message';
-import { toastConfig } from '@components/ToastMessage';
+
+import { QueryClientProvider } from '@tanstack/react-query';
 
 export function AppProvider({ children }: Context) {
    return (

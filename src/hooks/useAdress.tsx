@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import axios from 'axios';
 
 import { UserAdressModel } from '@domain/models/user-adress.model';
+
+import axios from 'axios';
 
 const api_url = `https://viacep.com.br/ws`;
 

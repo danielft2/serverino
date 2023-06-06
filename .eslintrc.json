@@ -1,43 +1,63 @@
 {
-    "env": {
-        "es2021": true,
-        "node": true
-    },
-    "settings": {
-        "react": "detect"
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended",
-        "prettier"
-    ],
-    "overrides": [
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "react-hooks"
-    ],
-    "rules": {
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn",
-        "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-var-requires": "off",
-        "no-useless-escape": "off",
-        "no-undef": "off",
-        "prettier/prettier": [
-            "error",
-            {
-                "endOfLine": "auto"
-            }
-        ]
-    }
+   "env": {
+      "es2021": true,
+      "node": true
+   },
+   "settings": {
+      "react": "detect"
+   },
+   "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended",
+      "prettier"
+   ],
+   "overrides": [],
+   "parser": "@typescript-eslint/parser",
+   "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+   },
+   "plugins": [
+      "react",
+      "@typescript-eslint",
+      "eslint-plugin-import-helpers",
+      "react-hooks"
+   ],
+   "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "no-useless-escape": "off",
+      "no-undef": "off",
+      "prettier/prettier": [
+         "error",
+         {
+            "endOfLine": "auto"
+         }
+      ],
+      "import-helpers/order-imports": [
+         "warn",
+         {
+            "newlinesBetween": "always",
+            "groups": [
+					["/^react/", "/^react-native/", "/^@expo/", "/^expo/"], 
+               ["/^@react/", "/^@hookform/", "/^react-hook-form/"],
+					"/^@shared/",
+					"/^modules/",
+               [  
+                  "/^@screens/", "/^@components/", "/^@hooks/", "/^@services/", "/^@domain/", "/^@storage/",
+                  "/^@lib/", "/^@validation/", "/^@utils/", "/^@constants/",
+                  "/^@styles/", "/^@theme/", "/^@assets/"
+               ],
+					"/^absolute/",
+					["parent", "sibling", "index"]
+				],
+            "alphabetize": { "order": "asc", "ignoreCase": true }
+         }
+      ]
+   }
 }

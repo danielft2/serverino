@@ -1,4 +1,5 @@
 import { View, ActivityIndicator } from 'react-native';
+
 import { theme } from '../../theme';
 
 interface LoadingProps {
@@ -15,7 +16,7 @@ function LoadingBackground({ loading }: LoadingProps) {
    return (
       <>
          {loading && (
-            <View className="bg-black/50 justify-center items-center absolute top-0 bottom-0 left-0 right-0">
+            <View className="absolute bottom-0 left-0 right-0 top-0 items-center justify-center bg-black/50">
                <LoadingDefault />
             </View>
          )}

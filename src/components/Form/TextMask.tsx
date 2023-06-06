@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import MaskInput, { MaskInputProps } from 'react-native-mask-input';
-import { inputStyle } from '@styles/inputs';
 import { RFValue } from 'react-native-responsive-fontsize';
+
+import { inputStyle } from '@styles/inputs';
+
 import { theme } from '../../../tailwind.config';
 
 interface InputTextMaskRootProps extends MaskInputProps {

@@ -20,7 +20,7 @@ export function Splash() {
    });
 
    return (
-      <View className="flex-1 bg-black justify-center items-center">
+      <View className="flex-1 items-center justify-center bg-black">
          <LottieView
             loop={false}
             ref={animation}

@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { useErrorMessageForm } from '@hooks';
 import { LocationInput } from '@components/Form/Location';
 import { UserAdressModel } from '@domain/models/user-adress.model';
+import { useErrorMessageForm } from '@hooks';
 
 interface UserLocation {
    data: UserAdressModel;
