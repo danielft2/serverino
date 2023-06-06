@@ -1,8 +1,10 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
-import { Context } from '../@types/context';
+
 import { UserModel } from '@domain/models';
 import { SessionStorage } from '@storage/session-storage';
 import { AppError } from '@utils';
+
+import { Context } from '../@types/context';
 
 interface SessionContextData {
    user: Partial<UserModel>;
@@ -30,7 +32,7 @@ export function SessionProvider({ children }: Context) {
          await SessionStorage.saveSession(user);
       } catch (error) {
          if (error instanceof AppError) {
-            console.log(error.message());
+            console.log(error.message);
          }
       }
    }, []);

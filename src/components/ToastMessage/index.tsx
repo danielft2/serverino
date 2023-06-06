@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native';
-
-import { AlertCircle } from 'lucide-react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { BaseToastProps } from 'react-native-toast-message';
-import clsx from 'clsx';
 
 import { theme } from '../../theme';
+
+import clsx from 'clsx';
+import { AlertCircle } from 'lucide-react-native';
 
 interface ToastMessageProps {
    msg: string;
@@ -16,7 +16,7 @@ export function ToastMessage({ msg, type }: ToastMessageProps) {
    return (
       <View
          className={clsx(
-            'flex-row space-x-1 justify-center items-center w-auto h-10 px-4 rounded-md',
+            'h-10 w-auto flex-row items-center justify-center space-x-1 rounded-md px-4',
             {
                'bg-red-200': type === 'error',
                'bg-gray-800': type === 'base'

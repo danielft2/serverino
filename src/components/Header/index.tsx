@@ -1,7 +1,9 @@
 import { TouchableOpacity, View } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import { ChevronLeft } from 'lucide-react-native';
+
 import { theme } from '../../theme';
+
+import { ChevronLeft } from 'lucide-react-native';
 
 interface HeaderProps {
    children: React.ReactNode;
@@ -12,7 +14,7 @@ export function Header({ children, onHandleClickButton }: HeaderProps) {
    return (
       <View className="flex-row items-center">
          <TouchableOpacity
-            className="bg-zinc-800 rounded-full justify-center items-center"
+            className="items-center justify-center rounded-full bg-zinc-800"
             style={{ width: 44, height: 44 }}
             onPress={onHandleClickButton}
          >

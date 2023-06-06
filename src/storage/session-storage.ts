@@ -1,6 +1,8 @@
 import * as SecureStore from 'expo-secure-store';
+
 import { UserModel } from '@domain/models';
 import { AppError } from '@utils';
+
 import { SESSION_KEY } from './storage.config';
 
 async function retrieveSession() {

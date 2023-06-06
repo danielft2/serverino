@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { InputText } from './Text';
+
+import { Loading } from '@components/Loading';
 import { UserAdressModel } from '@domain/models/user-adress.model';
 import { useAdress, useErrorMessageForm } from '@hooks';
-import { Loading } from '@components/Loading';
-import { InputLabel } from './Label';
+
 import { InputErrorMessage } from './ErrorMessage';
+import { InputLabel } from './Label';
+import { InputText } from './Text';
 
 interface LocationInputProps {
    onSearchCompleted: (data: UserLocation) => void;

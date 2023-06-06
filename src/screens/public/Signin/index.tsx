@@ -10,11 +10,11 @@ import {
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 import { useNavigation } from '@react-navigation/native';
+
+import Logo from '@assets/logo.svg';
 import { background } from '@styles/background-image';
 
 import { Form } from './components/Form';
-
-import Logo from '@assets/logo.svg';
 
 export function Signin() {
    const { navigate } = useNavigation();
@@ -27,13 +27,13 @@ export function Signin() {
                   style={background.backgroundImage}
                >
                   <View
-                     className="h-full base:p-3 sm:p-4 justify-between"
+                     className="h-full justify-between base:p-3 sm:p-4"
                      style={{ paddingTop: RFPercentage(22) }}
                   >
                      <View className="w-full items-center">
                         <Logo width={RFValue(140)} height={RFValue(60)} />
                         <Text
-                           className="text-zinc-500 text-center w-[85%]"
+                           className="w-[85%] text-center text-zinc-500"
                            style={{
                               fontSize: RFValue(13.5),
                               lineHeight: RFValue(19)
@@ -44,9 +44,9 @@ export function Signin() {
                         </Text>
                         <Form />
                      </View>
-                     <View className="flex-row justify-center items-center space-x-1">
+                     <View className="flex-row items-center justify-center space-x-1">
                         <Text
-                           className="text-zinc-400 font-heading_md"
+                           className="font-heading_md text-zinc-400"
                            style={{ fontSize: RFValue(11) }}
                         >
                            Ainda não tem uma conta?{''}
@@ -61,7 +61,7 @@ export function Signin() {
                            onPress={() => navigate('register')}
                         >
                            <Text
-                              className="text-green-700 font-heading_md"
+                              className="font-heading_md text-green-700"
                               style={{ fontSize: RFValue(11) }}
                            >
                               Cadastre-se agora

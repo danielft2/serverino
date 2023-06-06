@@ -1,17 +1,17 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
-import { AxiosError } from 'axios';
 
-import { AuthStorage } from '@storage/auth-storage';
-import { SessionStorage } from '@storage/session-storage';
-
+import { SigninDTO } from '@domain/dtos';
+import { RegisterDTO } from '@domain/dtos/register.dto';
+import { UserModel } from '@domain/models';
 import { AuthService } from '@services/http/auth';
 import { ERRORS_MESSAGES } from '@services/http/errors';
+import { AuthStorage } from '@storage/auth-storage';
+import { SessionStorage } from '@storage/session-storage';
+import { AppError } from '@utils';
 
 import { Context } from '../@types/context';
-import { SigninDTO } from '@domain/dtos';
-import { UserModel } from '@domain/models';
-import { AppError } from '@utils';
-import { RegisterDTO } from '@domain/dtos/register.dto';
+
+import { AxiosError } from 'axios';
 
 interface AuthContextData {
    user: UserModel;

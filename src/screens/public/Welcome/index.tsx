@@ -1,16 +1,19 @@
-import Logo from '@assets/logo.svg';
-import { Button } from '@components/Button';
-import { useNavigation } from '@react-navigation/native';
-import { background } from '@styles/background-image';
-import { LinearGradient } from 'expo-linear-gradient';
 import { ImageBackground, SafeAreaView, Text, View } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+
+import { useNavigation } from '@react-navigation/native';
+
+import Logo from '@assets/logo.svg';
+import { Button } from '@components/Button';
+import { background } from '@styles/background-image';
+
+import { LinearGradient } from 'expo-linear-gradient';
 
 export function Welcome() {
    const { navigate } = useNavigation();
 
    return (
-      <SafeAreaView className="flex-1 bg-gray-950 static">
+      <SafeAreaView className="static flex-1 bg-gray-950">
          <ImageBackground
             source={require('@assets/backgrounds/welcome.jpg')}
             style={background.backgroundImage}
@@ -38,13 +41,13 @@ export function Welcome() {
                   style={{ marginBottom: RFPercentage(5) }}
                >
                   <Text
-                     className="text-white font-heading"
+                     className="font-heading text-white"
                      style={{ fontSize: RFValue(18) }}
                   >
                      Em busca de um Profissional?{'\n'}Está no lugar certo!
                   </Text>
                   <Text
-                     className="text-gray-500 font-reading"
+                     className="font-reading text-gray-500"
                      style={{
                         fontSize: RFValue(13.5),
                         lineHeight: RFValue(19)

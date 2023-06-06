@@ -1,15 +1,16 @@
-import { SafeAreaView, Text, View } from 'react-native';
 import { FormProvider } from 'react-hook-form';
+import { SafeAreaView, Text, View } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 import { useNavigation } from '@react-navigation/native';
 
 import { Button } from '@components/Button';
-import { ProgessBar } from '@components/ProgressBar';
 import { Header } from '@components/Header';
-
-import { STEPS_ENUM, useRegisterSteps } from './hooks/useRegisterSteps';
-import { useRegisterForm } from './hooks/useRegisterForm';
 import { Loading } from '@components/Loading';
+import { ProgessBar } from '@components/ProgressBar';
+
+import { useRegisterForm } from './hooks/useRegisterForm';
+import { STEPS_ENUM, useRegisterSteps } from './hooks/useRegisterSteps';
 
 export function Register() {
    const {
@@ -45,22 +46,22 @@ export function Register() {
 
    return (
       <SafeAreaView
-         className="flex-1 space-y-6 bg-zinc-950 relative"
+         className="relative flex-1 space-y-6 bg-zinc-950"
          style={{ paddingTop: getStatusBarHeight() + 10 }}
       >
-         <View className="px-4 mb-4">
+         <View className="mb-4 px-4">
             <Header
                onHandleClickButton={
                   step_index === 0 ? goBack : () => handleChange(step_index - 1)
                }
             >
                <Text
-                  className="text-center font-heading_md text-gray-400 -mb-1"
+                  className="-mb-1 text-center font-heading_md text-gray-400"
                   style={{ fontSize: 12 }}
                >
                   {`Etapa ${step_index + 1}/2`}
                </Text>
-               <Text className="text-white text-center font-heading_md">
+               <Text className="text-center font-heading_md text-white">
                   {current_step_name}
                </Text>
             </Header>

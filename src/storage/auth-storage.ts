@@ -1,5 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
+
 import { AppError } from '@utils';
+
 import { TOKEN_KEY } from './storage.config';
 
 async function saveToken(token: string) {
