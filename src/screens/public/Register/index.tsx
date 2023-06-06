@@ -1,43 +1,36 @@
 import { SafeAreaView, Text, View } from 'react-native';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigation } from '@react-navigation/native';
 
 import { Button } from '@components/Button';
 import { ProgessBar } from '@components/ProgressBar';
 import { Header } from '@components/Header';
-import { RegisterScheme } from '@validation';
 
-import { STEPS_ENUM, useRegister } from './hooks/useRegister';
-import { DefaultValues } from './scheme/default-values';
-
-type RegisterForm = z.infer<typeof RegisterScheme>;
+import { STEPS_ENUM, useRegisterSteps } from './hooks/useRegisterSteps';
+import { useRegisterForm } from './hooks/useRegisterForm';
+import { Loading } from '@components/Loading';
 
 export function Register() {
-   const createRegisterForm = useForm<RegisterForm>({
-      resolver: zodResolver(RegisterScheme),
-      defaultValues: DefaultValues
-   });
    const {
+      createRegisterForm,
+      handleConfirmRegister,
       handleSubmit,
-      setValue,
       setError,
-      formState: { isValid }
-   } = createRegisterForm;
+      setValue,
+      isValid,
+      loading
+   } = useRegisterForm();
+
    const {
       current_step,
       current_step_name,
       step_index,
       isLastStep,
       handleChangeStep
-   } = useRegister();
-   const { goBack } = useNavigation();
+   } = useRegisterSteps();
 
-   function handleConfirmRegister(data: any) {
-      console.log(data);
-   }
+   const { goBack } = useNavigation();
 
    function handleChange(step: STEPS_ENUM) {
       if (step === STEPS_ENUM.DADOS_ENDERECO) {
@@ -91,6 +84,8 @@ export function Register() {
                </Button.Text>
             </Button.Root>
          </View>
+
+         <Loading.background loading={loading} />
       </SafeAreaView>
    );
 }

@@ -15,7 +15,7 @@ export const RegisterScheme = z
          .string()
          .nonempty(MESSAGES_SCHEMES.FIELD_REQUIRED)
          .min(6, MESSAGES_SCHEMES.PASSWORD_MIN_LENGTH),
-      passwordConfirm: z.string(),
+      password_confirmation: z.string(),
       endereco_step: z.boolean().default(false).optional(),
       endereco: z.object({
          cep: z.string(),
@@ -24,7 +24,7 @@ export const RegisterScheme = z
          uf: z.string()
       })
    })
-   .refine((value) => value.password === value.passwordConfirm, {
+   .refine((value) => value.password === value.password_confirmation, {
       path: ['passwordConfirm'],
       message: MESSAGES_SCHEMES.PASSWORD_DONT_MATCH
    })

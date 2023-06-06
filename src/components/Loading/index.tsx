@@ -1,15 +1,25 @@
 import { View, ActivityIndicator } from 'react-native';
 import { theme } from '../../theme';
 
-function LoadingDefault() {
-   return <ActivityIndicator color={theme.colors.green[600]} />;
+interface LoadingProps {
+   loading?: boolean;
 }
 
-function LoadingBackground() {
+function LoadingDefault({ loading = true }: LoadingProps) {
    return (
-      <View className="flex-1 bg-gray-950/50">
-         <LoadingDefault />
-      </View>
+      <>{loading && <ActivityIndicator color={theme.colors.green[600]} />}</>
+   );
+}
+
+function LoadingBackground({ loading }: LoadingProps) {
+   return (
+      <>
+         {loading && (
+            <View className="bg-black/50 justify-center items-center absolute top-0 bottom-0 left-0 right-0">
+               <LoadingDefault />
+            </View>
+         )}
+      </>
    );
 }
 
