@@ -28,8 +28,8 @@ function InputTextRoot({
                editable,
                isLogin
             )}`}
-            placeholderTextColor={theme.colors.gray[400]}
             style={{ fontSize: RFValue(12) }}
+            placeholderTextColor={theme.colors.gray[400]}
             editable={editable}
             {...rest}
          />

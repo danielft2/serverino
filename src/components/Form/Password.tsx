@@ -20,8 +20,8 @@ export interface InputPasswordProps extends TextInputProps {
 function InputPasswordRoot({
    error = false,
    isIconVisible = false,
-   isLogin,
    editable = true,
+   isLogin = false,
    ...rest
 }: InputPasswordProps) {
    const [show, setShow] = useState(false);

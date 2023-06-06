@@ -4,6 +4,7 @@ import { MaskInputProps } from 'react-native-mask-input';
 
 interface ControlledTextMaskProps extends MaskInputProps {
    name: string;
+   isLogin?: boolean;
 }
 
 export function ControlledTextMask({ name, ...rest }: ControlledTextMaskProps) {
