@@ -1,8 +1,4 @@
-export interface RegisterDTO {
-   name: string;
-   phone: string;
-   email: string;
-   password: string;
-   password_confirm: string;
-   term?: boolean;
-}
+import { z } from 'zod';
+import { RegisterScheme } from '@validation';
+
+export type RegisterDTO = z.infer<typeof RegisterScheme>;

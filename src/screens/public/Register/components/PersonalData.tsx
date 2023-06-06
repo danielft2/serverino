@@ -3,6 +3,7 @@ import { Masks } from 'react-native-mask-input';
 import { Form } from '@components/Form';
 import { FormControlled } from '@components/FormControlled';
 import { useErrorMessageForm } from '@hooks';
+import { theme } from '../../../../theme';
 
 export function PersonalData() {
    const { get } = useErrorMessageForm();
@@ -19,6 +20,7 @@ export function PersonalData() {
             <FormControlled.TextMask
                name="telefone"
                keyboardType="name-phone-pad"
+               placeholderTextColor={theme.colors.gray[500]}
                maxLength={15}
                mask={Masks.BRL_PHONE}
             />
@@ -41,11 +43,11 @@ export function PersonalData() {
          <View>
             <Form.Label required>Confirmar Senha</Form.Label>
             <FormControlled.Password
-               name="passwordConfirm"
+               name="password_confirmation"
                maxLength={6}
                keyboardType="number-pad"
             />
-            <Form.ErrorMessage message={get('passwordConfirm')} />
+            <Form.ErrorMessage message={get('password_confirmation')} />
          </View>
       </SafeAreaView>
    );

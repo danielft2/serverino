@@ -24,7 +24,7 @@ export function useAdress({ onSearchCompleted }: useAdressProps) {
          onSearchCompleted({
             data: !response.data?.erro
                ? {
-                    cep: response.data.cep,
+                    cep: response.data.cep.replace('-', ''),
                     cidade_id: response.data.ibge,
                     cidade: response.data.localidade,
                     uf: response.data.uf

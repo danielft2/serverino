@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PersonalData } from '../components/PersonalData';
 import { LocationData } from '../components/LocationData';
+import { RegisterDTO } from '@domain/dtos/register.dto';
 
 export enum STEPS_ENUM {
    DADOS_BASICOS,
@@ -9,7 +10,7 @@ export enum STEPS_ENUM {
 
 const components = [<PersonalData key={0} />, <LocationData key={1} />];
 
-export function useRegister() {
+export function useRegisterSteps() {
    const [stepIndex, setStepIndex] = useState(STEPS_ENUM.DADOS_BASICOS);
    const stepsNames = ['Dados Básicos', 'Dados de Endereço'];
 
@@ -18,11 +19,17 @@ export function useRegister() {
       setStepIndex(stepIndex);
    }
 
+   async function handleConfirmRegister(data: RegisterDTO) {
+      console.log(data);
+   }
+
    return {
       current_step: components[stepIndex],
       current_step_name: stepsNames[stepIndex],
       step_index: stepIndex,
       isLastStep: stepIndex == components.length - 1,
-      handleChangeStep
+
+      handleChangeStep,
+      handleConfirmRegister
    };
 }
