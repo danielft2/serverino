@@ -1,43 +1,34 @@
 import { TouchableOpacity, View, Text, Keyboard } from 'react-native';
 
 import { RFValue } from 'react-native-responsive-fontsize';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
+import { Masks } from 'react-native-mask-input';
 
 import { Button } from '@components/Button';
-
-import { SinginScheme } from '@validation';
-import { SigninDTO } from '@domain/dtos/signin.dto';
+import { FormControlled } from '@components/FormControlled';
 
 import { useSignin } from '../hooks/useSignin';
-import { ControlledText } from '@components/FormControlled/ControlledText';
-import { ControlledPassword } from '@components/FormControlled/ControlledPassword';
 
 export function Form() {
-   const createSigninForm = useForm<SigninDTO>({
-      resolver: zodResolver(SinginScheme)
-   });
-   const {
-      getValues,
-      formState: { isValid }
-   } = createSigninForm;
-   const { handleSignin, isLoading } = useSignin();
+   const { createSigninForm, getValues, isValid, handleSignin, isLoading } =
+      useSignin();
 
    return (
       <View className="w-full space-y-3  mt-12">
          <FormProvider {...createSigninForm}>
             <View className="space-y-3">
                <View>
-                  <ControlledText
+                  <FormControlled.TextMask
                      name="telefone"
                      placeholder="Telefone"
-                     maxLength={11}
+                     maxLength={15}
                      keyboardType="phone-pad"
+                     mask={Masks.BRL_PHONE}
                      isLogin
                   />
                </View>
                <View>
-                  <ControlledPassword
+                  <FormControlled.Password
                      name="password"
                      isIconVisible
                      placeholder="Senha"
