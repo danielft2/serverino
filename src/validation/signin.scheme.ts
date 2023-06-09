@@ -1,5 +1,6 @@
-import { z } from 'zod';
 import { PhoneRegex } from '@utils';
+
+import { z } from 'zod';
 
 export const SinginScheme = z
    .object({

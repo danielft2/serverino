@@ -1,4 +1,5 @@
 import { View } from 'react-native';
+
 import { ControlledLocation } from '@components/FormControlled/ControlledLocation';
 
 export function LocationData() {

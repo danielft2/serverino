@@ -1,6 +1,7 @@
-import { InputTextMaskRoot } from '@components/Form/TextMask';
 import { Controller, useFormContext } from 'react-hook-form';
 import { MaskInputProps } from 'react-native-mask-input';
+
+import { InputTextMaskRoot } from '@components/Form/TextMask';
 
 interface ControlledTextMaskProps extends MaskInputProps {
    name: string;

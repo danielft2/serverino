@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { RegisterDTO } from '@domain/dtos/register.dto';
-import { RegisterScheme } from '@validation';
 import { useAuth, useToast } from '@hooks';
 import { AppError } from '@utils';
+import { RegisterScheme } from '@validation';
 
 import { DefaultValues } from '../scheme/default-values';
 

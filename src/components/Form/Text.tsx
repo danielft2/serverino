@@ -20,7 +20,7 @@ function InputTextRoot({
    ...rest
 }: InputTextProps) {
    return (
-      <View className="w-full relative">
+      <View className="relative w-full">
          <TextInput
             className={clsx(
                'base:h-11 sm:h-[52px] bg-zinc-900 lg:h-14 rounded-full px-6 font-reading border-[0.5px] text-gray-100',
@@ -44,7 +44,7 @@ function InputTextRoot({
 
 function InputTextIcon({ children }: InputTextIconProps) {
    return (
-      <View className="mr-2 absolute right-3 top-[35%] -translate-y-1/2">
+      <View className="absolute right-3 top-[35%] mr-2 -translate-y-1/2">
          {children}
       </View>
    );

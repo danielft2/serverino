@@ -8,7 +8,7 @@ export function InputErrorMessage({ message }: ErrroMessageProps) {
    return (
       <>
          {message && (
-            <Text className="text-red-400 mt-1 ml-1" style={{ fontSize: 12 }}>
+            <Text className="ml-1 mt-1 text-red-400" style={{ fontSize: 12 }}>
                {message}
             </Text>
          )}

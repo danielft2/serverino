@@ -1,10 +1,11 @@
-import clsx from 'clsx';
 import {
    ActivityIndicator,
    TouchableOpacity,
    TouchableOpacityProps,
    Text
 } from 'react-native';
+
+import clsx from 'clsx';
 
 interface ButtonRootProps extends TouchableOpacityProps {
    children: React.ReactNode;
@@ -27,7 +28,7 @@ function ButtonRoot({
    return (
       <TouchableOpacity
          className={clsx(
-            'w-full base:h-11 sm:h-[52px] lg:h-14 rounded-full justify-center items-center',
+            'w-full items-center justify-center rounded-full base:h-11 sm:h-[52px] lg:h-14',
             {
                'bg-green-600': variant === 'primary',
                'bg-gray-600': variant === 'normal',
@@ -44,7 +45,7 @@ function ButtonRoot({
 
 function ButtonText({ children }: ButtonTextProps) {
    return (
-      <Text className="text-white font-heading_md base:text-[11px] md:text-xs lg:text-[14px]">
+      <Text className="font-heading_md text-white base:text-[11px] md:text-xs lg:text-[14px]">
          {children}
       </Text>
    );
