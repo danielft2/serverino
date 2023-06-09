@@ -22,7 +22,6 @@ export function PersonalData() {
             <FormControlled.TextMask
                name="telefone"
                keyboardType="name-phone-pad"
-               placeholderTextColor={theme.colors.gray[500]}
                maxLength={15}
                mask={Masks.BRL_PHONE}
             />

@@ -30,7 +30,7 @@ function ButtonRoot({
          className={clsx(
             'w-full items-center justify-center rounded-full base:h-11 sm:h-[52px] lg:h-14',
             {
-               'bg-green-800': variant === 'primary',
+               'bg-green-600': variant === 'primary',
                'bg-gray-600': variant === 'normal',
                'opacity-50': disabled || isLoading
             }
