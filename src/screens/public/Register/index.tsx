@@ -45,7 +45,7 @@ export function Register() {
 
    return (
       <SafeAreaView
-         className="flex-1 space-y-6 bg-zinc-950 relative"
+         className="flex-1 space-y-6 pb-4 bg-blue_dark-900 relative"
          style={{ paddingTop: getStatusBarHeight() + 10 }}
       >
          <View className="px-4 mb-4">
