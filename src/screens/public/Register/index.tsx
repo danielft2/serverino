@@ -56,8 +56,8 @@ export function Register() {
                }
             >
                <Text
-                  className="-mb-1 text-center font-heading_md text-gray-400"
-                  style={{ fontSize: 12 }}
+                  className="-mb-1 text-center font-heading_md text-gray-200"
+                  style={{ fontSize: 13 }}
                >
                   {`Etapa ${step_index + 1}/2`}
                </Text>
@@ -81,7 +81,7 @@ export function Register() {
                disabled={!isValid}
             >
                <Button.Text>
-                  {isLastStep ? 'Confirmar' : 'Continunar'}
+                  {isLastStep ? 'Confirmar' : 'Continuar'}
                </Button.Text>
             </Button.Root>
          </View>

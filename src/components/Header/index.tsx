@@ -14,7 +14,7 @@ export function Header({ children, onHandleClickButton }: HeaderProps) {
    return (
       <View className="flex-row items-center">
          <TouchableOpacity
-            className="items-center justify-center rounded-full bg-zinc-800"
+            className="items-center justify-center rounded-full bg-blue_dark-300"
             style={{ width: 44, height: 44 }}
             onPress={onHandleClickButton}
          >

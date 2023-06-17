@@ -20,7 +20,7 @@ export function ProgessBar({
    }, [totalItems, totalItemsCompleted, progress]);
 
    return (
-      <View className={`h-1.5 w-full overflow-hidden bg-gray-700`}>
+      <View className={`h-1.5 w-full overflow-hidden bg-blue_dark-300`}>
          <View
             from={{
                width: `${progressOld}%`

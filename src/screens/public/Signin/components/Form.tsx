@@ -23,7 +23,6 @@ export function Form() {
                      maxLength={15}
                      keyboardType="phone-pad"
                      mask={Masks.BRL_PHONE}
-                     isLogin
                   />
                </View>
                <View>
@@ -33,14 +32,13 @@ export function Form() {
                      placeholder="Senha"
                      maxLength={6}
                      keyboardType="phone-pad"
-                     isLogin
                   />
                </View>
             </View>
          </FormProvider>
          <TouchableOpacity>
             <Text
-               className="ml-1 font-heading_md text-green-800"
+               className="ml-1 font-heading_md text-green-700"
                style={{ fontSize: RFValue(11) }}
             >
                Esqueceu a senha?

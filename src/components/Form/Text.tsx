@@ -23,13 +23,13 @@ function InputTextRoot({
       <View className="relative w-full">
          <TextInput
             className={clsx(
-               'base:h-11 sm:h-[52px] bg-zinc-900 lg:h-14 rounded-full px-6 font-reading border-[0.5px] text-gray-100',
+               'base:h-11 sm:h-[52px] bg-blue_dark-300 lg:h-14 rounded-full px-6 font-reading border-[0.5px] text-gray-100',
                {
                   'bg-inputs_state-invalidate border-red-800 focus:bg-red-900 focus:border-red-800':
                      error,
                   'border-gray-700 focus:bg-inputs_state-validate focus:border-green-800':
                      !error,
-                  'opacity-50': !editable
+                  'bg-blue_dark-600': !editable
                }
             )}
             style={{ fontSize: RFValue(12) }}
