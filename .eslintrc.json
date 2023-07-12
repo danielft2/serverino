@@ -22,7 +22,6 @@
    "plugins": [
       "react",
       "@typescript-eslint",
-      "eslint-plugin-import-helpers",
       "react-hooks"
    ],
    "rules": {
@@ -37,26 +36,6 @@
          "error",
          {
             "endOfLine": "auto"
-         }
-      ],
-      "import-helpers/order-imports": [
-         "warn",
-         {
-            "newlinesBetween": "always",
-            "groups": [
-					["/^react/", "/^react-native/", "/^@expo/", "/^expo/"], 
-               ["/^@react/", "/^@hookform/", "/^react-hook-form/"],
-					"/^@shared/",
-					"/^modules/",
-               [  
-                  "/^@screens/", "/^@components/", "/^@hooks/", "/^@services/", "/^@domain/", "/^@storage/",
-                  "/^@lib/", "/^@validation/", "/^@utils/", "/^@constants/",
-                  "/^@styles/", "/^@theme/", "/^@assets/"
-               ],
-					"/^absolute/",
-					["parent", "sibling", "index"]
-				],
-            "alphabetize": { "order": "asc", "ignoreCase": true }
          }
       ]
    }

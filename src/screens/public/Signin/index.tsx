@@ -13,8 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Logo from '@assets/logo.svg';
 import { background } from '@styles/background-image';
-
-import { Form } from './components/Form';
+import { SigninForm } from '@templates/Signin';
 
 export function Signin() {
    const { navigate } = useNavigation();
@@ -42,7 +41,7 @@ export function Signin() {
                            Ficamos felizes em tê-lo aqui, continue no aplicativo
                            usando seu usuário e senha.
                         </Text>
-                        <Form />
+                        <SigninForm />
                      </View>
                      <View className="flex-row items-center justify-center space-x-1">
                         <Text

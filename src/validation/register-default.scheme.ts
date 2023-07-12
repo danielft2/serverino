@@ -1,4 +1,4 @@
-export const DefaultValues = {
+export const RegisterDefaultScheme = {
    nome: '',
    telefone: '',
    email: '',

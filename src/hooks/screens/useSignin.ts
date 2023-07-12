@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { SigninDTO } from '@domain/dtos';
-import { useAuth, useToast } from '@hooks';
+import { useAuth, useToast } from '@hooks/shared';
 import { AppError } from '@utils';
 import { SinginScheme } from '@validation';
 

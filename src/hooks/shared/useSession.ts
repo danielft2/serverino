@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { SessionContext } from '../context/Session';
+import { SessionContext } from '@contexts/Session';
 
 export function useSession() {
    const context = useContext(SessionContext);

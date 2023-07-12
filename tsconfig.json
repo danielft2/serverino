@@ -2,8 +2,10 @@
    "compilerOptions": {
       "paths": {
          "@screens/*": ["./src/screens/*"],
+         "@templates/*": ["./src/templates/*"],
          "@components/*": ["./src/components/*"],
-         "@hooks": ["./src/hooks"],
+         "@hooks/*": ["./src/hooks/*"],
+         "@contexts/*": ["./src/context/*"],
          "@domain/*": ["./src/domain/*"],
          "@services/*": ["./src/services/*"],
          "@storage/*": ["./src/storage/*"],
