@@ -3,7 +3,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { LocationInput } from '@components/Form/Location';
 import { UserAdressModel } from '@domain/models/user-adress.model';
-import { useErrorMessageForm } from '@hooks';
+import { useErrorMessageForm } from '../../hooks/shared';
 
 interface UserLocation {
    data: UserAdressModel;

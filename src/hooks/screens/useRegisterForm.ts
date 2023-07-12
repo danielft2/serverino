@@ -2,20 +2,17 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { RegisterDTO } from '@domain/dtos/register.dto';
-import { useAuth, useToast } from '@hooks';
+import { useAuth, useToast } from '@hooks/shared';
 import { AppError } from '@utils';
-import { RegisterScheme } from '@validation';
-
-import { DefaultValues } from '../scheme/default-values';
+import { RegisterScheme, RegisterDefaultScheme } from '@validation';
 
 export function useRegisterForm() {
    const [loading, setLoading] = useState(false);
 
    const createRegisterForm = useForm<RegisterDTO>({
       resolver: zodResolver(RegisterScheme),
-      defaultValues: DefaultValues
+      defaultValues: RegisterDefaultScheme
    });
    const {
       handleSubmit,

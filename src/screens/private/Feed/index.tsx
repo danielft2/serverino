@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { useAuth } from '@hooks';
+import { useAuth } from '../../../hooks/shared';
 
 export function Feed() {
    const { user } = useAuth();

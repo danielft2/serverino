@@ -1,4 +1,4 @@
-import { useAuth } from '@hooks';
+import { useAuth } from '../../hooks/shared';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Splash } from '@screens/public';
 

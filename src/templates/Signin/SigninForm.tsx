@@ -5,10 +5,9 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Button } from '@components/Button';
 import { FormControlled } from '@components/FormControlled';
+import { useSignin } from '@hooks/screens/useSignin';
 
-import { useSignin } from '../hooks/useSignin';
-
-export function Form() {
+export function SigninForm() {
    const { createSigninForm, getValues, isValid, handleSignin, isLoading } =
       useSignin();
 

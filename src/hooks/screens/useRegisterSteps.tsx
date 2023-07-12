@@ -1,9 +1,7 @@
 import { useState } from 'react';
 
 import { RegisterDTO } from '@domain/dtos/register.dto';
-
-import { LocationData } from '../components/LocationData';
-import { PersonalData } from '../components/PersonalData';
+import { LocationData, PersonalData } from '@templates/Register';
 
 export enum STEPS_ENUM {
    DADOS_BASICOS,

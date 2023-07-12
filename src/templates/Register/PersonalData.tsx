@@ -1,11 +1,9 @@
 import { SafeAreaView, View } from 'react-native';
 import { Masks } from 'react-native-mask-input';
 
-import { theme } from '../../../../theme';
-
 import { Form } from '@components/Form';
 import { FormControlled } from '@components/FormControlled';
-import { useErrorMessageForm } from '@hooks';
+import { useErrorMessageForm } from '@hooks/shared';
 
 export function PersonalData() {
    const { get } = useErrorMessageForm();
