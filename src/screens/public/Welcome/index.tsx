@@ -1,13 +1,11 @@
 import { ImageBackground, SafeAreaView, Text, View } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-
+import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 
-import Logo from '@assets/logo.svg';
 import { Button } from '@components/Button';
 import { background } from '@styles/background-image';
-
-import { LinearGradient } from 'expo-linear-gradient';
+import Logo from '@assets/logo.svg';
 
 export function Welcome() {
    const { navigate } = useNavigation();
@@ -57,10 +55,7 @@ export function Welcome() {
                      encontre profissionais de diferentes áreas e lugares.
                   </Text>
                </View>
-               <Button.Root
-                  variant="primary"
-                  onPress={() => navigate('signin')}
-               >
+               <Button.Root onPress={() => navigate('signin')}>
                   <Button.Text>Acessar</Button.Text>
                </Button.Root>
             </View>

@@ -1,20 +1,20 @@
 import { useCallback } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { LocationInput } from '@components/Form/Location';
+import { InputLocation } from '@components/Form/InputLocation';
 import { UserAdressModel } from '@domain/models/user-adress.model';
-import { useErrorMessageForm } from '../../hooks/shared';
+import { useErrorMessageForm } from '@hooks/shared';
 
 interface UserLocation {
    data: UserAdressModel;
    error: string;
 }
 
-interface ControlledLocationProps {
+interface InputLocationControllProps {
    name: string;
 }
 
-export function ControlledLocation({ name }: ControlledLocationProps) {
+export function InputLocationControll({ name }: InputLocationControllProps) {
    const { control, setValue, setError } = useFormContext();
    const { get } = useErrorMessageForm();
 
@@ -48,7 +48,7 @@ export function ControlledLocation({ name }: ControlledLocationProps) {
          control={control}
          name={name}
          render={({ field: { value } }) => (
-            <LocationInput.root
+            <InputLocation
                onSearchCompleted={handleSetValues}
                values={value}
                error={get('endereco.cep')}

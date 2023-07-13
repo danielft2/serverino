@@ -3,13 +3,13 @@ import { View } from 'react-native';
 
 import { Loading } from '@components/Loading';
 import { UserAdressModel } from '@domain/models/user-adress.model';
-import { useAdress, useErrorMessageForm } from '../../hooks/shared';
+import { useAdress, useErrorMessageForm } from '@hooks/shared';
 
-import { InputErrorMessage } from './ErrorMessage';
-import { InputLabel } from './Label';
-import { InputText } from './Text';
+import { InputErrorMessage } from '../ErrorMessage';
+import { InputLabel } from '../Label';
+import { Input } from '../InputText';
 
-interface LocationInputProps {
+interface InputLocationProps {
    onSearchCompleted: (data: UserLocation) => void;
    values: UserAdressModel;
    error: string;
@@ -20,7 +20,10 @@ interface UserLocation {
    error: string;
 }
 
-function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
+export function InputLocation({
+   onSearchCompleted,
+   values
+}: InputLocationProps) {
    const [cep, setCep] = useState('');
    const { get } = useErrorMessageForm();
    const { searchAdressByCEP, loading } = useAdress({ onSearchCompleted });
@@ -34,25 +37,25 @@ function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
       <View className="space-y-3">
          <View>
             <InputLabel required>CEP</InputLabel>
-            <InputText.Root
+            <Input.Root
                onChangeText={setCep}
                value={cep}
                maxLength={8}
                editable={!loading}
             >
                {loading && (
-                  <InputText.Icon>
+                  <Input.IconRoot>
                      <Loading.default />
-                  </InputText.Icon>
+                  </Input.IconRoot>
                )}
-            </InputText.Root>
+            </Input.Root>
             {cep.length === 8 && (
                <InputErrorMessage message={get('endereco.cep')} />
             )}
          </View>
          <View>
             <InputLabel required>UF</InputLabel>
-            <InputText.Root
+            <Input.Root
                value={
                   values?.uf && cep.length === 8 && !loading ? values.uf : ''
                }
@@ -61,7 +64,7 @@ function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
          </View>
          <View>
             <InputLabel required>Cidade</InputLabel>
-            <InputText.Root
+            <Input.Root
                value={
                   values?.cidade && cep.length === 8 && !loading
                      ? values.cidade
@@ -73,7 +76,3 @@ function LocationRoot({ onSearchCompleted, values }: LocationInputProps) {
       </View>
    );
 }
-
-export const LocationInput = {
-   root: LocationRoot
-};

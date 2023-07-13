@@ -1,11 +1,11 @@
-import { ControlledTextMask } from './Controlled.TextMask';
-import { ControlledLocation } from './ControlledLocation';
-import { ControlledPassword } from './ControlledPassword';
-import { ControlledText } from './ControlledText';
+import { InputTextMaskControll } from './InputTextMask';
+import { InputLocationControll } from './InputLocation';
+import { InputPasswordControll } from './InputPassword';
+import { InputTextControll } from './InputText';
 
-export const FormControlled = {
-   Text: ControlledText,
-   TextMask: ControlledTextMask,
-   Password: ControlledPassword,
-   Location: ControlledLocation
+export const InputControlled = {
+   Text: InputTextControll,
+   TextMask: InputTextMaskControll,
+   Password: InputPasswordControll,
+   Location: InputLocationControll
 };

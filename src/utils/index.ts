@@ -1,3 +1,4 @@
 import { AppError } from './app-error';
 import { PhoneRegex } from './phone-regex';
-export { AppError, PhoneRegex };
+import { cnMerge } from './class-merge';
+export { AppError, PhoneRegex, cnMerge };
