@@ -1,10 +1,10 @@
-import { FormProvider } from 'react-hook-form';
 import { TouchableOpacity, View, Text, Keyboard } from 'react-native';
+import { FormProvider } from 'react-hook-form';
 import { Masks } from 'react-native-mask-input';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Button } from '@components/Button';
-import { FormControlled } from '@components/FormControlled';
+import { InputControlled } from '@components/FormControlled';
 import { useSignin } from '@hooks/screens/useSignin';
 
 export function SigninForm() {
@@ -16,7 +16,7 @@ export function SigninForm() {
          <FormProvider {...createSigninForm}>
             <View className="space-y-3">
                <View>
-                  <FormControlled.TextMask
+                  <InputControlled.TextMask
                      name="telefone"
                      placeholder="Telefone"
                      maxLength={15}
@@ -25,12 +25,9 @@ export function SigninForm() {
                   />
                </View>
                <View>
-                  <FormControlled.Password
+                  <InputControlled.Password
                      name="password"
-                     isIconVisible
                      placeholder="Senha"
-                     maxLength={6}
-                     keyboardType="phone-pad"
                   />
                </View>
             </View>

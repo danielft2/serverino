@@ -2,7 +2,7 @@ import { SafeAreaView, View } from 'react-native';
 import { Masks } from 'react-native-mask-input';
 
 import { Form } from '@components/Form';
-import { FormControlled } from '@components/FormControlled';
+import { InputControlled } from '@components/FormControlled';
 import { useErrorMessageForm } from '@hooks/shared';
 
 export function PersonalData() {
@@ -12,12 +12,12 @@ export function PersonalData() {
       <SafeAreaView className="space-y-4">
          <View>
             <Form.Label required>Nome completo</Form.Label>
-            <FormControlled.Text name="nome" />
+            <InputControlled.Text name="nome" />
             <Form.ErrorMessage message={get('nome')} />
          </View>
          <View>
             <Form.Label required>Telefone</Form.Label>
-            <FormControlled.TextMask
+            <InputControlled.TextMask
                name="telefone"
                keyboardType="name-phone-pad"
                maxLength={15}
@@ -27,24 +27,18 @@ export function PersonalData() {
          </View>
          <View>
             <Form.Label>Email</Form.Label>
-            <FormControlled.Text name="email" />
+            <InputControlled.Text name="email" />
          </View>
          <View>
             <Form.Label required>Senha</Form.Label>
-            <FormControlled.Password
-               isIconVisible
-               name="password"
-               maxLength={6}
-               keyboardType="number-pad"
-            />
+            <InputControlled.Password name="password" />
             <Form.ErrorMessage message={get('password')} />
          </View>
          <View>
             <Form.Label required>Confirmar Senha</Form.Label>
-            <FormControlled.Password
+            <InputControlled.Password
                name="password_confirmation"
-               maxLength={6}
-               keyboardType="number-pad"
+               isVisibleIcon={false}
             />
             <Form.ErrorMessage message={get('password_confirmation')} />
          </View>

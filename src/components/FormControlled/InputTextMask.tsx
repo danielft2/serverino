@@ -1,25 +1,23 @@
+import { InputTextMask } from '@components/Form/InputMask';
 import { Controller, useFormContext } from 'react-hook-form';
 import { MaskInputProps } from 'react-native-mask-input';
 
-import { InputTextMaskRoot } from '@components/Form/TextMask';
-
-interface ControlledTextMaskProps extends MaskInputProps {
+interface InputTextMaskControllProps extends MaskInputProps {
    name: string;
    isLogin?: boolean;
 }
 
-export function ControlledTextMask({ name, ...rest }: ControlledTextMaskProps) {
+export function InputTextMaskControll({
+   name,
+   ...rest
+}: InputTextMaskControllProps) {
    const { control } = useFormContext();
    return (
       <Controller
          control={control}
          name={name}
          render={({ field: { onChange, value } }) => (
-            <InputTextMaskRoot
-               onChangeText={onChange}
-               value={value}
-               {...rest}
-            />
+            <InputTextMask onChangeText={onChange} value={value} {...rest} />
          )}
       />
    );

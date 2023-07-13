@@ -1,11 +1,10 @@
 import { View } from 'react-native';
-
-import { ControlledLocation } from '@components/FormControlled/ControlledLocation';
+import { InputLocationControll } from '@components/FormControlled/InputLocation';
 
 export function LocationData() {
    return (
       <View>
-         <ControlledLocation name="endereco" />
+         <InputLocationControll name="endereco" />
       </View>
    );
 }
