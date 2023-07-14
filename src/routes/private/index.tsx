@@ -1,9 +1,13 @@
-import { useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Feed } from '@screens/private';
 import { useEffect } from 'react';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
+import { Home, Search, UserCircle2 } from 'lucide-react-native';
 
-const { Screen, Navigator } = createNativeStackNavigator();
+import { Discovery, Feed, Profile } from '@screens/private';
+import { theme } from '../../theme';
+
+const { Screen, Navigator } = createBottomTabNavigator();
 
 export function PrivateRoutes() {
    const { addListener } = useNavigation();
@@ -16,12 +20,42 @@ export function PrivateRoutes() {
       <Navigator
          screenOptions={{
             headerShown: false,
-            animation: 'slide_from_right',
-            animationDuration: 0,
-            contentStyle: { backgroundColor: 'black' }
+            tabBarHideOnKeyboard: true,
+            tabBarShowLabel: false,
+            tabBarActiveTintColor: theme.colors.green[300],
+            tabBarInactiveTintColor: theme.colors.gray[200],
+            tabBarStyle: {
+               borderTopWidth: 0,
+               backgroundColor: theme.colors.blue_dark[900],
+               height: RFValue(55),
+               position: 'absolute'
+            }
          }}
+         initialRouteName="feed"
       >
-         <Screen name="feed" component={Feed} />
+         <Screen
+            name="discovery"
+            component={Discovery}
+            options={{
+               tabBarIcon: ({ color }) => <Search color={color} size={22} />
+            }}
+         />
+         <Screen
+            name="feed"
+            component={Feed}
+            options={{
+               tabBarIcon: ({ color }) => <Home color={color} size={22} />
+            }}
+         />
+         <Screen
+            name="profile"
+            component={Profile}
+            options={{
+               tabBarIcon: ({ color }) => (
+                  <UserCircle2 color={color} size={22} />
+               )
+            }}
+         />
       </Navigator>
    );
 }
