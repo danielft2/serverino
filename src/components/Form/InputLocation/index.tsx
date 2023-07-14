@@ -45,7 +45,7 @@ export function InputLocation({
             >
                {loading && (
                   <Input.IconRoot>
-                     <Loading.default />
+                     <Loading.Default />
                   </Input.IconRoot>
                )}
             </Input.Root>

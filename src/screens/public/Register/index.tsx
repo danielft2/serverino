@@ -1,5 +1,5 @@
 import { FormProvider } from 'react-hook-form';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { useNavigation } from '@react-navigation/native';
@@ -45,7 +45,7 @@ export function Register() {
 
    return (
       <SafeAreaView
-         className="flex-1 space-y-6 pb-4 bg-blue_dark-900 relative"
+         className="relative flex-1 space-y-6 bg-blue_dark-900 pb-4"
          style={{ paddingTop: getStatusBarHeight() + 10 }}
       >
          <View className="mb-4 px-4">
@@ -67,9 +67,15 @@ export function Register() {
          </View>
          <ProgessBar totalItems={2} totalItemsCompleted={step_index + 1} />
 
-         <View className="flex-1 justify-between px-4">
-            <FormProvider {...createRegisterForm}>{current_step}</FormProvider>
+         <ScrollView>
+            <View className="px-4 pb-48">
+               <FormProvider {...createRegisterForm}>
+                  {current_step}
+               </FormProvider>
+            </View>
+         </ScrollView>
 
+         <View className="px-4">
             <Button.Root
                variant="primary"
                onPress={
@@ -84,8 +90,7 @@ export function Register() {
                </Button.Text>
             </Button.Root>
          </View>
-
-         <Loading.background loading={loading} />
+         <Loading.Background loading={loading} />
       </SafeAreaView>
    );
 }
