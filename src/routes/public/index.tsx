@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Welcome, Signin, Register } from '@screens/public';
+import { Welcome, Signin } from '@screens/public';
+import { RegisterLazy } from '@templates/Register/RegisterLazy';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -25,7 +26,7 @@ export function PublicRoutes() {
       >
          <Screen name="welcome" component={Welcome} />
          <Screen name="signin" component={Signin} />
-         <Screen name="register" component={Register} />
+         <Screen name="register" component={RegisterLazy} />
       </Navigator>
    );
 }
