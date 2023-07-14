@@ -5,7 +5,7 @@ export function Feed() {
    const { user } = useAuth();
 
    return (
-      <View className="flex-1 bg-gray-950 justify-center items-center">
+      <View className="flex-1 items-center justify-center bg-blue_dark-700">
          <Text className="text-white">{user.nome}</Text>
       </View>
    );

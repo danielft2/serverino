@@ -26,7 +26,7 @@ module.exports = function (api) {
                   '@validation': './src/validation',
                   '@assets': './assets',
                   '@styles': './src/styles',
-                  '@theme:': './src/theme'
+                  '@config:': './src/config'
                }
             }
          ]

@@ -1,2 +1,4 @@
 import { Feed } from './Feed';
-export { Feed };
+import { Profile } from './Profile';
+import { Discovery } from './Discovery';
+export { Feed, Profile, Discovery };

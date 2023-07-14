@@ -25,7 +25,10 @@ export function useSignin() {
    async function handleSignin(data: SigninDTO) {
       setIsLoading(true);
       try {
-         await signin(data);
+         await signin({
+            telefone: data.telefone.replace(/\D/g, ''),
+            password: data.password
+         });
       } catch (error) {
          if (error instanceof AppError) {
             showErrorMessage(error.message);
