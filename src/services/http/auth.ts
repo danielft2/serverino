@@ -1,7 +1,7 @@
 import { RegisterDTO } from '@domain/dtos/register.dto';
 import { privateAPI, publicAPI } from '@lib/axios';
 
-import { RegisterResponse, SingInResponse } from './responses';
+import { Response, RegisterResponse, SingInResponse } from './responses';
 
 export const AuthService = {
    singIn(data: any) {
@@ -9,7 +9,7 @@ export const AuthService = {
    },
 
    register(data: RegisterDTO) {
-      return publicAPI.post<RegisterResponse>('app/register', data);
+      return publicAPI.post<Response<RegisterResponse>>('app/register', data);
    },
 
    validateAccount(code: string) {
