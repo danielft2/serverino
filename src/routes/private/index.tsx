@@ -26,7 +26,7 @@ export function PrivateRoutes() {
             tabBarInactiveTintColor: theme.colors.gray[200],
             tabBarStyle: {
                borderTopWidth: 0,
-               backgroundColor: theme.colors.blue_dark[900],
+               backgroundColor: theme.colors.blue_dark[700],
                height: RFValue(55),
                position: 'absolute'
             }

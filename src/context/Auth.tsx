@@ -3,7 +3,7 @@ import { createContext, useCallback, useEffect, useState } from 'react';
 import { SigninDTO } from '@domain/dtos';
 import { RegisterDTO } from '@domain/dtos/register.dto';
 import { UserModel } from '@domain/models';
-import { AuthService } from '@services/http/auth';
+import { AuthService } from '@services/http/auth.service';
 import { ERRORS_MESSAGES } from '@services/http/errors';
 import { AuthStorage } from '@storage/auth-storage';
 import { SessionStorage } from '@storage/session-storage';
@@ -12,6 +12,7 @@ import { AppError } from '@utils';
 import { Context } from '../@types/context';
 
 import { AxiosError } from 'axios';
+import { privateAPI } from '@lib/axios';
 
 interface AuthContextData {
    user: UserModel;
@@ -31,7 +32,10 @@ export function AuthProvider({ children }: Context) {
          await AuthStorage.retrieveToken(),
          await SessionStorage.retrieveSession()
       ]);
-      if (storage[1]) setUser(storage[1]);
+      if (storage[1] && storage[0]) {
+         privateAPI.defaults.headers['Authorization'] = `Bearer ${storage[0]}`;
+         setUser(storage[1]);
+      }
    }, []);
 
    const updateaTokenAndUser = useCallback(
@@ -40,6 +44,7 @@ export function AuthProvider({ children }: Context) {
             await Promise.all([
                (AuthStorage.saveToken(token), SessionStorage.saveSession(user))
             ]);
+            privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
             setUser(user);
          } catch (error) {
             console.log(error);
