@@ -8,7 +8,5 @@ interface ProfessionalContainerProps {
 export function ProfessionalContainer({
    children
 }: ProfessionalContainerProps) {
-   return (
-      <View className="mb-5 rounded-3xl bg-blue_dark-700 pb-5">{children}</View>
-   );
+   return <View className="">{children}</View>;
 }

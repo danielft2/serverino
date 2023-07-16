@@ -1,13 +1,15 @@
-import { ProfessionalActionIcon } from './ProfessionalActionIcon';
+import { ProfessionalActionLike } from './ProfessionalActionLike';
+import { ProfessionalActionRecommend } from './ProfessionalActionRecommed';
 import { ProfessionalActions } from './ProfessionalActions';
-import { ProfessionalContainer } from './ProfessionalContainer';
 import { ProfessionalContent } from './ProfessionalContent';
+import { ProfessionalHeader } from './ProfessionalHeader';
 import { ProfessionalRoot } from './ProfessionalRoot';
 
 export const Professional = {
-   Container: ProfessionalContainer,
    Root: ProfessionalRoot,
+   Header: ProfessionalHeader,
    Content: ProfessionalContent,
    Actions: ProfessionalActions,
-   ActionIcon: ProfessionalActionIcon
+   ActionLike: ProfessionalActionLike,
+   ActionRecommend: ProfessionalActionRecommend
 };

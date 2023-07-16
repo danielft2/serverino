@@ -1,47 +1,13 @@
-import { Avatar } from '@components/Avatar';
 import { ReactNode } from 'react';
-import { View, Text } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { View } from 'react-native';
 
 interface ProfessionalRootProps {
    children: ReactNode;
-   avatarUrl: string;
-   fullName: string;
-   areaName: string;
 }
 
-export function ProfessionalRoot({
-   children,
-   areaName,
-   fullName,
-   avatarUrl
-}: ProfessionalRootProps) {
+export function ProfessionalRoot({ children }: ProfessionalRootProps) {
    return (
-      <View className="h-auto min-h-[348px] py-5">
-         <View className="mb-3 flex-row items-center space-x-2 px-5">
-            <Avatar.Root size={40} source={avatarUrl ? avatarUrl : 'htpp://'}>
-               <Avatar.Fallback>
-                  <Text className="font-heading_md text-xs text-white">
-                     {fullName.split('')[0].toUpperCase()}
-                     {fullName.split('')[1].toUpperCase()}
-                  </Text>
-               </Avatar.Fallback>
-            </Avatar.Root>
-            <View className="">
-               <Text
-                  className="-mb-1 font-heading_md text-green-400"
-                  style={{ fontSize: RFValue(11) }}
-               >
-                  {areaName}
-               </Text>
-               <Text
-                  className="truncate font-heading_md text-white"
-                  style={{ fontSize: RFValue(11) }}
-               >
-                  {fullName}
-               </Text>
-            </View>
-         </View>
+      <View className="mb-5 max-h-[460px] rounded-3xl bg-blue_dark-700 py-5 pb-5">
          {children}
       </View>
    );
