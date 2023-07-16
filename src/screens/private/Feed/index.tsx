@@ -1,11 +1,11 @@
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { useProfessionals } from '@hooks/shared/useProfessionals';
-import { Loading } from '@components/Loading';
 import { ProfessionalsPreview } from '@templates/Feed/ProfessionalsPreview';
 import Logo from '@assets/logo.svg';
+import { ProfessionalSkeleton } from '@components/ProfessionalSummary/ProfessionalSkeleton';
 
 export function Feed() {
    const statusBarHeigth = getStatusBarHeight();
@@ -31,7 +31,7 @@ export function Feed() {
             className="mb-3 mr-2 self-center"
          />
          {isLoading ? (
-            <Loading.Background loading={true} />
+            <ProfessionalSkeleton />
          ) : (
             <ProfessionalsPreview
                professionals={profressionals}

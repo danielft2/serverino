@@ -1,6 +1,5 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Image } from 'expo-image';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 interface ProfessionalContentProps {
    coverUrl: string;

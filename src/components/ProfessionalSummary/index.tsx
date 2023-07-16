@@ -1,8 +1,9 @@
-import { RFValue } from 'react-native-responsive-fontsize';
-import { Professional } from '@components/Professional';
-import { ProfessionalModel } from '@domain/models/professional.model';
 import { memo } from 'react';
 import { View, Text } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
+
+import { Professional } from '@components/Professional';
+import { ProfessionalModel } from '@domain/models/professional.model';
 
 interface ProfessionalSummaryProps {
    data: ProfessionalModel;

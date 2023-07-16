@@ -4,6 +4,7 @@ import { ProfessionalActions } from './ProfessionalActions';
 import { ProfessionalContent } from './ProfessionalContent';
 import { ProfessionalHeader } from './ProfessionalHeader';
 import { ProfessionalRoot } from './ProfessionalRoot';
+import { ProfessionalSkeleton } from './ProfessionalSkeleton';
 
 export const Professional = {
    Root: ProfessionalRoot,
@@ -11,5 +12,6 @@ export const Professional = {
    Content: ProfessionalContent,
    Actions: ProfessionalActions,
    ActionLike: ProfessionalActionLike,
-   ActionRecommend: ProfessionalActionRecommend
+   ActionRecommend: ProfessionalActionRecommend,
+   Skeleton: ProfessionalSkeleton
 };
