@@ -8,12 +8,15 @@ export function useProfessionals() {
    const { user } = useAuth();
    const { showErrorMessage } = useToast();
 
-   const { data, fetchNextPage, isLoading, isFetching, hasNextPage } =
+   const { data, fetchNextPage, refetch, isLoading, isFetching, hasNextPage } =
       useInfiniteQuery(['professionalsFeed'], {
          queryFn: ({ pageParam }) =>
             ProfessionalsService.getAllProfessionals(user.cidade.id, pageParam),
          getNextPageParam: (lastpage) =>
-            lastpage.meta.results.next_page_url?.split('=')[1],
+            lastpage?.meta?.results.next_page_url?.split('=')[1],
+         onSuccess(data) {
+            console.log(data);
+         },
          onError: () => showErrorMessage('Ocorreu um erro inesperado'),
          staleTime: Infinity
       });
@@ -23,6 +26,7 @@ export function useProfessionals() {
       isLoading,
       isFetching,
       hasNextPage,
-      fetchNextPage
+      fetchNextPage,
+      refetch
    };
 }

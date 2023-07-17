@@ -1,15 +1,18 @@
+import { useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { useProfessionals } from '@hooks/shared/useProfessionals';
 import { ProfessionalsPreview } from '@templates/Feed/ProfessionalsPreview';
-import Logo from '@assets/logo.svg';
 import { ProfessionalSkeleton } from '@components/ProfessionalSummary/ProfessionalSkeleton';
+import { useAuth } from '@hooks/shared';
+import Logo from '@assets/logo.svg';
 
 export function Feed() {
+   const { refreshToken } = useAuth();
    const statusBarHeigth = getStatusBarHeight();
-   const { data, isLoading, isFetching, hasNextPage, fetchNextPage } =
+   const { data, isLoading, isFetching, hasNextPage, fetchNextPage, refetch } =
       useProfessionals();
 
    function loadMoreProfessionals(refetch: boolean) {
@@ -18,7 +21,13 @@ export function Feed() {
       } else if (hasNextPage) fetchNextPage();
    }
 
-   const profressionals = data?.pages.flatMap((page) => page.meta.results.data);
+   const profressionals = data?.pages.flatMap(
+      (page) => page?.meta.results.data
+   );
+
+   useEffect(() => {
+      if (refreshToken) refetch();
+   }, [refreshToken, refetch]);
 
    return (
       <SafeAreaView
@@ -34,7 +43,7 @@ export function Feed() {
             <ProfessionalSkeleton />
          ) : (
             <ProfessionalsPreview
-               professionals={profressionals}
+               professionals={profressionals.length ? profressionals : []}
                isFetching={isFetching}
                loadMoreData={loadMoreProfessionals}
             />
