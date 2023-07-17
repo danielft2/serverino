@@ -20,7 +20,10 @@ export function ProfessionalsPreview({
       ({ item }) => <ProfessionalSummary data={item} />,
       []
    );
-   const keyExtractor = useCallback((item: ProfessionalModel) => item.uuid, []);
+   const keyExtractor = useCallback(
+      (item: ProfessionalModel) => item?.uuid,
+      []
+   );
 
    return (
       <FlashList

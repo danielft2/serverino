@@ -16,6 +16,7 @@ import { privateAPI } from '@lib/axios';
 
 interface AuthContextData {
    user: UserModel;
+   refreshToken: string;
    signin: (data: SigninDTO) => Promise<void>;
    register: (data: RegisterDTO) => Promise<void>;
 }
@@ -26,6 +27,7 @@ export const AuthContext = createContext<AuthContextData>(
 
 export function AuthProvider({ children }: Context) {
    const [user, setUser] = useState<UserModel>(null);
+   const [refreshToken, setRefreshToken] = useState('');
 
    const getTokenAndUserStorage = useCallback(async () => {
       const storage = await Promise.all([
@@ -38,7 +40,7 @@ export function AuthProvider({ children }: Context) {
       }
    }, []);
 
-   const updateaTokenAndUser = useCallback(
+   const updateTokenAndUser = useCallback(
       async (token: string, user: UserModel) => {
          try {
             await Promise.all([
@@ -53,16 +55,25 @@ export function AuthProvider({ children }: Context) {
       []
    );
 
+   const updateRefreshToken = useCallback((token: string) => {
+      console.log(token);
+      setRefreshToken(token);
+   }, []);
+
    async function signin(data: SigninDTO) {
       try {
          const response = (await AuthService.singIn(data)).data;
-         await updateaTokenAndUser(response.token.access_token, response.user);
+         await updateTokenAndUser(response.token.access_token, response.user);
       } catch (error) {
          if (error instanceof AxiosError && error.response.status == 401)
             throw new AppError(ERRORS_MESSAGES.CREDENCIALS_INVALID);
          else throw new AppError(ERRORS_MESSAGES.GENERIC_ERROR);
       }
    }
+
+   const signOut = useCallback(async () => {
+      console.log('Deslogou');
+   }, []);
 
    async function register(data: RegisterDTO) {
       try {
@@ -81,8 +92,16 @@ export function AuthProvider({ children }: Context) {
       getTokenAndUserStorage();
    }, [getTokenAndUserStorage]);
 
+   useEffect(() => {
+      const subscribe = privateAPI.registerInterceptorToken({
+         signOut,
+         updateRefreshToken
+      });
+      return () => subscribe();
+   }, [signOut, updateRefreshToken]);
+
    return (
-      <AuthContext.Provider value={{ user, signin, register }}>
+      <AuthContext.Provider value={{ user, refreshToken, signin, register }}>
          {children}
       </AuthContext.Provider>
    );

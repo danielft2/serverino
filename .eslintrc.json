@@ -32,6 +32,7 @@
       "@typescript-eslint/no-var-requires": "off",
       "no-useless-escape": "off",
       "no-undef": "off",
+      "no-async-promise-executor": "off",
       "prettier/prettier": [
          "error",
          {
