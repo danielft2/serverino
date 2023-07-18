@@ -1,10 +1,11 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 import { ProfessionalsService } from '@services/http/professionals.service';
 
-import { useAuth } from './useAuth';
-import { useToast } from './useToast';
+import { useAuth } from '../shared/useAuth';
+import { useToast } from '../shared/useToast';
+import { InteractionProfessionalDTO } from '@domain/dtos/interaction';
 
-export function useProfessionals() {
+export function useFeed() {
    const { user } = useAuth();
    const { showErrorMessage } = useToast();
 
@@ -14,9 +15,6 @@ export function useProfessionals() {
             ProfessionalsService.getAllProfessionals(user.cidade.id, pageParam),
          getNextPageParam: (lastpage) =>
             lastpage?.meta?.results.next_page_url?.split('=')[1],
-         onSuccess(data) {
-            console.log(data);
-         },
          onError: () => showErrorMessage('Ocorreu um erro inesperado'),
          staleTime: Infinity
       });
