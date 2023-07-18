@@ -17,7 +17,7 @@ export function ProfessionalsPreview({
    loadMoreData
 }: ProfessionalsPreviewProps) {
    const renderItem = useCallback(
-      ({ item }) => <ProfessionalSummary data={item} />,
+      ({ item, index }) => <ProfessionalSummary data={item} index={index} />,
       []
    );
    const keyExtractor = useCallback(
@@ -32,7 +32,7 @@ export function ProfessionalsPreview({
          renderItem={renderItem}
          showsVerticalScrollIndicator={false}
          contentContainerStyle={{ paddingBottom: 40 }}
-         onEndReachedThreshold={0}
+         onEndReachedThreshold={0.1}
          onEndReached={() => loadMoreData(false)}
          estimatedItemSize={348}
          ListFooterComponent={<Loading.Default loading={isFetching} />}

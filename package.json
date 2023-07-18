@@ -60,7 +60,8 @@
     "expo-image": "~1.0.1",
     "react-native-web": "~0.18.10",
     "@expo/webpack-config": "^18.0.1",
-    "@shopify/flash-list": "1.4.0"
+    "@shopify/flash-list": "1.4.0",
+    "expo-updates": "~0.16.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
