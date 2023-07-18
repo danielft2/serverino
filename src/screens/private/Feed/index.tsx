@@ -3,17 +3,17 @@ import { SafeAreaView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import { useProfessionals } from '@hooks/shared/useProfessionals';
-import { ProfessionalsPreview } from '@templates/Feed/ProfessionalsPreview';
 import { ProfessionalSkeleton } from '@components/ProfessionalSummary/ProfessionalSkeleton';
+import { ProfessionalsPreview } from '@templates/Feed/ProfessionalsPreview';
 import { useAuth } from '@hooks/shared';
+import { useFeed } from '@hooks/screens';
 import Logo from '@assets/logo.svg';
 
 export function Feed() {
    const { refreshToken } = useAuth();
    const statusBarHeigth = getStatusBarHeight();
    const { data, isLoading, isFetching, hasNextPage, fetchNextPage, refetch } =
-      useProfessionals();
+      useFeed();
 
    function loadMoreProfessionals(refetch: boolean) {
       if (refetch) {

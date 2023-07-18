@@ -32,8 +32,14 @@ function ProfessionalSummaryRoot({ data }: ProfessionalSummaryProps) {
             )}
 
             <Professional.Actions>
-               <Professional.ActionLike onPress={() => true} />
-               <Professional.ActionRecommend onPress={() => true} />
+               <Professional.ActionLike
+                  user_id={data.user_id}
+                  interactions={data.usuario.interacoes}
+               />
+               <Professional.ActionRecommend
+                  user_id={data.user_id}
+                  interactions={data.usuario.interacoes}
+               />
             </Professional.Actions>
          </View>
       </Professional.Root>

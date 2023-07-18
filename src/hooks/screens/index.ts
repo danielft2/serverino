@@ -1,4 +1,5 @@
 import { useSignin } from './useSignin';
 import { useRegisterForm } from './useRegisterForm';
 import { useRegisterSteps } from './useRegisterSteps';
-export { useSignin, useRegisterForm, useRegisterSteps };
+import { useFeed } from './useFeed';
+export { useSignin, useRegisterForm, useRegisterSteps, useFeed };

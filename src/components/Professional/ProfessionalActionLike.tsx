@@ -1,41 +1,53 @@
-import clsx from 'clsx';
-import { ThumbsUp } from 'lucide-react-native';
-import { useState } from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
+import { ThumbsUp } from 'lucide-react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import clsx from 'clsx';
+
+import { useProfessional } from '@hooks/shared';
 
 interface ProfessionalActionLikeProps {
-   onPress: () => void;
+   user_id: number;
+   interactions: {
+      tipo_id: number;
+      registro_id: number;
+   }[];
 }
 
 export function ProfessionalActionLike({
-   onPress
+   user_id,
+   interactions
 }: ProfessionalActionLikeProps) {
-   const [active, setActive] = useState(false);
+   const { handleClickInteraction, countInteraction, someInteraction } =
+      useProfessional({
+         type: 1,
+         interactions,
+         user_id
+      });
+
+   const styleLike = clsx('font-heading_md text-white', {
+      'text-white': !someInteraction,
+      'text-red-400': someInteraction
+   });
 
    return (
       <TouchableOpacity
-         onPress={() => setActive(!active)}
+         onPress={handleClickInteraction}
          hitSlop={{ top: 16, bottom: 16, left: 16, right: 16 }}
       >
-         <View className="flex-row items-center space-x-2">
-            <View>
+         <View className="flex-row items-center space-x-1.5">
+            <View className="flex-row space-x-1">
                <ThumbsUp
-                  className={`-mt-[4px] ${
-                     active ? 'text-red-400' : 'text-white'
+                  className={`-mt-[2px] ${
+                     someInteraction ? 'text-red-400' : 'text-white'
                   } `}
-                  size={RFValue(20)}
+                  size={RFValue(18)}
                />
+               <Text className={styleLike} style={{ fontSize: RFValue(11) }}>
+                  {countInteraction}
+               </Text>
             </View>
-
-            <Text
-               className={clsx('mt-1 font-heading_md text-white', {
-                  'text-white': !active,
-                  'text-red-400': active
-               })}
-               style={{ fontSize: RFValue(11) }}
-            >
-               {active ? 'Curtido' : 'Curtir'}
+            <Text className={styleLike} style={{ fontSize: RFValue(10) }}>
+               {someInteraction ? 'Curtido' : 'Curtir'}
             </Text>
          </View>
       </TouchableOpacity>
