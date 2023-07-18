@@ -56,7 +56,6 @@ export function AuthProvider({ children }: Context) {
    );
 
    const updateRefreshToken = useCallback((token: string) => {
-      console.log(token);
       setRefreshToken(token);
    }, []);
 

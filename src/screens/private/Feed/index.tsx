@@ -39,7 +39,7 @@ export function Feed() {
             height={RFValue(40)}
             className="mb-3 mr-2 self-center"
          />
-         {isLoading ? (
+         {isLoading && isFetching ? (
             <ProfessionalSkeleton />
          ) : (
             <ProfessionalsPreview
