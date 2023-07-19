@@ -5,6 +5,8 @@ export declare global {
          signin: undefined;
          register: undefined;
          aplication: undefined;
+         account: undefined;
+         profile: undefined;
       }
    }
 }
