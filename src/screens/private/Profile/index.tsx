@@ -1,5 +1,4 @@
-import { SafeAreaView, View, Text, ScrollView } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { SafeAreaView, View, ScrollView } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import {
    Briefcase,
@@ -9,13 +8,13 @@ import {
    UserCog
 } from 'lucide-react-native';
 
-import { Avatar } from '@components/Avatar';
-import { Gradient } from '@components/LinearGradient';
+import { Gradient } from '@components/Gradient';
+import { AvatarProfile } from '@components/AvatarProfile';
 import { OptionCardProfile } from '@templates/Profile';
-import { useAuth } from '@hooks/shared';
+import { useNavigation } from '@react-navigation/native';
 
 export function Profile() {
-   const { user } = useAuth();
+   const { navigate } = useNavigation();
    const statusBarHeigth = getStatusBarHeight();
 
    return (
@@ -24,41 +23,8 @@ export function Profile() {
          style={{ paddingTop: statusBarHeigth + 40 }}
       >
          <Gradient />
-         <View className="mb-6 items-center space-y-2">
-            <Avatar.Root>
-               <Avatar.Container
-                  source={user.link}
-                  size={110}
-                  border="border-white"
-               >
-                  <Avatar.Fallback>
-                     <Text
-                        className="text-white"
-                        style={{ fontSize: RFValue(12) }}
-                     >
-                        {user.nome.split('')[0].toUpperCase()}
-                        {user.nome.split('')[1].toLocaleUpperCase()}
-                     </Text>
-                  </Avatar.Fallback>
-               </Avatar.Container>
-               <Avatar.ButtonEdit />
-            </Avatar.Root>
-            <View className="items-center">
-               <Text
-                  className="font-heading text-green-400"
-                  style={{ fontSize: RFValue(13) }}
-               >
-                  Conta usuário
-               </Text>
-               <Text
-                  className="-mt-2 font-heading text-white"
-                  style={{ fontSize: RFValue(15) }}
-               >
-                  {user.nome}
-               </Text>
-            </View>
-         </View>
-         <View className="flex-grow">
+         <AvatarProfile />
+         <View className="mt-6 flex-grow">
             <ScrollView
                className="flex-grow"
                showsVerticalScrollIndicator={false}
@@ -67,6 +33,7 @@ export function Profile() {
                   <OptionCardProfile
                      label="Informações da Conta"
                      icon={<UserCog size={20} className="text-white" />}
+                     onPress={() => navigate('account')}
                   />
                   <OptionCardProfile
                      label="Alterar Senha"

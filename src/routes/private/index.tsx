@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 import { Home, Search, UserCircle2 } from 'lucide-react-native';
 
-import { Discovery, Feed, Profile } from '@screens/private';
+import { Discovery, Feed, DataAccount, Profile } from '@screens/private';
 import { theme } from '../../theme';
 
 const { Screen, Navigator } = createBottomTabNavigator();
@@ -54,6 +54,16 @@ export function PrivateRoutes() {
                tabBarIcon: ({ color }) => (
                   <UserCircle2 color={color} size={22} />
                )
+            }}
+         />
+         <Screen
+            name="account"
+            component={DataAccount}
+            options={{
+               tabBarButton: () => null,
+               tabBarStyle: {
+                  display: 'none'
+               }
             }}
          />
       </Navigator>

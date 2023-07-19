@@ -8,11 +8,16 @@ import { ProfileItemCard } from '@components/Option';
 interface OptionCardProfileProps {
    label: string;
    icon: ReactNode;
+   onPress?: () => void;
 }
 
-export function OptionCardProfile({ icon, label }: OptionCardProfileProps) {
+export function OptionCardProfile({
+   icon,
+   label,
+   onPress
+}: OptionCardProfileProps) {
    return (
-      <TouchableOpacity className="mb-4 w-full">
+      <TouchableOpacity className="mb-4 w-full" onPress={onPress}>
          <ProfileItemCard.Root isBackground key={label}>
             <ProfileItemCard.Container>
                <ProfileItemCard.Icon>{icon}</ProfileItemCard.Icon>
