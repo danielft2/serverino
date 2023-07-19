@@ -21,7 +21,8 @@ async function saveSession(user: UserModel) {
          email: user.email,
          id: user.id,
          tipo_id: user.tipo_id,
-         status_id: user.status_id
+         status_id: user.status_id,
+         link: user.link
       };
       await SecureStore.setItemAsync(SESSION_KEY, JSON.stringify(userSession));
    } catch (error) {

@@ -30,7 +30,7 @@ module.exports = {
             blue_dark: {
                50: '#e9e9ea',
                100: '#dddedf',
-               200: '#b9babd',
+               200: '#2A2C33',
                300: '#1e212a',
                400: '#1b1e26',
                500: '#181a22',
@@ -42,7 +42,8 @@ module.exports = {
             inputs_state: {
                invalidate: '#1A1215',
                validate: '#09140E'
-            }
+            },
+            blur: 'rgba(4, 124, 60, 0.07)'
          },
          fontFamily: {
             heading: ['Poppins_700Bold', 'sans-serif'],
