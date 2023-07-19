@@ -6,6 +6,7 @@ export type UserModel = {
    nome: string;
    telefone: string;
    email: string;
+   link: string;
    cep: string;
    cidade: {
       id: number;
