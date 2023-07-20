@@ -32,6 +32,7 @@ export function AuthProvider({ children }: Context) {
    const getTokenStorage = useCallback(async () => {
       const token = await AuthStorage.retrieveToken();
       privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
+      setToken(token);
    }, []);
 
    const saveTokenAndUser = useCallback(
