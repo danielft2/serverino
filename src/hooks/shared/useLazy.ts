@@ -1,10 +1,8 @@
 import { useCallback, useState } from 'react';
 import { InteractionManager } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import { Register } from '@screens/public';
-import { Loading } from '@components/Loading';
 
-export function RegisterLazy() {
+export function useLazy() {
    const [render, setRender] = useState(false);
 
    useFocusEffect(
@@ -17,6 +15,7 @@ export function RegisterLazy() {
       }, [])
    );
 
-   if (render) return <Register />;
-   return <Loading.Background loading={true} />;
+   return {
+      render
+   };
 }
