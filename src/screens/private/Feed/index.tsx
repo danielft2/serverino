@@ -11,14 +11,14 @@ import Logo from '@assets/logo.svg';
 
 export function Feed() {
    const { refreshToken } = useAuth();
-   const statusBarHeigth = getStatusBarHeight();
    const { data, isLoading, isFetching, hasNextPage, fetchNextPage, refetch } =
       useFeed();
 
+   const statusBarHeigth = getStatusBarHeight();
+
    function loadMoreProfessionals(refetch: boolean) {
-      if (refetch) {
-         fetchNextPage({ pageParam: 1 });
-      } else if (hasNextPage) fetchNextPage();
+      if (refetch) fetchNextPage({ pageParam: 1 });
+      else if (hasNextPage) fetchNextPage();
    }
 
    const profressionals = data?.pages.flatMap(

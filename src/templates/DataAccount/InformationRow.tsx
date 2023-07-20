@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { ProfileItemCard } from '@components/Option';
+import { styled } from 'nativewind';
 
 interface InformationRowProps {
    subtitle: string;
@@ -11,14 +12,15 @@ interface InformationRowProps {
    onPress?: () => void;
 }
 
-export function InformationRow({
+export function InformationRowStyled({
    icon,
    subtitle,
    description,
-   onPress
+   onPress,
+   ...rest
 }: InformationRowProps) {
    return (
-      <TouchableOpacity className="w-full" onPress={onPress}>
+      <TouchableOpacity className="w-full" onPress={onPress} {...rest}>
          <ProfileItemCard.Root key={subtitle}>
             <ProfileItemCard.Container>
                <ProfileItemCard.Icon>{icon}</ProfileItemCard.Icon>
@@ -41,3 +43,5 @@ export function InformationRow({
       </TouchableOpacity>
    );
 }
+
+export const InformationRow = styled(InformationRowStyled);

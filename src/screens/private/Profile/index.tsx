@@ -1,20 +1,11 @@
-import { SafeAreaView, View, ScrollView } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import {
-   Briefcase,
-   FileBadge2,
-   Lock,
-   LogOut,
-   UserCog
-} from 'lucide-react-native';
 
 import { Gradient } from '@components/Gradient';
 import { AvatarProfile } from '@components/AvatarProfile';
-import { OptionCardProfile } from '@templates/Profile';
-import { useNavigation } from '@react-navigation/native';
+import { OptionsProfile } from '@templates/Profile';
 
 export function Profile() {
-   const { navigate } = useNavigation();
    const statusBarHeigth = getStatusBarHeight();
 
    return (
@@ -25,38 +16,7 @@ export function Profile() {
          <Gradient />
          <AvatarProfile />
          <View className="mt-6 flex-grow">
-            <ScrollView
-               className="flex-grow"
-               showsVerticalScrollIndicator={false}
-            >
-               <View className="mb-3 w-full border-b border-blue_dark-300">
-                  <OptionCardProfile
-                     label="Informações da Conta"
-                     icon={<UserCog size={20} className="text-white" />}
-                     onPress={() => navigate('account')}
-                  />
-                  <OptionCardProfile
-                     label="Alterar Senha"
-                     icon={<Lock size={20} className="text-white" />}
-                  />
-               </View>
-               <View className="mb-3 w-full border-b border-blue_dark-300">
-                  <OptionCardProfile
-                     label="Torna-se Licenciado"
-                     icon={<FileBadge2 size={20} className="text-white" />}
-                  />
-                  <OptionCardProfile
-                     label="Criar conta Profissional"
-                     icon={<Briefcase size={20} className="text-white" />}
-                  />
-               </View>
-               <View className="w-full pb-10">
-                  <OptionCardProfile
-                     label="Sair da Conta"
-                     icon={<LogOut size={20} className="text-red-500" />}
-                  />
-               </View>
-            </ScrollView>
+            <OptionsProfile />
          </View>
       </SafeAreaView>
    );
