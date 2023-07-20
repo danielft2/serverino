@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { useSession } from '@hooks/shared';
+import { useAuth } from '@hooks/shared';
 import { Splash } from '@screens/public';
 
 import { PrivateRoutes } from '../private';
@@ -9,7 +9,7 @@ import { PublicRoutes } from '../public';
 const { Screen, Navigator } = createNativeStackNavigator();
 
 export function SplashRoutes() {
-   const { user } = useSession();
+   const { token } = useAuth();
 
    return (
       <Navigator
@@ -22,7 +22,7 @@ export function SplashRoutes() {
          <Screen name="splash" component={Splash} />
          <Screen
             name="aplication"
-            component={user ? PrivateRoutes : PublicRoutes}
+            component={token ? PrivateRoutes : PublicRoutes}
          />
       </Navigator>
    );

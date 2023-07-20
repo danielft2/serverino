@@ -15,7 +15,7 @@ import { AxiosError } from 'axios';
 import { privateAPI } from '@lib/axios';
 
 interface AuthContextData {
-   refreshToken: string;
+   token: string;
    refreshSession: UserModel;
    signin: (data: SigninDTO) => Promise<void>;
    register: (data: RegisterDTO) => Promise<void>;
@@ -26,7 +26,7 @@ export const AuthContext = createContext<AuthContextData>(
 );
 
 export function AuthProvider({ children }: Context) {
-   const [refreshToken, setRefreshToken] = useState('');
+   const [token, setToken] = useState('');
    const [refreshSession, setRefreshSession] = useState<UserModel>(null);
 
    const getTokenStorage = useCallback(async () => {
@@ -42,6 +42,7 @@ export function AuthProvider({ children }: Context) {
             ]);
             privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
             setRefreshSession(user);
+            setToken(token);
          } catch (error) {
             console.log(error);
          }
@@ -50,7 +51,7 @@ export function AuthProvider({ children }: Context) {
    );
 
    const updateRefreshToken = useCallback((token: string) => {
-      setRefreshToken(token);
+      setToken(token);
    }, []);
 
    async function signin(data: SigninDTO) {
@@ -94,9 +95,7 @@ export function AuthProvider({ children }: Context) {
    }, [signOut, updateRefreshToken]);
 
    return (
-      <AuthContext.Provider
-         value={{ refreshToken, refreshSession, signin, register }}
-      >
+      <AuthContext.Provider value={{ token, refreshSession, signin, register }}>
          {children}
       </AuthContext.Provider>
    );

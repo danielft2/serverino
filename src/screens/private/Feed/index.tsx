@@ -1,17 +1,14 @@
-import { useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { ProfessionalSkeleton } from '@components/ProfessionalSummary/ProfessionalSkeleton';
 import { ProfessionalsPreview } from '@templates/Feed/ProfessionalsPreview';
-import { useAuth } from '@hooks/shared';
 import { useFeed } from '@hooks/screens';
 import Logo from '@assets/logo.svg';
 
 export function Feed() {
-   const { refreshToken } = useAuth();
-   const { data, isLoading, isFetching, hasNextPage, fetchNextPage, refetch } =
+   const { data, isLoading, isFetching, hasNextPage, fetchNextPage } =
       useFeed();
 
    const statusBarHeigth = getStatusBarHeight();
@@ -24,10 +21,6 @@ export function Feed() {
    const profressionals = data?.pages.flatMap(
       (page) => page?.meta.results.data
    );
-
-   useEffect(() => {
-      if (refreshToken) refetch();
-   }, [refreshToken, refetch]);
 
    return (
       <SafeAreaView
