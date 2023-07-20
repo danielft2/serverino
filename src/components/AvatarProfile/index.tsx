@@ -2,10 +2,10 @@ import { Text, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Avatar } from '@components/Avatar';
-import { useAuth } from '@hooks/shared';
+import { useSession } from '@hooks/shared';
 
 export function AvatarProfile() {
-   const { user } = useAuth();
+   const { user } = useSession();
    return (
       <View className="items-center space-y-2">
          <Avatar.Root>

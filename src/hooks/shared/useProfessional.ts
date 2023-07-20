@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { InteractionProfessionalDTO } from '@domain/dtos/interaction';
 import { ProfessionalsService } from '@services/http/professionals.service';
 
-import { useAuth } from './useAuth';
+import { useSession } from './useSession';
 
 interface useProfessionalProps {
    type: number;
@@ -24,7 +24,7 @@ export function useProfessional({
       count: 0,
       state: false
    });
-   const { user } = useAuth();
+   const { user } = useSession();
 
    const { mutateAsync: interactionProfessional } = useMutation({
       mutationKey: ['interactionProfessional'],

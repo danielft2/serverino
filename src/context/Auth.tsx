@@ -15,8 +15,8 @@ import { AxiosError } from 'axios';
 import { privateAPI } from '@lib/axios';
 
 interface AuthContextData {
-   user: UserModel;
    refreshToken: string;
+   refreshSession: UserModel;
    signin: (data: SigninDTO) => Promise<void>;
    register: (data: RegisterDTO) => Promise<void>;
 }
@@ -26,28 +26,22 @@ export const AuthContext = createContext<AuthContextData>(
 );
 
 export function AuthProvider({ children }: Context) {
-   const [user, setUser] = useState<UserModel>(null);
    const [refreshToken, setRefreshToken] = useState('');
+   const [refreshSession, setRefreshSession] = useState<UserModel>(null);
 
-   const getTokenAndUserStorage = useCallback(async () => {
-      const storage = await Promise.all([
-         await AuthStorage.retrieveToken(),
-         await SessionStorage.retrieveSession()
-      ]);
-      if (storage[1] && storage[0]) {
-         privateAPI.defaults.headers['Authorization'] = `Bearer ${storage[0]}`;
-         setUser(storage[1]);
-      }
+   const getTokenStorage = useCallback(async () => {
+      const token = await AuthStorage.retrieveToken();
+      privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
    }, []);
 
-   const updateTokenAndUser = useCallback(
+   const saveTokenAndUser = useCallback(
       async (token: string, user: UserModel) => {
          try {
             await Promise.all([
                (AuthStorage.saveToken(token), SessionStorage.saveSession(user))
             ]);
             privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
-            setUser(user);
+            setRefreshSession(user);
          } catch (error) {
             console.log(error);
          }
@@ -62,7 +56,7 @@ export function AuthProvider({ children }: Context) {
    async function signin(data: SigninDTO) {
       try {
          const response = (await AuthService.singIn(data)).data;
-         await updateTokenAndUser(response.token.access_token, response.user);
+         await saveTokenAndUser(response.token.access_token, response.user);
       } catch (error) {
          if (error instanceof AxiosError && error.response.status == 401)
             throw new AppError(ERRORS_MESSAGES.CREDENCIALS_INVALID);
@@ -88,8 +82,8 @@ export function AuthProvider({ children }: Context) {
    }
 
    useEffect(() => {
-      getTokenAndUserStorage();
-   }, [getTokenAndUserStorage]);
+      getTokenStorage();
+   }, [getTokenStorage]);
 
    useEffect(() => {
       const subscribe = privateAPI.registerInterceptorToken({
@@ -100,7 +94,9 @@ export function AuthProvider({ children }: Context) {
    }, [signOut, updateRefreshToken]);
 
    return (
-      <AuthContext.Provider value={{ user, refreshToken, signin, register }}>
+      <AuthContext.Provider
+         value={{ refreshToken, refreshSession, signin, register }}
+      >
          {children}
       </AuthContext.Provider>
    );
