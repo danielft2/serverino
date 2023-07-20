@@ -5,6 +5,7 @@ import { SessionStorage } from '@storage/session-storage';
 import { AppError } from '@utils';
 
 import { Context } from '../@types/context';
+import { useAuth } from '@hooks/shared/useAuth';
 
 interface SessionContextData {
    user: Partial<UserModel>;
@@ -16,11 +17,16 @@ export const SessionContext = createContext<SessionContextData>(
 );
 
 export function SessionProvider({ children }: Context) {
-   const [user, setUser] = useState<Partial<UserModel>>(null);
+   const [user, setUser] = useState<UserModel>(null);
+   const { refreshSession } = useAuth();
 
    useEffect(() => {
       getUserStorage();
    }, []);
+
+   useEffect(() => {
+      if (refreshSession?.id) setUser(refreshSession);
+   }, [refreshSession]);
 
    async function getUserStorage() {
       const userStorage = await SessionStorage.retrieveSession();

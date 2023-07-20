@@ -1,12 +1,9 @@
-import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { ProfessionalsService } from '@services/http/professionals.service';
-
-import { useAuth } from '../shared/useAuth';
-import { useToast } from '../shared/useToast';
-import { InteractionProfessionalDTO } from '@domain/dtos/interaction';
+import { useSession, useToast } from '@hooks/shared';
 
 export function useFeed() {
-   const { user } = useAuth();
+   const { user } = useSession();
    const { showErrorMessage } = useToast();
 
    const { data, fetchNextPage, refetch, isLoading, isFetching, hasNextPage } =

@@ -2,12 +2,12 @@ import { ScrollView, View } from 'react-native';
 import { Mail, MapPin, Phone, UserCircle2 } from 'lucide-react-native';
 
 import { hideEmail, hidePhone } from '@utils';
-import { useAuth } from '@hooks/shared';
+import { useSession } from '@hooks/shared';
 
 import { InformationRow } from './InformationRow';
 
 export function Informations() {
-   const { user } = useAuth();
+   const { user } = useSession();
 
    return (
       <View className="mt-5 w-full flex-grow border-t border-blue_dark-400">
