@@ -2,15 +2,31 @@ import { View, ActivityIndicator } from 'react-native';
 
 import { theme } from '../../theme';
 import { twMerge } from 'tailwind-merge';
+import { styled } from 'nativewind';
 
 interface LoadingProps {
    loading?: boolean;
+   size?: number;
    className?: string;
+   color?: string;
 }
 
-function LoadingDefault({ loading = true }: LoadingProps) {
+function LoadingDefaultStyled({
+   loading = true,
+   size = 20,
+   color,
+   ...rest
+}: LoadingProps) {
    return (
-      <>{loading && <ActivityIndicator color={theme.colors.green[600]} />}</>
+      <>
+         {loading && (
+            <ActivityIndicator
+               color={color ? color : theme.colors.green[600]}
+               size={size}
+               {...rest}
+            />
+         )}
+      </>
    );
 }
 
@@ -32,6 +48,6 @@ function LoadingBackground({ loading, className }: LoadingProps) {
 }
 
 export const Loading = {
-   Default: LoadingDefault,
+   Default: styled(LoadingDefaultStyled),
    Background: LoadingBackground
 };

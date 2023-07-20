@@ -13,6 +13,7 @@ export function AvatarProfile() {
                source={user.link}
                size={110}
                border="border-white"
+               isLoading
             >
                <Avatar.Fallback>
                   <Text
