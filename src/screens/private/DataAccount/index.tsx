@@ -8,10 +8,15 @@ import { AvatarProfile } from '@components/AvatarProfile';
 import { ButtonBack } from '@components/ButtonBack';
 import { Informations } from '@templates/DataAccount';
 import { OptionCardProfile } from '@templates/Profile';
+import { useLazy } from '@hooks/shared';
+import { Loading } from '@components/Loading';
 
 export function DataAccount() {
    const { navigate } = useNavigation();
+   const { render } = useLazy();
    const statusBarHeigth = getStatusBarHeight();
+
+   if (!render) return <Loading.Background loading={true} />;
 
    return (
       <SafeAreaView

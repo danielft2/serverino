@@ -4,11 +4,14 @@ import { useErrorMessageForm } from './useErrorMessageForm';
 import { useSession } from './useSession';
 import { useToast } from './useToast';
 import { useProfessional } from './useProfessional';
+import { useLazy } from './useLazy';
+
 export {
    useAuth,
    useSession,
    useToast,
    useAdress,
    useErrorMessageForm,
-   useProfessional
+   useProfessional,
+   useLazy
 };

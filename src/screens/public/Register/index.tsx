@@ -10,8 +10,12 @@ import { Loading } from '@components/Loading';
 import { ProgessBar } from '@components/ProgressBar';
 import { useRegisterSteps, useRegisterForm } from '@hooks/screens';
 import { STEPS_ENUM } from '@hooks/screens/useRegisterSteps';
+import { useLazy } from '@hooks/shared';
 
 export function Register() {
+   const { render } = useLazy();
+   const { goBack } = useNavigation();
+
    const {
       createRegisterForm,
       handleConfirmRegister,
@@ -30,8 +34,6 @@ export function Register() {
       handleChangeStep
    } = useRegisterSteps();
 
-   const { goBack } = useNavigation();
-
    function handleChange(step: STEPS_ENUM) {
       if (step === STEPS_ENUM.DADOS_ENDERECO) {
          setValue('endereco_step', true);
@@ -42,6 +44,8 @@ export function Register() {
 
       handleChangeStep(step);
    }
+
+   if (!render) return <Loading.Background loading={true} />;
 
    return (
       <SafeAreaView
