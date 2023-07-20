@@ -18,6 +18,7 @@ interface AuthContextData {
    token: string;
    refreshSession: UserModel;
    signin: (data: SigninDTO) => Promise<void>;
+   signOut: () => Promise<void>;
    register: (data: RegisterDTO) => Promise<void>;
 }
 
@@ -67,7 +68,15 @@ export function AuthProvider({ children }: Context) {
    }
 
    const signOut = useCallback(async () => {
-      console.log('Deslogou');
+      try {
+         await Promise.all([
+            SessionStorage.closeSession(),
+            AuthStorage.deleteToken()
+         ]);
+         setToken('');
+      } catch (error) {
+         throw new AppError(ERRORS_MESSAGES.GENERIC_ERROR);
+      }
    }, []);
 
    async function register(data: RegisterDTO) {
@@ -96,7 +105,9 @@ export function AuthProvider({ children }: Context) {
    }, [signOut, updateRefreshToken]);
 
    return (
-      <AuthContext.Provider value={{ token, refreshSession, signin, register }}>
+      <AuthContext.Provider
+         value={{ token, refreshSession, signin, signOut, register }}
+      >
          {children}
       </AuthContext.Provider>
    );

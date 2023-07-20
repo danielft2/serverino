@@ -30,7 +30,16 @@ async function saveSession(user: UserModel) {
    }
 }
 
+async function closeSession() {
+   try {
+      await SecureStore.deleteItemAsync(SESSION_KEY);
+   } catch (error) {
+      throw new AppError('Ocorreu um erro inesperado ao sair da conta');
+   }
+}
+
 export const SessionStorage = {
    saveSession,
+   closeSession,
    retrieveSession
 };

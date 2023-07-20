@@ -12,6 +12,14 @@ async function saveToken(token: string) {
    }
 }
 
+async function deleteToken() {
+   try {
+      await SecureStore.deleteItemAsync(TOKEN_KEY);
+   } catch (error) {
+      throw new AppError('Ocorreu um erro inesperado ao sair da conta.');
+   }
+}
+
 async function retrieveToken() {
    const token = await SecureStore.getItemAsync(TOKEN_KEY);
    if (token) return token;
@@ -20,5 +28,6 @@ async function retrieveToken() {
 
 export const AuthStorage = {
    saveToken,
+   deleteToken,
    retrieveToken
 };

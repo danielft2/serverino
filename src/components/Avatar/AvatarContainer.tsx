@@ -26,7 +26,7 @@ export function AvatarContainer({
    const [loadingImage, setLoadingImage] = useState(true);
    return (
       <View
-         className={`relative items-center justify-center overflow-hidden rounded-full border-[1.5px]
+         className={`relative overflow-hidden rounded-full border-[1.5px]
          ${border} bg-blue_dark-600`}
          style={{ width: RFValue(size), height: RFValue(size) }}
       >
@@ -40,11 +40,13 @@ export function AvatarContainer({
             />
          )}
          {isLoading && (
-            <Loading.Default
-               loading={loadingImage}
-               size={30}
-               color={theme.colors.white}
-            />
+            <View className="absolute left-[38%] top-[35%]">
+               <Loading.Default
+                  loading={loadingImage}
+                  size={30}
+                  color={theme.colors.white}
+               />
+            </View>
          )}
          {isErrorImage && children}
       </View>
