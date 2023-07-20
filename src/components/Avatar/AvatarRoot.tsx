@@ -1,7 +1,5 @@
+import { ReactNode } from 'react';
 import { View } from 'react-native';
-import { Image } from 'expo-image';
-import { RFValue } from 'react-native-responsive-fontsize';
-import { ReactNode, useState } from 'react';
 
 interface AvatarRootProps {
    children?: ReactNode;

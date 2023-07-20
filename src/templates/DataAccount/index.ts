@@ -1,2 +1,3 @@
 import { InformationRow } from './InformationRow';
-export { InformationRow };
+import { Informations } from './Informations';
+export { InformationRow, Informations };
