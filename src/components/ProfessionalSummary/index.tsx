@@ -1,10 +1,10 @@
 import { memo } from 'react';
 import { View, Text } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { Professional } from '@components/Professional';
 import { ProfessionalModel } from '@domain/models/professional.model';
-import { MotiView } from 'moti';
 
 interface ProfessionalSummaryProps {
    data: ProfessionalModel;
@@ -13,11 +13,7 @@ interface ProfessionalSummaryProps {
 
 function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
    return (
-      <MotiView
-         from={{ opacity: 0, translateY: -30 }}
-         animate={{ opacity: 1, translateY: 0 }}
-         transition={{ delay: index, type: 'timing' }}
-      >
+      <Animated.View entering={FadeIn.delay(150 * index)}>
          <Professional.Root>
             <Professional.Header
                areaName={data.area.nome}
@@ -50,7 +46,7 @@ function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
                </Professional.Actions>
             </View>
          </Professional.Root>
-      </MotiView>
+      </Animated.View>
    );
 }
 

@@ -14,6 +14,7 @@ export function OptionSignOut() {
       <>
          <View className="w-full pb-10">
             <OptionCardProfile
+               index={5}
                label="Sair da Conta"
                icon={<LogOut size={20} className="text-red-500" />}
                onPress={() => setIsOpenDialog(true)}
@@ -34,7 +35,7 @@ export function OptionSignOut() {
                   <Dialog.Action onPress={signOut}>
                      <Text
                         className="font-heading_md text-red-400"
-                        style={{ fontSize: RFValue(13) }}
+                        style={{ fontSize: RFValue(12) }}
                      >
                         Sim, desejo
                      </Text>
@@ -42,7 +43,7 @@ export function OptionSignOut() {
                   <Dialog.Action onPress={() => setIsOpenDialog(false)}>
                      <Text
                         className="font-heading_md text-gray-100"
-                        style={{ fontSize: RFValue(13) }}
+                        style={{ fontSize: RFValue(12) }}
                      >
                         Cancelar
                      </Text>

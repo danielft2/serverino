@@ -1,26 +1,31 @@
 import { ReactNode } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { ProfileItemCard } from '@components/Option';
 import { styled } from 'nativewind';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 interface InformationRowProps {
    subtitle: string;
    description: string;
    icon: ReactNode;
-   onPress?: () => void;
+   index: number;
 }
 
 export function InformationRowStyled({
    icon,
    subtitle,
    description,
-   onPress,
+   index,
    ...rest
 }: InformationRowProps) {
    return (
-      <TouchableOpacity className="w-full" onPress={onPress} {...rest}>
+      <Animated.View
+         entering={FadeIn.duration(600 * index)}
+         className="w-full"
+         {...rest}
+      >
          <ProfileItemCard.Root key={subtitle}>
             <ProfileItemCard.Container>
                <ProfileItemCard.Icon>{icon}</ProfileItemCard.Icon>
@@ -40,7 +45,7 @@ export function InformationRowStyled({
                </View>
             </ProfileItemCard.Container>
          </ProfileItemCard.Root>
-      </TouchableOpacity>
+      </Animated.View>
    );
 }
 
