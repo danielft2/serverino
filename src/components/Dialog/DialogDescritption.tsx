@@ -8,7 +8,7 @@ interface DialogDescriptionProps {
 
 export function DialogDescription({ children }: DialogDescriptionProps) {
    return (
-      <Text className="text-gray-200" style={{ fontSize: RFValue(13) }}>
+      <Text className="-mt-1 text-gray-200" style={{ fontSize: RFValue(13) }}>
          {children}
       </Text>
    );

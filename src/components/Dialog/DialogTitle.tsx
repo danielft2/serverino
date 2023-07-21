@@ -8,7 +8,7 @@ interface DialogTitleProps {
 export function DialogTitle({ title }: DialogTitleProps) {
    return (
       <Text
-         className="font-heading_md text-white"
+         className="font-heading_sm text-white"
          style={{ fontSize: RFValue(14) }}
       >
          {title}

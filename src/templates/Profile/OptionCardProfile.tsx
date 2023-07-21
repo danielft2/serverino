@@ -2,22 +2,32 @@ import { ReactNode } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { ChevronRight } from 'lucide-react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import Animated, { SlideInLeft } from 'react-native-reanimated';
 
 import { ProfileItemCard } from '@components/Option';
 
 interface OptionCardProfileProps {
    label: string;
    icon: ReactNode;
+   index: number;
    onPress?: () => void;
 }
+
+const TouchableOpacityAnimated =
+   Animated.createAnimatedComponent(TouchableOpacity);
 
 export function OptionCardProfile({
    icon,
    label,
-   onPress
+   onPress,
+   index
 }: OptionCardProfileProps) {
    return (
-      <TouchableOpacity className="mb-4 w-full" onPress={onPress}>
+      <TouchableOpacityAnimated
+         entering={SlideInLeft.duration(200 * index)}
+         className="mb-4 w-full"
+         onPress={onPress}
+      >
          <ProfileItemCard.Root isBackground key={label}>
             <ProfileItemCard.Container>
                <ProfileItemCard.Icon>{icon}</ProfileItemCard.Icon>
@@ -30,6 +40,6 @@ export function OptionCardProfile({
             </ProfileItemCard.Container>
             <ChevronRight size={20} className="text-white" />
          </ProfileItemCard.Root>
-      </TouchableOpacity>
+      </TouchableOpacityAnimated>
    );
 }

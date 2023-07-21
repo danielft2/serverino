@@ -18,13 +18,17 @@ export function DialogRoot({
    return (
       <Modal
          isVisible={isOpen}
+         animationIn={'fadeIn'}
+         animationOut={'fadeOut'}
          style={{ margin: 32 }}
          animationInTiming={500}
-         animationOutTiming={500}
+         animationOutTiming={300}
          avoidKeyboard={false}
          statusBarTranslucent={true}
          deviceHeight={height + 100}
          backdropOpacity={0.8}
+         hideModalContentWhileAnimating={true}
+         backdropTransitionOutTiming={0}
          onBackdropPress={onBackdropPress}
       >
          {children}

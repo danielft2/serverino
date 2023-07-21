@@ -14,21 +14,25 @@ export function Informations() {
          <ScrollView className="flex-grow" showsVerticalScrollIndicator={false}>
             <View className="divide-y-[1px] divide-blue_dark-400">
                <InformationRow
+                  index={1}
                   subtitle="Nome"
                   description={user.nome}
                   icon={<UserCircle2 size={20} className="text-white" />}
                />
                <InformationRow
+                  index={2}
                   subtitle="E-mail"
                   description={hideEmail(user.email)}
                   icon={<Mail size={20} className="text-white" />}
                />
                <InformationRow
+                  index={3}
                   subtitle="Telefone"
                   description={hidePhone(user.telefone)}
                   icon={<Phone size={20} className="text-white" />}
                />
                <InformationRow
+                  index={4}
                   subtitle="Endereço"
                   description={`${user.cidade.nome}-${user.cidade.uf.nome}`}
                   icon={<MapPin size={20} className="text-white" />}

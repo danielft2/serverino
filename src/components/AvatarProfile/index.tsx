@@ -3,11 +3,15 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Avatar } from '@components/Avatar';
 import { useSession } from '@hooks/shared';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 export function AvatarProfile() {
    const { user } = useSession();
    return (
-      <View className="items-center space-y-2">
+      <Animated.View
+         className="items-center space-y-2"
+         entering={FadeIn.duration(600)}
+      >
          <Avatar.Root>
             <Avatar.Container
                source={user.link}
@@ -41,6 +45,6 @@ export function AvatarProfile() {
                {user.nome}
             </Text>
          </View>
-      </View>
+      </Animated.View>
    );
 }
