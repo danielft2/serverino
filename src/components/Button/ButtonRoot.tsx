@@ -9,23 +9,28 @@ import { cnMerge } from '@utils';
 import { styled } from 'nativewind';
 
 const ButtonVariants = cva(
-   'items-center justify-center base:h-11 sm:h-[52px] lg:h-14',
+   'items-center justify-center base:h-11 sm:h-[50px] lg:h-14',
    {
       variants: {
          variant: {
-            primary: 'bg-green-600 w-full',
-            secondary: 'bg-gray-600 w-full',
-            danger: 'bg-red-400 w-full ',
+            primary: 'bg-green-600',
+            secondary: 'bg-gray-600',
+            danger: 'bg-red-400',
             link: 'bg-transparent w-auto'
          },
          shape: {
             rounded: 'rounded-full',
             normal: 'rounded'
+         },
+         weigth: {
+            full: 'w-full',
+            auto: 'w-auto px-6'
          }
       },
       defaultVariants: {
          variant: 'primary',
-         shape: 'rounded'
+         shape: 'rounded',
+         weigth: 'full'
       }
    }
 );
@@ -41,6 +46,7 @@ function ButtonRootStyled({
    className,
    variant,
    shape,
+   weigth,
    children,
    isLoading,
    disabled,
@@ -48,9 +54,12 @@ function ButtonRootStyled({
 }: ButtonRootProps) {
    return (
       <TouchableOpacity
-         className={cnMerge(ButtonVariants({ className, variant, shape }), {
-            'opacity-50': isLoading || disabled
-         })}
+         className={cnMerge(
+            ButtonVariants({ className, variant, shape, weigth }),
+            {
+               'opacity-50': isLoading || disabled
+            }
+         )}
          {...rest}
       >
          {isLoading ? <ActivityIndicator color="green" /> : children}

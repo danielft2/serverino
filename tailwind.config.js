@@ -46,8 +46,9 @@ module.exports = {
             blur: 'rgba(4, 124, 60, 0.07)'
          },
          fontFamily: {
-            heading: ['Poppins_700Bold', 'sans-serif'],
             heading_md: ['Poppins_500Medium', 'sans-serif'],
+            heading_sm: ['Poppins_600SemiBold', 'sans-serif'],
+            heading: ['Poppins_700Bold', 'sans-serif'],
             reading: ['Roboto_400Regular', 'sans-serif']
          },
          screens: {
