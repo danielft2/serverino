@@ -8,13 +8,13 @@ import { useFeed } from '@hooks/screens';
 import Logo from '@assets/logo.svg';
 
 export function Feed() {
-   const { data, isLoading, isFetching, hasNextPage, fetchNextPage } =
+   const { data, isLoading, isFetching, hasNextPage, refetch, fetchNextPage } =
       useFeed();
 
    const statusBarHeigth = getStatusBarHeight();
 
-   function loadMoreProfessionals(refetch: boolean) {
-      if (refetch) fetchNextPage({ pageParam: 1 });
+   function loadMoreProfessionals(update: boolean) {
+      if (update) refetch();
       else if (hasNextPage) fetchNextPage();
    }
 
