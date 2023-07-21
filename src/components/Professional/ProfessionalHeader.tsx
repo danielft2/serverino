@@ -17,10 +17,7 @@ export function ProfessionalHeader({
    return (
       <View className="mb-3 flex-row items-center space-x-2 px-5">
          <Avatar.Root>
-            <Avatar.Container
-               size={40}
-               source={avatarUrl ? avatarUrl : 'htpp://'}
-            >
+            <Avatar.Container size={40} source={avatarUrl}>
                <Avatar.Fallback>
                   <Text className="font-heading_md text-xs text-white">
                      {fullName.split('')[0].toUpperCase()}

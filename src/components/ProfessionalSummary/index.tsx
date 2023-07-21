@@ -29,7 +29,7 @@ function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
                {data?.atuacoes[0]?.descricao && (
                   <View className="line-clamp-1 h-14 justify-center px-5">
                      <Text
-                        className="py-2 font-reading leading-4 text-blue_dark-200"
+                        className="py-2 font-reading leading-4 text-gray-100"
                         style={{ fontSize: RFValue(12) }}
                         numberOfLines={2}
                      >

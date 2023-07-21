@@ -1,7 +1,6 @@
-import { ReactNode, useState } from 'react';
-import { View } from 'react-native';
+import { ReactNode, useEffect, useState } from 'react';
+import { View, Image } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { Image } from 'expo-image';
 
 import { Loading } from '@components/Loading';
 
@@ -24,6 +23,11 @@ export function AvatarContainer({
 }: AvatarContainerProps) {
    const [isErrorImage, setIsErrorImage] = useState(false);
    const [loadingImage, setLoadingImage] = useState(true);
+
+   useEffect(() => {
+      if (source) setIsErrorImage(false);
+   }, [source]);
+
    return (
       <View
          className={`relative overflow-hidden rounded-full border-[1.5px]
@@ -32,15 +36,14 @@ export function AvatarContainer({
       >
          {!isErrorImage && (
             <Image
-               source={{ uri: source }}
-               className="h-full w-full"
-               contentFit="cover"
+               source={{ uri: source ? source : 'https://wwww' }}
+               className="h-full w-full object-cover"
                onError={() => setIsErrorImage(true)}
                onLoadEnd={() => setLoadingImage(false)}
             />
          )}
          {isLoading && (
-            <View className="absolute left-[38%] top-[35%]">
+            <View className="absolute left-[38%] top-[38%]">
                <Loading.Default
                   loading={loadingImage}
                   size={30}
