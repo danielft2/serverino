@@ -46,7 +46,7 @@ export function InputTextRoot({
                }),
                { 'bg-blue_dark-600': !editable }
             )}
-            style={{ fontSize: RFValue(12.8) }}
+            style={{ fontSize: RFValue(11.8) }}
             placeholderTextColor={theme.colors.gray[200]}
             editable={editable}
             {...rest}
