@@ -6,6 +6,7 @@ import { AppError } from '@utils';
 
 import { Context } from '../@types/context';
 import { useAuth } from '@hooks/shared/useAuth';
+import { useMutation } from '@tanstack/react-query';
 
 interface SessionContextData {
    user: Partial<UserModel>;
@@ -36,6 +37,7 @@ export function SessionProvider({ children }: Context) {
    const updateUserStorage = useCallback(async (user: UserModel) => {
       try {
          await SessionStorage.saveSession(user);
+         setUser(user);
       } catch (error) {
          if (error instanceof AppError) {
             console.log(error.message);

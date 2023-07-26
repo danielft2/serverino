@@ -2,13 +2,8 @@ import { useCallback } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { InputLocation } from '@components/Form/InputLocation';
-import { UserAdressModel } from '@domain/models/user-adress.model';
 import { useErrorMessageForm } from '@hooks/shared';
-
-interface UserLocation {
-   data: UserAdressModel;
-   error: string;
-}
+import { LocationDTO } from '@domain/dtos';
 
 interface InputLocationControllProps {
    name: string;
@@ -19,7 +14,7 @@ export function InputLocationControll({ name }: InputLocationControllProps) {
    const { get } = useErrorMessageForm();
 
    const handleSetValues = useCallback(
-      ({ data, error }: UserLocation) => {
+      ({ data, error }: LocationDTO) => {
          if (!error) {
             setValue(
                'endereco',

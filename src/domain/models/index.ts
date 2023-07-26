@@ -1,2 +1,4 @@
 import { UserModel } from './user.model';
-export { UserModel };
+import { ProfessionalModel } from './professional.model';
+import { UserAdressModel } from './user-adress.model';
+export { UserModel, ProfessionalModel, UserAdressModel };

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import { Loading } from '@components/Loading';
 import { UserAdressModel } from '@domain/models/user-adress.model';
+import { LocationDTO } from '@domain/dtos';
 import { useAdress, useErrorMessageForm } from '@hooks/shared';
 
 import { InputErrorMessage } from '../ErrorMessage';
@@ -10,13 +11,8 @@ import { InputLabel } from '../Label';
 import { Input } from '../InputText';
 
 interface InputLocationProps {
-   onSearchCompleted: (data: UserLocation) => void;
+   onSearchCompleted: (data: LocationDTO) => void;
    values: UserAdressModel;
-   error: string;
-}
-
-interface UserLocation {
-   data: UserAdressModel;
    error: string;
 }
 
@@ -29,9 +25,9 @@ export function InputLocation({
    const { searchAdressByCEP, loading } = useAdress({ onSearchCompleted });
 
    useEffect(() => {
-      if (cep.length === 8) searchAdressByCEP(cep);
+      if (cep.length === 0 && values?.cep.length === 8) setCep(values.cep);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [cep]);
+   }, [values?.cep]);
 
    return (
       <View className="space-y-3">
@@ -39,9 +35,11 @@ export function InputLocation({
             <InputLabel required>CEP</InputLabel>
             <Input.Root
                onChangeText={setCep}
+               onBlur={() => searchAdressByCEP(cep)}
                value={cep}
                maxLength={8}
                editable={!loading}
+               keyboardType="number-pad"
             >
                {loading && (
                   <Input.IconRoot>

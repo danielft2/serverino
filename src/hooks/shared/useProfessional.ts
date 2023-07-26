@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
-import { InteractionProfessionalDTO } from '@domain/dtos/interaction';
+import { InteractionProfessionalDTO } from '@domain/dtos/interaction.dto';
 import { ProfessionalsService } from '@services/http/professionals.service';
 
 import { useSession } from './useSession';
