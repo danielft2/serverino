@@ -1,6 +1,6 @@
 import { privateAPI } from '@lib/axios';
 import { Response, ProfessionalsListResponse } from './responses';
-import { InteractionProfessionalDTO } from '@domain/dtos/interaction';
+import { InteractionProfessionalDTO } from '@domain/dtos/interaction.dto';
 
 export const ProfessionalsService = {
    async getAllProfessionals(cidadeId: number, page = 1) {

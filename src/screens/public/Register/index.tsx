@@ -8,8 +8,7 @@ import { Button } from '@components/Button';
 import { Header } from '@components/Header';
 import { Loading } from '@components/Loading';
 import { ProgessBar } from '@components/ProgressBar';
-import { useRegisterSteps, useRegisterForm } from '@hooks/screens';
-import { STEPS_ENUM } from '@hooks/screens/useRegisterSteps';
+import { useRegisterSteps, useRegisterForm, STEPS_ENUM } from '@hooks/screens';
 import { useLazy } from '@hooks/shared';
 
 export function Register() {

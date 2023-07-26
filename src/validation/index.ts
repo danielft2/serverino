@@ -1,4 +1,10 @@
 import { RegisterScheme } from './register.scheme';
 import { RegisterDefaultScheme } from './register-default.scheme';
 import { SinginScheme } from './signin.scheme';
-export { SinginScheme, RegisterScheme, RegisterDefaultScheme };
+import { UpdateInformationsScheme } from './update-informations.scheme';
+export {
+   SinginScheme,
+   RegisterScheme,
+   RegisterDefaultScheme,
+   UpdateInformationsScheme
+};

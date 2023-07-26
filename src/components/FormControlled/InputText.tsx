@@ -14,7 +14,7 @@ export function InputTextControll({ name, ...rest }: InputTextControllProps) {
          control={control}
          name={name}
          render={({ field: { onChange, value } }) => (
-            <Input.Root {...rest} onChangeText={onChange} value={value} />
+            <Input.Root onChangeText={onChange} value={value} {...rest} />
          )}
       />
    );

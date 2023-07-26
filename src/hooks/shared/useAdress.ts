@@ -1,18 +1,13 @@
 import { useState } from 'react';
-
-import { UserAdressModel } from '@domain/models/user-adress.model';
-
 import axios from 'axios';
+
+import { UserAdressModel } from '@domain/models';
+import { LocationDTO } from '@domain/dtos';
 
 const api_url = `https://viacep.com.br/ws`;
 
-interface UserLocation {
-   data: UserAdressModel;
-   error: string;
-}
-
 interface useAdressProps {
-   onSearchCompleted: (data: UserLocation) => void;
+   onSearchCompleted: (data: LocationDTO) => void;
 }
 
 export function useAdress({ onSearchCompleted }: useAdressProps) {
@@ -34,7 +29,7 @@ export function useAdress({ onSearchCompleted }: useAdressProps) {
             error: response.data.erro ? 'Insira um cep válido.' : ''
          });
       } catch (error) {
-         console.log(error);
+         onSearchCompleted({ error: 'Serviço temporáriamente indisponível.' });
       } finally {
          setLoading(false);
       }
