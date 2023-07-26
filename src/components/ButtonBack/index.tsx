@@ -10,7 +10,7 @@ export function ButtonBack({ onPress }: ButtonBackProps) {
    return (
       <TouchableOpacity
          className="items-center justify-center rounded-full bg-blue_dark-300"
-         style={{ width: 44, height: 44 }}
+         style={{ width: RFValue(44), height: RFValue(44) }}
          onPress={onPress}
       >
          <ChevronLeft className="mr-0.5 text-white" size={RFValue(24)} />

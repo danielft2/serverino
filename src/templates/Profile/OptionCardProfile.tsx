@@ -25,7 +25,7 @@ export function OptionCardProfile({
    return (
       <TouchableOpacityAnimated
          entering={SlideInLeft.duration(200 * index)}
-         className="mb-4 w-full"
+         className="w-full base:mb-3 md:mb-4"
          onPress={onPress}
       >
          <ProfileItemCard.Root isBackground key={label}>

@@ -2,6 +2,7 @@ import LottieView from 'lottie-react-native';
 import { useRef } from 'react';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export function Splash() {
    const animation = useRef(null);
@@ -26,7 +27,7 @@ export function Splash() {
             ref={animation}
             source={require('@assets/splash/splash.json')}
             style={{
-               height: 220,
+               height: RFValue(200),
                marginRight: 8
             }}
             onAnimationFinish={handleNavigate}

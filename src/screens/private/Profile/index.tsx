@@ -10,7 +10,7 @@ export function Profile() {
 
    return (
       <SafeAreaView
-         className="relative z-10 flex-1 items-center bg-blue_dark-900 px-4"
+         className="relative z-10 flex-1 items-center bg-blue_dark-900 base:px-3 md:px-4"
          style={{ paddingTop: statusBarHeigth + 40 }}
       >
          <Gradient />

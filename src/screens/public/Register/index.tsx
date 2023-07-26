@@ -51,7 +51,7 @@ export function Register() {
          className="relative flex-1 space-y-6 bg-blue_dark-900 pb-4"
          style={{ paddingTop: getStatusBarHeight() + 10 }}
       >
-         <View className="mb-4 px-4">
+         <View className="mb-4 base:px-3 md:px-4">
             <Header
                onHandleClickButton={
                   step_index === 0 ? goBack : () => handleChange(step_index - 1)
