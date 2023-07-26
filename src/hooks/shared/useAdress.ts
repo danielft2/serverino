@@ -29,7 +29,7 @@ export function useAdress({ onSearchCompleted }: useAdressProps) {
             error: response.data.erro ? 'Insira um cep válido.' : ''
          });
       } catch (error) {
-         onSearchCompleted({ error: 'Serviço temporáriamente indisponível.' });
+         onSearchCompleted({ error: 'Não foi possivel realizar a busca.' });
       } finally {
          setLoading(false);
       }
