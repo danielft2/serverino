@@ -15,7 +15,7 @@ export function InputLabel({
       <View className="flex-row space-x-1">
          <Text
             className="mb-1 ml-1 font-heading_md text-white"
-            style={{ fontSize: RFValue(12.8) }}
+            style={{ fontSize: RFValue(11) }}
             {...rest}
          >
             {children}
