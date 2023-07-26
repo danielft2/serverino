@@ -10,7 +10,7 @@ export function ModalContent({ children }: ModalContentProps) {
    const statusBarHeigth = getStatusBarHeight();
    return (
       <View
-         className="flex-1 bg-blue_dark-900 p-4"
+         className="flex-1 bg-blue_dark-900 py-4 base:px-3 md:px-4"
          style={{ paddingTop: statusBarHeigth + 10 }}
       >
          {children}

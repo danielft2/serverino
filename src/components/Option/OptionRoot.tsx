@@ -10,10 +10,13 @@ interface OptionRootProps {
 export function OptionRoot({ children, isBackground }: OptionRootProps) {
    return (
       <View
-         className={clsx('w-full rounded-xl py-3', {
-            'flex-row items-center justify-between bg-blue_dark-600 px-4':
-               isBackground
-         })}
+         className={clsx(
+            'w-full base:rounded-lg base:py-2 md:rounded-xl md:py-3 lg:py-3.5',
+            {
+               'flex-row items-center justify-between bg-blue_dark-600 px-4 lg:px-5':
+                  isBackground
+            }
+         )}
       >
          {children}
       </View>

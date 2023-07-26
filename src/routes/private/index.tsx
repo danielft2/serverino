@@ -37,14 +37,18 @@ export function PrivateRoutes() {
             name="discovery"
             component={Discovery}
             options={{
-               tabBarIcon: ({ color }) => <Search color={color} size={22} />
+               tabBarIcon: ({ color }) => (
+                  <Search color={color} size={RFValue(21)} />
+               )
             }}
          />
          <Screen
             name="feed"
             component={Feed}
             options={{
-               tabBarIcon: ({ color }) => <Home color={color} size={22} />
+               tabBarIcon: ({ color }) => (
+                  <Home color={color} size={RFValue(21)} />
+               )
             }}
          />
          <Screen
@@ -52,7 +56,7 @@ export function PrivateRoutes() {
             component={Profile}
             options={{
                tabBarIcon: ({ color }) => (
-                  <UserCircle2 color={color} size={22} />
+                  <UserCircle2 color={color} size={RFValue(21)} />
                )
             }}
          />

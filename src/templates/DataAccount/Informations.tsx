@@ -5,6 +5,7 @@ import { hideEmail, hidePhone } from '@utils';
 import { useSession } from '@hooks/shared';
 
 import { InformationRow } from './InformationRow';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export function Informations() {
    const { user } = useSession();
@@ -21,25 +22,30 @@ export function Informations() {
                      index={1}
                      subtitle="Nome"
                      description={user.nome}
-                     icon={<UserCircle2 size={20} className="text-white" />}
+                     icon={
+                        <UserCircle2
+                           size={RFValue(20)}
+                           className="text-white"
+                        />
+                     }
                   />
                   <InformationRow
                      index={2}
                      subtitle="E-mail"
                      description={hideEmail(user.email)}
-                     icon={<Mail size={20} className="text-white" />}
+                     icon={<Mail size={RFValue(20)} className="text-white" />}
                   />
                   <InformationRow
                      index={3}
                      subtitle="Telefone"
                      description={hidePhone(user.telefone)}
-                     icon={<Phone size={20} className="text-white" />}
+                     icon={<Phone size={RFValue(20)} className="text-white" />}
                   />
                   <InformationRow
                      index={4}
                      subtitle="Endereço"
                      description={`${user.cidade.nome}-${user.cidade.uf.nome}`}
-                     icon={<MapPin size={20} className="text-white" />}
+                     icon={<MapPin size={RFValue(20)} className="text-white" />}
                   />
                </View>
             </ScrollView>

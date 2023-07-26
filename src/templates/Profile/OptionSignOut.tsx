@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { View, Text } from 'react-native';
 import { LogOut } from 'lucide-react-native';
-import { OptionCardProfile } from './OptionCardProfile';
-import { Dialog } from '@components/Dialog';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { useState } from 'react';
+
+import { Dialog } from '@components/Dialog';
 import { useAuth } from '@hooks/shared';
+
+import { OptionCardProfile } from './OptionCardProfile';
 
 export function OptionSignOut() {
    const [isOpenDialog, setIsOpenDialog] = useState(false);
@@ -16,7 +18,7 @@ export function OptionSignOut() {
             <OptionCardProfile
                index={5}
                label="Sair da Conta"
-               icon={<LogOut size={20} className="text-red-500" />}
+               icon={<LogOut size={RFValue(20)} className="text-red-500" />}
                onPress={() => setIsOpenDialog(true)}
             />
          </View>
