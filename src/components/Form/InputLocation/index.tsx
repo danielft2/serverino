@@ -51,25 +51,27 @@ export function InputLocation({
                <InputErrorMessage message={get('endereco.cep')} />
             )}
          </View>
-         <View>
-            <InputLabel required>UF</InputLabel>
-            <Input.Root
-               value={
-                  values?.uf && cep.length === 8 && !loading ? values.uf : ''
-               }
-               editable={false}
-            />
-         </View>
-         <View>
-            <InputLabel required>Cidade</InputLabel>
-            <Input.Root
-               value={
-                  values?.cidade && cep.length === 8 && !loading
-                     ? values.cidade
-                     : ''
-               }
-               editable={false}
-            />
+         <View className="flex-row space-x-3">
+            <View>
+               <InputLabel required>UF</InputLabel>
+               <Input.Root
+                  value={
+                     values?.uf && cep.length === 8 && !loading ? values.uf : ''
+                  }
+                  editable={false}
+               />
+            </View>
+            <View className="flex-1">
+               <InputLabel required>Cidade</InputLabel>
+               <Input.Root
+                  value={
+                     values?.cidade && cep.length === 8 && !loading
+                        ? values.cidade
+                        : ''
+                  }
+                  editable={false}
+               />
+            </View>
          </View>
       </View>
    );
