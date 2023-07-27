@@ -1,5 +1,5 @@
 import { Feed } from './Feed';
 import { Profile } from './Profile';
 import { Discovery } from './Discovery';
-import { DataAccount } from './DataAccount';
-export { Feed, Profile, Discovery, DataAccount };
+import { InformationsAccount } from './InformationsAccount';
+export { Feed, Profile, Discovery, InformationsAccount };

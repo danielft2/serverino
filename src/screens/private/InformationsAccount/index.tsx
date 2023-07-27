@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { FileEdit } from 'lucide-react-native';
@@ -6,14 +7,15 @@ import { useNavigation } from '@react-navigation/native';
 import { Gradient } from '@components/Gradient';
 import { AvatarProfile } from '@components/AvatarProfile';
 import { ButtonBack } from '@components/ButtonBack';
-import { Informations } from '@templates/DataAccount';
-import { OptionCardProfile } from '@templates/Profile';
 import { useLazy } from '@hooks/shared';
 import { Loading } from '@components/Loading';
-import { UpdateInformations } from '@templates/DataAccount/UpdateInformations';
-import { useState } from 'react';
+import {
+   Informations,
+   UpdateInformationsModal
+} from '@templates/InformationsAccount';
+import { OptionCardProfile } from '@templates/Profile';
 
-export function DataAccount() {
+export function InformationsAccount() {
    const [isOpenModalUpdateInfor, setIsOpenModalUpdateInfor] = useState(false);
 
    const { navigate } = useNavigation();
@@ -43,7 +45,7 @@ export function DataAccount() {
                </View>
             </View>
          </SafeAreaView>
-         <UpdateInformations
+         <UpdateInformationsModal
             isOpen={isOpenModalUpdateInfor}
             onClose={() => setIsOpenModalUpdateInfor(false)}
          />
