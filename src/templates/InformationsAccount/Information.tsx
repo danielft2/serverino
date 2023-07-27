@@ -6,20 +6,20 @@ import { ProfileItemCard } from '@components/Option';
 import { styled } from 'nativewind';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
-interface InformationRowProps {
+interface InformationProps {
    subtitle: string;
    description: string;
    icon: ReactNode;
    index: number;
 }
 
-export function InformationRowStyled({
+export function InformationStyled({
    icon,
    subtitle,
    description,
    index,
    ...rest
-}: InformationRowProps) {
+}: InformationProps) {
    return (
       <Animated.View
          entering={FadeIn.duration(600 * index)}
@@ -49,4 +49,4 @@ export function InformationRowStyled({
    );
 }
 
-export const InformationRow = styled(InformationRowStyled);
+export const Information = styled(InformationStyled);

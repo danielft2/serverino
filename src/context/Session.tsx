@@ -34,16 +34,19 @@ export function SessionProvider({ children }: Context) {
       setUser(userStorage);
    }
 
-   const updateUserStorage = useCallback(async (user: UserModel) => {
-      try {
-         await SessionStorage.saveSession(user);
-         setUser(user);
-      } catch (error) {
-         if (error instanceof AppError) {
-            console.log(error.message);
+   const updateUserStorage = useCallback(
+      async (userUpdate: UserModel) => {
+         try {
+            await SessionStorage.saveSession(userUpdate, user.link);
+            setUser({ ...userUpdate, link: user.link });
+         } catch (error) {
+            if (error instanceof AppError) {
+               console.log(error.message);
+            }
          }
-      }
-   }, []);
+      },
+      [user?.link]
+   );
 
    return (
       <SessionContext.Provider value={{ user, updateUserStorage }}>

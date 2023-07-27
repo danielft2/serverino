@@ -11,7 +11,7 @@ async function retrieveSession() {
    else return null;
 }
 
-async function saveSession(user: UserModel) {
+async function saveSession(user: UserModel, urlAvatar = '') {
    try {
       const userSession = {
          nome: user.nome,
@@ -22,7 +22,7 @@ async function saveSession(user: UserModel) {
          id: user.id,
          tipo_id: user.tipo_id,
          status_id: user.status_id,
-         link: user.link
+         link: urlAvatar ? urlAvatar : user?.link
       };
       await SecureStore.setItemAsync(SESSION_KEY, JSON.stringify(userSession));
    } catch (error) {

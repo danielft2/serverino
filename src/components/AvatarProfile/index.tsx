@@ -21,8 +21,8 @@ export function AvatarProfile() {
             >
                <Avatar.Fallback>
                   <Text
-                     className="text-white"
-                     style={{ fontSize: RFValue(12) }}
+                     className="font-heading_md text-white"
+                     style={{ fontSize: RFValue(18) }}
                   >
                      {user.nome.split('')[0].toUpperCase()}
                      {user.nome.split('')[1].toLocaleUpperCase()}

@@ -1,16 +1,18 @@
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 
 import { UpdateInformationsScheme } from '@validation';
-import { useEffect } from 'react';
 import { UpdateInforDTO } from '@domain/dtos';
-import { useSession } from '@hooks/shared';
+import { useSession, useToast } from '@hooks/shared';
 import { hideEmail } from '@utils';
-import { useMutation } from '@tanstack/react-query';
 import { SessionsService } from '@services/http/session.service';
+import { ERRORS_MESSAGES } from '@services/http/errors';
 
 export function useUpdateInformations() {
-   const { user } = useSession();
+   const { user, updateUserStorage } = useSession();
+   const { showErrorMessage } = useToast();
    const createUpdateInformationsForm = useForm<UpdateInforDTO>({
       resolver: zodResolver(UpdateInformationsScheme)
    });
@@ -27,7 +29,14 @@ export function useUpdateInformations() {
    } = useMutation({
       mutationKey: ['update-user'],
       mutationFn: (data: UpdateInforDTO) =>
-         SessionsService.updateInformations(data)
+         SessionsService.updateInformations(data),
+      onSuccess: (data) => {
+         if (data.meta.status_code === 204) {
+            updateUserStorage(data.meta.results);
+         } else {
+            showErrorMessage(ERRORS_MESSAGES.GENERIC_ERROR);
+         }
+      }
    });
 
    function handleUpdate() {
