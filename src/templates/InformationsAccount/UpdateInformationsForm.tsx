@@ -8,7 +8,6 @@ import { Form } from '@components/Form';
 import { InputControlled } from '@components/FormControlled';
 import { Button } from '@components/Button';
 import { useUpdateInformations } from '@hooks/screens';
-
 import UpdateIlustatrion from '@assets/ilustrations/update-data.svg';
 
 interface UpdateInformationsFormProps {
@@ -21,15 +20,14 @@ export function UpdateInformationsForm({
    const {
       createUpdateInformationsForm,
       isValid,
-      isDirty,
       handleUpdate,
       isLoading,
-      isSuccess
+      isUpdateSuccess
    } = useUpdateInformations();
 
    useEffect(() => {
-      if (isSuccess) onUpdateSucess();
-   }, [onUpdateSucess, isSuccess]);
+      if (isUpdateSuccess) onUpdateSucess();
+   }, [onUpdateSucess, isUpdateSuccess]);
 
    return (
       <Animated.ScrollView
@@ -58,7 +56,7 @@ export function UpdateInformationsForm({
                </View>
             </FormProvider>
             <Button.Root
-               disabled={!isDirty || !isValid}
+               disabled={!isValid}
                onPress={() => handleUpdate()}
                isLoading={isLoading}
             >

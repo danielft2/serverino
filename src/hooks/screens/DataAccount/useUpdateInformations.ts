@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -6,11 +6,13 @@ import { useMutation } from '@tanstack/react-query';
 import { UpdateInformationsScheme } from '@validation';
 import { UpdateInforDTO } from '@domain/dtos';
 import { useSession, useToast } from '@hooks/shared';
-import { hideEmail } from '@utils';
 import { SessionsService } from '@services/http/session.service';
 import { ERRORS_MESSAGES } from '@services/http/errors';
+import { hideEmail } from '@utils';
 
 export function useUpdateInformations() {
+   const [isUpdateSuccess, setIsUpdateSuccess] = useState(false);
+
    const { user, updateUserStorage } = useSession();
    const { showErrorMessage } = useToast();
    const createUpdateInformationsForm = useForm<UpdateInforDTO>({
@@ -22,19 +24,17 @@ export function useUpdateInformations() {
       formState: { isValid, isDirty }
    } = createUpdateInformationsForm;
 
-   const {
-      isLoading,
-      mutateAsync: updateInformations,
-      isSuccess
-   } = useMutation({
+   const { isLoading, mutateAsync: updateInformations } = useMutation({
       mutationKey: ['update-user'],
       mutationFn: (data: UpdateInforDTO) =>
          SessionsService.updateInformations(data),
       onSuccess: (data) => {
          if (data.meta.status_code === 204) {
+            setIsUpdateSuccess(true);
             updateUserStorage(data.meta.results);
          } else {
             showErrorMessage(ERRORS_MESSAGES.GENERIC_ERROR);
+            if (isUpdateSuccess) setIsUpdateSuccess(false);
          }
       }
    });
@@ -70,6 +70,6 @@ export function useUpdateInformations() {
       isValid,
       isDirty,
       isLoading,
-      isSuccess
+      isUpdateSuccess
    };
 }

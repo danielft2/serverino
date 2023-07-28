@@ -13,11 +13,13 @@ import { Input } from '../InputText';
 interface InputLocationProps {
    onSearchCompleted: (data: LocationDTO) => void;
    values: UserAdressModel;
+   required?: boolean;
    error: string;
 }
 
 export function InputLocation({
    onSearchCompleted,
+   required,
    values
 }: InputLocationProps) {
    const [cep, setCep] = useState('');
@@ -29,10 +31,15 @@ export function InputLocation({
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [values?.cep]);
 
+   useEffect(() => {
+      if (cep.length === 7) onSearchCompleted({ error: 'invalid' });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [cep]);
+
    return (
       <View className="space-y-3">
          <View>
-            <InputLabel required>CEP</InputLabel>
+            <InputLabel required={required}>CEP</InputLabel>
             <Input.Root
                onChangeText={setCep}
                onBlur={() => searchAdressByCEP(cep)}
@@ -53,7 +60,7 @@ export function InputLocation({
          </View>
          <View className="flex-row space-x-3">
             <View>
-               <InputLabel required>UF</InputLabel>
+               <InputLabel required={required}>UF</InputLabel>
                <Input.Root
                   value={
                      values?.uf && cep.length === 8 && !loading ? values.uf : ''
@@ -62,7 +69,7 @@ export function InputLocation({
                />
             </View>
             <View className="flex-1">
-               <InputLabel required>Cidade</InputLabel>
+               <InputLabel required={required}>Cidade</InputLabel>
                <Input.Root
                   value={
                      values?.cidade && cep.length === 8 && !loading
