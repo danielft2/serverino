@@ -60,6 +60,7 @@ function ButtonRootStyled({
                'opacity-50': isLoading || disabled
             }
          )}
+         disabled={disabled}
          {...rest}
       >
          {isLoading ? <ActivityIndicator color="green" /> : children}

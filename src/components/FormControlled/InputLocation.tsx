@@ -7,9 +7,13 @@ import { LocationDTO } from '@domain/dtos';
 
 interface InputLocationControllProps {
    name: string;
+   required?: boolean;
 }
 
-export function InputLocationControll({ name }: InputLocationControllProps) {
+export function InputLocationControll({
+   name,
+   required = false
+}: InputLocationControllProps) {
    const { control, setValue, setError } = useFormContext();
    const { get } = useErrorMessageForm();
 
@@ -27,7 +31,9 @@ export function InputLocationControll({ name }: InputLocationControllProps) {
                { shouldValidate: true }
             );
          } else {
-            setError('endereco.cep', { message: error });
+            setError('endereco.cep', {
+               message: error === 'invalid' ? '' : error
+            });
             setValue(
                'endereco',
                { cep: '', cidade: '', cidade_id: '', uf: '' },
@@ -46,6 +52,7 @@ export function InputLocationControll({ name }: InputLocationControllProps) {
             <InputLocation
                onSearchCompleted={handleSetValues}
                values={value}
+               required={required}
                error={get('endereco.cep')}
             />
          )}
