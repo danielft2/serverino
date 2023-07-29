@@ -14,7 +14,7 @@ const ButtonVariants = cva(
       variants: {
          variant: {
             primary: 'bg-green-600',
-            secondary: 'bg-gray-600',
+            secondary: 'bg-blue_dark-300',
             danger: 'bg-red-400',
             link: 'bg-transparent w-auto'
          },
@@ -54,6 +54,7 @@ function ButtonRootStyled({
 }: ButtonRootProps) {
    return (
       <TouchableOpacity
+         activeOpacity={0.7}
          className={cnMerge(
             ButtonVariants({ className, variant, shape, weigth }),
             {

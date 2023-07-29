@@ -29,7 +29,6 @@ privateAPI.registerInterceptorToken = ({ signOut, updateRefreshToken }) => {
       (response) => response,
       (requestError) =>
          new Promise(async (resolver, reject) => {
-            console.log(requestError);
             if (requestError?.response?.status === 401) {
                if (
                   requestError?.response?.data?.status ===
