@@ -45,23 +45,19 @@ export function useUpdateInformations() {
       updateInformations({
          nome: data.nome,
          email: data.email,
-         ...data.endereco
+         ...data
       });
    }
 
    useEffect(() => {
       setValue('nome', user.nome, { shouldValidate: true });
       setValue('email', hideEmail(user.email), { shouldValidate: true });
-      setValue(
-         'endereco',
-         {
-            cep: user.cep,
-            cidade: user.cidade.nome,
-            cidade_id: user.cidade.id.toString(),
-            uf: user.cidade.uf.nome
-         },
-         { shouldValidate: true }
-      );
+      setValue('cep', user.cep, { shouldValidate: true });
+      setValue('uf', user.cidade.uf.nome, { shouldValidate: true });
+      setValue('cidade', user.cidade.nome, { shouldValidate: true });
+      setValue('cidade_id', user.cidade.id.toString(), {
+         shouldValidate: true
+      });
    }, [setValue, user]);
 
    return {

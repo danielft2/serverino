@@ -30,44 +30,52 @@ export function UpdateInformationsForm({
    }, [onUpdateSucess, isUpdateSuccess]);
 
    return (
-      <Animated.ScrollView
-         entering={FadeIn.delay(100)}
-         exiting={FadeOut.delay(100)}
-         showsVerticalScrollIndicator={false}
-         contentContainerStyle={{ flex: 1 }}
-      >
-         <View className="items-center">
-            <UpdateIlustatrion width={RFValue(200)} height={RFValue(140)} />
-         </View>
-         <View className="flex-1 justify-between">
-            <FormProvider {...createUpdateInformationsForm}>
-               <View className="space-y-3">
-                  <View>
-                     <Form.Label>Nome completo</Form.Label>
-                     <InputControlled.Text name="nome" editable={!isLoading} />
+      <View className="flex-1">
+         <Animated.ScrollView
+            entering={FadeIn.delay(100)}
+            exiting={FadeOut.delay(100)}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ flexGrow: 1 }}
+         >
+            <View className="items-center">
+               <UpdateIlustatrion width={RFValue(200)} height={RFValue(140)} />
+            </View>
+            <View className="mb-32 flex-1 justify-between">
+               <FormProvider {...createUpdateInformationsForm}>
+                  <View className="space-y-3">
+                     <View>
+                        <Form.Label>Nome completo</Form.Label>
+                        <InputControlled.Text
+                           name="nome"
+                           editable={!isLoading}
+                        />
+                     </View>
+                     <View>
+                        <Form.Label>Email</Form.Label>
+                        <InputControlled.Text
+                           name="email"
+                           editable={!isLoading}
+                        />
+                     </View>
+                     <View>
+                        <InputControlled.Adress
+                           cep="cep"
+                           uf="uf"
+                           cidade="cidade"
+                           cidade_id="cidade_id"
+                        />
+                     </View>
                   </View>
-                  <View>
-                     <Form.Label>Email</Form.Label>
-                     <InputControlled.Text name="email" editable={!isLoading} />
-                  </View>
-                  <View>
-                     <InputControlled.Adress
-                        cep="cep"
-                        uf="uf"
-                        cidade="cidade"
-                        cidade_id="cidade_id"
-                     />
-                  </View>
-               </View>
-            </FormProvider>
-            <Button.Root
-               disabled={!isValid}
-               onPress={() => handleUpdate()}
-               isLoading={isLoading}
-            >
-               <Button.Text>Confirmar Alterações</Button.Text>
-            </Button.Root>
-         </View>
-      </Animated.ScrollView>
+               </FormProvider>
+            </View>
+         </Animated.ScrollView>
+         <Button.Root
+            disabled={!isValid}
+            onPress={() => handleUpdate()}
+            isLoading={isLoading}
+         >
+            <Button.Text>Confirmar Alterações</Button.Text>
+         </Button.Root>
+      </View>
    );
 }
