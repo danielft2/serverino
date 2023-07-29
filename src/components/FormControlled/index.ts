@@ -1,11 +1,11 @@
 import { InputTextMaskControll } from './InputTextMask';
-import { InputLocationControll } from './InputLocation';
 import { InputPasswordControll } from './InputPassword';
 import { InputTextControll } from './InputText';
+import { InputAdressControll } from './inputAdress';
 
 export const InputControlled = {
    Text: InputTextControll,
    TextMask: InputTextMaskControll,
    Password: InputPasswordControll,
-   Location: InputLocationControll
+   Adress: InputAdressControll
 };
