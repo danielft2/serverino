@@ -1,4 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
+import { AxiosError } from 'axios';
 
 import { SigninDTO } from '@domain/dtos';
 import { RegisterDTO } from '@domain/dtos/register.dto';
@@ -8,11 +9,9 @@ import { ERRORS_MESSAGES } from '@services/http/errors';
 import { AuthStorage } from '@storage/auth-storage';
 import { SessionStorage } from '@storage/session-storage';
 import { AppError } from '@utils';
+import { privateAPI } from '@lib/axios';
 
 import { Context } from '../@types/context';
-
-import { AxiosError } from 'axios';
-import { privateAPI } from '@lib/axios';
 
 interface AuthContextData {
    token: string;
@@ -30,31 +29,16 @@ export function AuthProvider({ children }: Context) {
    const [token, setToken] = useState('');
    const [refreshSession, setRefreshSession] = useState<UserModel>(null);
 
-   const getTokenStorage = useCallback(async () => {
-      const token = await AuthStorage.retrieveToken();
-      privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
-      setToken(token);
-   }, []);
-
-   const saveTokenAndUser = useCallback(
-      async (token: string, user: UserModel) => {
-         try {
-            await Promise.all([
-               (AuthStorage.saveToken(token), SessionStorage.saveSession(user))
-            ]);
-            privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
-            setRefreshSession(user);
-            setToken(token);
-         } catch (error) {
-            console.log(error);
-         }
-      },
-      []
-   );
-
-   const updateRefreshToken = useCallback((token: string) => {
-      setToken(token);
-   }, []);
+   async function register(data: RegisterDTO) {
+      try {
+         const response = await AuthService.register(data);
+         if (response.data.meta.results.telefone[0])
+            throw new AppError(ERRORS_MESSAGES.PHONE_ALREDY_EXISTS);
+      } catch (error) {
+         if (error.message === ERRORS_MESSAGES.PHONE_ALREDY_EXISTS) throw error;
+         throw error;
+      }
+   }
 
    async function signin(data: SigninDTO) {
       try {
@@ -79,18 +63,31 @@ export function AuthProvider({ children }: Context) {
       }
    }, []);
 
-   async function register(data: RegisterDTO) {
-      try {
-         const response = await AuthService.register(data);
-         if (response.data.meta.results.telefone[0]) {
-            throw new Error('400');
+   const getTokenStorage = useCallback(async () => {
+      const token = await AuthStorage.retrieveToken();
+      privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
+      setToken(token);
+   }, []);
+
+   const saveTokenAndUser = useCallback(
+      async (token: string, user: UserModel) => {
+         try {
+            await Promise.all([
+               (AuthStorage.saveToken(token), SessionStorage.saveSession(user))
+            ]);
+            privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
+            setRefreshSession(user);
+            setToken(token);
+         } catch (error) {
+            signOut();
          }
-      } catch (error) {
-         if (error.message === '400')
-            throw new AppError(ERRORS_MESSAGES.PHONE_ALREDY_EXISTS);
-         throw new AppError(ERRORS_MESSAGES.GENERIC_ERROR);
-      }
-   }
+      },
+      [signOut]
+   );
+
+   const updateRefreshToken = useCallback((token: string) => {
+      setToken(token);
+   }, []);
 
    useEffect(() => {
       getTokenStorage();

@@ -1,5 +1,5 @@
 export class AppError extends Error {
-   constructor(private msg: string) {
+   constructor(msg: string) {
       super(msg);
    }
 }

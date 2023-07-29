@@ -1,6 +1,8 @@
 import { API_URL } from '@env';
 import { AuthStorage } from '@storage/auth-storage';
 import axios, { AxiosInstance } from 'axios';
+import { AppError } from '../utils/app-error';
+import { ERRORS_MESSAGES } from '@services/http/errors';
 
 type RegisterInterceptorTokenProps = {
    signOut: () => void;
@@ -27,6 +29,7 @@ privateAPI.registerInterceptorToken = ({ signOut, updateRefreshToken }) => {
       (response) => response,
       (requestError) =>
          new Promise(async (resolver, reject) => {
+            console.log(requestError);
             if (requestError?.response?.status === 401) {
                if (
                   requestError?.response?.data?.status ===
@@ -62,12 +65,15 @@ privateAPI.registerInterceptorToken = ({ signOut, updateRefreshToken }) => {
                      reject(requestError);
                   }
                } else {
-                  signOut();
                   reject(requestError);
                }
             }
 
-            reject(requestError);
+            if (requestError?.response?.data?.meta) {
+               reject(requestError);
+            }
+
+            reject(new AppError(ERRORS_MESSAGES.GENERIC_ERROR));
          })
    );
 

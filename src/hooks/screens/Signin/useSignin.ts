@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { SigninDTO } from '@domain/dtos';
 import { useAuth, useToast } from '@hooks/shared';
-import { AppError } from '@utils';
 import { SinginScheme } from '@validation';
 
 export function useSignin() {
@@ -30,9 +28,7 @@ export function useSignin() {
             password: data.password
          });
       } catch (error) {
-         if (error instanceof AppError) {
-            showErrorMessage(error.message);
-         }
+         showErrorMessage(error.message);
       } finally {
          setIsLoading(false);
       }
