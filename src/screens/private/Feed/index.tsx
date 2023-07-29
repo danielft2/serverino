@@ -4,12 +4,20 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { ProfessionalSkeleton } from '@components/ProfessionalSummary/ProfessionalSkeleton';
 import { ProfessionalsPreview } from '@templates/Feed/ProfessionalsPreview';
+import { SomethingWrong } from '@templates/Errors';
 import { useFeed } from '@hooks/screens';
 import Logo from '@assets/logo.svg';
 
 export function Feed() {
-   const { data, isLoading, isFetching, hasNextPage, refetch, fetchNextPage } =
-      useFeed();
+   const {
+      data,
+      isLoading,
+      isFetching,
+      isError,
+      hasNextPage,
+      refetch,
+      fetchNextPage
+   } = useFeed();
 
    const statusBarHeigth = getStatusBarHeight();
 
@@ -22,13 +30,15 @@ export function Feed() {
       (page) => page?.meta.results.data
    );
 
+   if (isError) return <SomethingWrong onTryAgain={refetch} />;
+
    return (
       <SafeAreaView
          className="flex-1 bg-blue_dark-900"
          style={{ paddingTop: statusBarHeigth }}
       >
          <Logo
-            width={RFValue(100)}
+            width={RFValue(110)}
             height={RFValue(40)}
             className="mb-3 mr-2 self-center"
          />
