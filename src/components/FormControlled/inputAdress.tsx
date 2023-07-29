@@ -39,6 +39,7 @@ export function InputAdressControll({
                maxLength={8}
                keyboardType="number-pad"
                onBlur={() => searchAdressByCEP()}
+               editable={!loading}
             >
                {loading && (
                   <Input.IconRoot>
@@ -50,11 +51,11 @@ export function InputAdressControll({
          </View>
          <View>
             <Form.Label required={required}>UF</Form.Label>
-            <InputTextControll name={uf ?? 'uf'} />
+            <InputTextControll name={uf ?? 'uf'} editable={false} />
          </View>
          <View>
             <Form.Label required={required}>Cidade</Form.Label>
-            <InputTextControll name={cidade ?? 'cidade'} />
+            <InputTextControll name={cidade ?? 'cidade'} editable={false} />
          </View>
       </View>
    );
