@@ -36,7 +36,7 @@ export function Feed() {
             <ProfessionalSkeleton />
          ) : (
             <ProfessionalsPreview
-               professionals={profressionals.length ? profressionals : []}
+               professionals={profressionals?.length ? profressionals : []}
                isFetching={isFetching}
                loadMoreData={loadMoreProfessionals}
             />
