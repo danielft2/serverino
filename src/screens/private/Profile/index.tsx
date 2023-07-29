@@ -15,7 +15,7 @@ export function Profile() {
       >
          <Gradient />
          <AvatarProfile />
-         <View className="mt-6 flex-grow">
+         <View className="mt-4 flex-1">
             <OptionsProfile />
          </View>
       </SafeAreaView>
