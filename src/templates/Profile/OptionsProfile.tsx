@@ -5,9 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 
 import { OptionCardProfile } from './OptionCardProfile';
 import { OptionSignOut } from './OptionSignOut';
+import { useFontsize } from '@hooks/shared';
 
 export function OptionsProfile() {
    const { navigate } = useNavigation();
+   const { getFontsize } = useFontsize();
 
    return (
       <>
@@ -16,13 +18,15 @@ export function OptionsProfile() {
                <OptionCardProfile
                   index={1}
                   label="Informações da Conta"
-                  icon={<UserCog size={RFValue(20)} className="text-white" />}
+                  icon={
+                     <UserCog size={getFontsize(20)} className="text-white" />
+                  }
                   onPress={() => navigate('account')}
                />
                <OptionCardProfile
                   index={2}
                   label="Alterar Senha"
-                  icon={<Lock size={RFValue(20)} className="text-white" />}
+                  icon={<Lock size={getFontsize(20)} className="text-white" />}
                />
             </View>
             <View className="mb-3 w-full border-b border-blue_dark-300">
@@ -30,13 +34,18 @@ export function OptionsProfile() {
                   index={3}
                   label="Torna-se Licenciado"
                   icon={
-                     <FileBadge2 size={RFValue(20)} className="text-white" />
+                     <FileBadge2
+                        size={getFontsize(20)}
+                        className="text-white"
+                     />
                   }
                />
                <OptionCardProfile
                   index={4}
                   label="Criar conta Profissional"
-                  icon={<Briefcase size={RFValue(20)} className="text-white" />}
+                  icon={
+                     <Briefcase size={getFontsize(20)} className="text-white" />
+                  }
                />
             </View>
             <OptionSignOut />

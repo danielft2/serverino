@@ -1,3 +1,4 @@
+import { useFontsize } from '@hooks/shared';
 import { Text, TextProps, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
@@ -11,11 +12,13 @@ export function InputLabel({
    required = false,
    ...rest
 }: LabelProps) {
+   const { getFontsize } = useFontsize();
+
    return (
       <View className="flex-row space-x-1">
          <Text
             className="mb-1 ml-1 font-heading_md text-white"
-            style={{ fontSize: RFValue(11) }}
+            style={{ fontSize: getFontsize(11) }}
             {...rest}
          >
             {children}

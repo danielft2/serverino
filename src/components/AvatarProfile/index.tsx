@@ -2,11 +2,13 @@ import { Text, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Avatar } from '@components/Avatar';
-import { useSession } from '@hooks/shared';
+import { useFontsize, useSession } from '@hooks/shared';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 export function AvatarProfile() {
    const { user } = useSession();
+   const { getFontsize } = useFontsize();
+
    return (
       <Animated.View
          className="items-center space-y-2"
@@ -15,7 +17,7 @@ export function AvatarProfile() {
          <Avatar.Root>
             <Avatar.Container
                source={user.link}
-               size={110}
+               size={120}
                border="border-white"
                isLoading
             >
@@ -39,8 +41,8 @@ export function AvatarProfile() {
                Conta usuário
             </Text>
             <Text
-               className="-mt-2 font-heading text-white"
-               style={{ fontSize: RFValue(15) }}
+               className="-mt-1 font-heading text-white"
+               style={{ fontSize: getFontsize(15) }}
             >
                {user.nome}
             </Text>

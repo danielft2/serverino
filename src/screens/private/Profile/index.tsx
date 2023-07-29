@@ -4,14 +4,15 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { Gradient } from '@components/Gradient';
 import { AvatarProfile } from '@components/AvatarProfile';
 import { OptionsProfile } from '@templates/Profile';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 
 export function Profile() {
    const statusBarHeigth = getStatusBarHeight();
 
    return (
       <SafeAreaView
-         className="relative z-10 flex-1 items-center bg-blue_dark-900 base:px-3 md:px-4"
-         style={{ paddingTop: statusBarHeigth + 40 }}
+         className="relative z-10 flex-1 items-center bg-blue_dark-900 base:px-3 sm:px-4"
+         style={{ paddingTop: statusBarHeigth + RFPercentage(4) }}
       >
          <Gradient />
          <AvatarProfile />

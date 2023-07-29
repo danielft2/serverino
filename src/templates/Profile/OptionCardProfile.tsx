@@ -5,6 +5,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import Animated, { SlideInLeft } from 'react-native-reanimated';
 
 import { ProfileItemCard } from '@components/Option';
+import { useFontsize } from '@hooks/shared';
 
 interface OptionCardProfileProps {
    label: string;
@@ -22,6 +23,7 @@ export function OptionCardProfile({
    onPress,
    index
 }: OptionCardProfileProps) {
+   const { getFontsize } = useFontsize();
    return (
       <TouchableOpacityAnimated
          entering={SlideInLeft.duration(200 * index)}
@@ -33,12 +35,12 @@ export function OptionCardProfile({
                <ProfileItemCard.Icon>{icon}</ProfileItemCard.Icon>
                <Text
                   className="font-heading_md text-white"
-                  style={{ fontSize: RFValue(11) }}
+                  style={{ fontSize: getFontsize(11) }}
                >
                   {label}
                </Text>
             </ProfileItemCard.Container>
-            <ChevronRight size={20} className="text-white" />
+            <ChevronRight size={getFontsize(20)} className="text-white" />
          </ProfileItemCard.Root>
       </TouchableOpacityAnimated>
    );

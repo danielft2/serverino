@@ -1,19 +1,18 @@
-import { styled } from 'nativewind';
+import { useFontsize } from '@hooks/shared';
 import { Text } from 'react-native';
 
 interface ButtonTextProps {
    children: React.ReactNode;
 }
 
-export function ButtonTextStyled({ children, ...rest }: ButtonTextProps) {
+export function ButtonText({ children }: ButtonTextProps) {
+   const { getFontsize } = useFontsize();
    return (
       <Text
-         className="font-heading_md text-white base:text-[11px] md:text-xs lg:text-[14px]"
-         {...rest}
+         className="font-heading_md text-white"
+         style={{ fontSize: getFontsize(11) }}
       >
          {children}
       </Text>
    );
 }
-
-export const ButtonText = styled(ButtonTextStyled);

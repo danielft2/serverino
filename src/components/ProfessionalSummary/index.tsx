@@ -5,6 +5,7 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { Professional } from '@components/Professional';
 import { ProfessionalModel } from '@domain/models/professional.model';
+import { useFontsize } from '@hooks/shared';
 
 interface ProfessionalSummaryProps {
    data: ProfessionalModel;
@@ -12,6 +13,8 @@ interface ProfessionalSummaryProps {
 }
 
 function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
+   const { getFontsize } = useFontsize();
+
    return (
       <Animated.View entering={FadeIn.delay(150 * index)}>
          <Professional.Root>
@@ -23,10 +26,10 @@ function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
             <View>
                <Professional.Content coverUrl={data.linkImagemCapa} />
                {data?.atuacoes[0]?.descricao && (
-                  <View className="line-clamp-1 h-14 justify-center px-5">
+                  <View className="line-clamp-1 justify-center px-5 base:h-12 md:h-14">
                      <Text
                         className="py-2 font-reading leading-4 text-gray-100"
-                        style={{ fontSize: RFValue(12) }}
+                        style={{ fontSize: getFontsize(12) }}
                         numberOfLines={2}
                      >
                         {data.atuacoes[0].descricao}

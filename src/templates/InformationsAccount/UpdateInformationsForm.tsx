@@ -7,15 +7,16 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { Form } from '@components/Form';
 import { InputControlled } from '@components/FormControlled';
 import { Button } from '@components/Button';
+import { ButtonBack } from '@components/ButtonBack';
 import { useUpdateInformations } from '@hooks/screens';
 import UpdateIlustatrion from '@assets/ilustrations/update-data.svg';
 
 interface UpdateInformationsFormProps {
-   onUpdateSucess: () => void;
+   onUpdate: (status: boolean) => void;
 }
 
 export function UpdateInformationsForm({
-   onUpdateSucess
+   onUpdate
 }: UpdateInformationsFormProps) {
    const {
       createUpdateInformationsForm,
@@ -26,17 +27,18 @@ export function UpdateInformationsForm({
    } = useUpdateInformations();
 
    useEffect(() => {
-      if (isUpdateSuccess) onUpdateSucess();
-   }, [onUpdateSucess, isUpdateSuccess]);
+      if (isUpdateSuccess) onUpdate(true);
+   }, [onUpdate, isUpdateSuccess]);
 
    return (
-      <View className="flex-1">
+      <View className="flex-1 space-y-4">
          <Animated.ScrollView
             entering={FadeIn.delay(100)}
             exiting={FadeOut.delay(100)}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ flexGrow: 1 }}
          >
+            <ButtonBack onPress={() => onUpdate(false)} />
             <View className="items-center">
                <UpdateIlustatrion width={RFValue(200)} height={RFValue(140)} />
             </View>

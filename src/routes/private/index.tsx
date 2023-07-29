@@ -11,6 +11,7 @@ import {
    Profile
 } from '@screens/private';
 import { theme } from '../../theme';
+import { SomethingWrong } from '@templates/Errors';
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
@@ -40,7 +41,7 @@ export function PrivateRoutes() {
       >
          <Screen
             name="discovery"
-            component={Discovery}
+            component={SomethingWrong}
             options={{
                tabBarIcon: ({ color }) => (
                   <Search color={color} size={RFValue(21)} />

@@ -34,14 +34,15 @@ export function UpdateInformationsModal({
       >
          <Modal.Content>
             <Gradient />
-            <ButtonBack onPress={onClose} />
             {render ? (
                !isUpdateSuccess ? (
                   <UpdateInformationsForm
-                     onUpdateSucess={() => setIsUpdateSuccess(true)}
+                     onUpdate={(status) =>
+                        status ? setIsUpdateSuccess(true) : onClose()
+                     }
                   />
                ) : (
-                  <UpdateInformationsSuccess />
+                  <UpdateInformationsSuccess onClose={onClose} />
                )
             ) : (
                <Loading.Background loading />

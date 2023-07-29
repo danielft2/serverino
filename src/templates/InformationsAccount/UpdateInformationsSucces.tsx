@@ -1,8 +1,14 @@
 import { Success } from '@components/Success';
 
-export function UpdateInformationsSuccess() {
+interface UpdateInformationsSucessProps {
+   onClose: () => void;
+}
+
+export function UpdateInformationsSuccess({
+   onClose
+}: UpdateInformationsSucessProps) {
    return (
-      <Success.Root>
+      <Success.Root onClose={onClose}>
          <Success.Title>Os seus dados foram atualizados.</Success.Title>
          <Success.Description>
             Se você tiver alterado seu endereço o feed será atualizado baseado

@@ -6,7 +6,7 @@ import { cnMerge } from '@utils';
 import { theme } from '../../../theme';
 
 const InputVariants = cva(
-   'rounded-full border-[0.5px] base:px-5 md:px-6 font-reading text-gray-100 base:h-11 sm:h-[52px] lg:h-14',
+   'rounded-full border-[0.5px] base:px-5 md:px-6 font-reading text-gray-100 base:h-11 sm:h-[50px] md:h-[52px] lg:h-14',
    {
       variants: {
          variant: {
@@ -46,7 +46,7 @@ export function InputTextRoot({
                }),
                { 'bg-blue_dark-600': !editable }
             )}
-            style={{ fontSize: RFValue(11.8) }}
+            style={{ fontSize: RFValue(11.8) + 0.5 }}
             placeholderTextColor={theme.colors.gray[200]}
             editable={editable}
             {...rest}

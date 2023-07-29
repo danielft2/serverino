@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Gradient } from '@components/Gradient';
 import { AvatarProfile } from '@components/AvatarProfile';
 import { ButtonBack } from '@components/ButtonBack';
-import { useLazy } from '@hooks/shared';
+import { useFontsize, useLazy } from '@hooks/shared';
 import { Loading } from '@components/Loading';
 import {
    Informations,
@@ -18,6 +18,7 @@ import { OptionCardProfile } from '@templates/Profile';
 export function InformationsAccount() {
    const [isOpenModalUpdateInfor, setIsOpenModalUpdateInfor] = useState(false);
 
+   const { getFontsize } = useFontsize();
    const { navigate } = useNavigation();
    const { render } = useLazy();
    const statusBarHeigth = getStatusBarHeight();
@@ -27,7 +28,7 @@ export function InformationsAccount() {
    return (
       <>
          <SafeAreaView
-            className="relative flex-1  bg-blue_dark-900 base:px-3 md:px-4"
+            className="relative flex-1  bg-blue_dark-900 base:px-3 sm:px-4"
             style={{ paddingTop: statusBarHeigth + 10 }}
          >
             <Gradient />
@@ -39,7 +40,12 @@ export function InformationsAccount() {
                   <OptionCardProfile
                      index={6}
                      label="Atualizar Dados"
-                     icon={<FileEdit size={20} className="text-green-400" />}
+                     icon={
+                        <FileEdit
+                           size={getFontsize(20)}
+                           className="text-green-400"
+                        />
+                     }
                      onPress={() => setIsOpenModalUpdateInfor(true)}
                   />
                </View>
