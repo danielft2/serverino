@@ -1,10 +1,15 @@
+import { InputControlled } from '@components/FormControlled';
 import { View } from 'react-native';
-import { InputLocationControll } from '@components/FormControlled/InputLocation';
 
 export function LocationData() {
    return (
       <View>
-         <InputLocationControll name="endereco" />
+         <InputControlled.Adress
+            cep="endereco.cep"
+            uf="endereco.uf"
+            cidade="endereco.cidade"
+            cidade_id="endereco.cidade_id"
+         />
       </View>
    );
 }

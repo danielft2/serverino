@@ -51,7 +51,12 @@ export function UpdateInformationsForm({
                      <InputControlled.Text name="email" editable={!isLoading} />
                   </View>
                   <View>
-                     <InputControlled.Location name="endereco" />
+                     <InputControlled.Adress
+                        cep="cep"
+                        uf="uf"
+                        cidade="cidade"
+                        cidade_id="cidade_id"
+                     />
                   </View>
                </View>
             </FormProvider>

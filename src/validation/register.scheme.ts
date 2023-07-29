@@ -29,11 +29,11 @@ export const RegisterScheme = z
       message: MESSAGES_SCHEMES.PASSWORD_DONT_MATCH
    })
    .superRefine((value, ctx) => {
-      if (value.endereco_step && !value.endereco?.cep) {
+      if (value.endereco_step && !value.endereco?.cidade_id) {
          ctx.addIssue({
-            path: ['endereco.cep', 'endereco.cep_id'],
+            path: ['endereco.cep'],
             code: 'custom',
-            message: 'Campo é obrigatório.'
+            message: 'Insira um CEP.'
          });
       }
    });
