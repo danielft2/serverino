@@ -3,7 +3,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { ProfessionalSkeleton } from '@components/ProfessionalSummary/ProfessionalSkeleton';
-import { ProfessionalsPreview } from '@templates/Feed/ProfessionalsPreview';
+import { FeedPreview } from '@templates/Feed';
 import { SomethingWrong } from '@templates/Errors';
 import { useFeed } from '@hooks/screens';
 import Logo from '@assets/logo.svg';
@@ -45,7 +45,7 @@ export function Feed() {
          {isLoading && isFetching ? (
             <ProfessionalSkeleton />
          ) : (
-            <ProfessionalsPreview
+            <FeedPreview
                professionals={profressionals?.length ? profressionals : []}
                isFetching={isFetching}
                loadMoreData={loadMoreProfessionals}

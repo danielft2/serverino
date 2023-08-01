@@ -1,7 +1,7 @@
 import { InputControlled } from '@components/FormControlled';
 import { View } from 'react-native';
 
-export function LocationData() {
+export function RegisterLocationData() {
    return (
       <View>
          <InputControlled.Adress

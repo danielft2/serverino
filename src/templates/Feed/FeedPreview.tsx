@@ -4,19 +4,19 @@ import { FlashList } from '@shopify/flash-list';
 import { ProfessionalSummary } from '@components/ProfessionalSummary';
 import { ProfessionalModel } from '@domain/models/professional.model';
 import { Loading } from '@components/Loading';
-import { ProfessionalsEmpty } from './ProfessionalsEmpty';
+import { FeedEmpty } from './FeedEmpty';
 
-interface ProfessionalsPreviewProps {
+interface FeedPreviewProps {
    isFetching: boolean;
    professionals: ProfessionalModel[];
    loadMoreData: (refetch: boolean) => void;
 }
 
-export function ProfessionalsPreview({
+export function FeedPreview({
    isFetching,
    professionals,
    loadMoreData
-}: ProfessionalsPreviewProps) {
+}: FeedPreviewProps) {
    const renderItem = useCallback(
       ({ item, index }) => <ProfessionalSummary data={item} index={index} />,
       []
@@ -42,7 +42,7 @@ export function ProfessionalsPreview({
                ListFooterComponentStyle={{ marginBottom: 40 }}
             />
          ) : (
-            <ProfessionalsEmpty
+            <FeedEmpty
                refetch={() => loadMoreData(true)}
                isFetching={isFetching}
             />

@@ -4,12 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 import { Home, Search, UserCircle2 } from 'lucide-react-native';
 
-import {
-   Discovery,
-   Feed,
-   InformationsAccount,
-   Profile
-} from '@screens/private';
+import { Discovery, Feed, Account, Profile } from '@screens/private';
 import { theme } from '../../theme';
 
 const { Screen, Navigator } = createBottomTabNavigator();
@@ -68,7 +63,7 @@ export function TabRoutes() {
          />
          <Screen
             name="account"
-            component={InformationsAccount}
+            component={Account}
             options={{
                tabBarButton: () => null,
                tabBarStyle: {

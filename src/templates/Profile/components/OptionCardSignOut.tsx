@@ -6,16 +6,16 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { Dialog } from '@components/Dialog';
 import { useAuth } from '@hooks/shared';
 
-import { OptionCardProfile } from './OptionCardProfile';
+import { ProfileOptionCard } from './OptionCard';
 
-export function OptionSignOut() {
+export function OptionCardSignOut() {
    const [isOpenDialog, setIsOpenDialog] = useState(false);
    const { signOut } = useAuth();
 
    return (
       <>
          <View className="w-full pb-10">
-            <OptionCardProfile
+            <ProfileOptionCard
                index={5}
                label="Sair da Conta"
                icon={<LogOut size={RFValue(20)} className="text-red-500" />}

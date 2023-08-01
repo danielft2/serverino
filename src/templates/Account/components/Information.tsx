@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import { Text, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-
-import { Option } from '@components/Option';
 import { styled } from 'nativewind';
 import Animated, { FadeIn } from 'react-native-reanimated';
+
+import { Option } from '@components/Option';
 
 interface InformationProps {
    subtitle: string;

@@ -6,7 +6,7 @@ import Animated, { SlideInLeft } from 'react-native-reanimated';
 
 import { Option } from '@components/Option';
 
-interface OptionCardProfileProps {
+interface ProfileOptionCardProps {
    label: string;
    icon: ReactNode;
    index: number;
@@ -16,12 +16,12 @@ interface OptionCardProfileProps {
 const TouchableOpacityAnimated =
    Animated.createAnimatedComponent(TouchableOpacity);
 
-export function OptionCardProfile({
+export function ProfileOptionCard({
    icon,
    label,
    onPress,
    index
-}: OptionCardProfileProps) {
+}: ProfileOptionCardProps) {
    return (
       <TouchableOpacityAnimated
          entering={SlideInLeft.duration(200 * index)}

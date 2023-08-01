@@ -1,3 +1,2 @@
-import { OptionCardProfile } from './OptionCardProfile';
-import { OptionsProfile } from './OptionsProfile';
-export { OptionCardProfile, OptionsProfile };
+import { ProfileOptions } from './ProfileOptions';
+export { ProfileOptions };
