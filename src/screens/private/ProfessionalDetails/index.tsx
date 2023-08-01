@@ -1,4 +1,5 @@
 import { SafeAreaView, View } from 'react-native';
+
 import {
    ProfessionalCover,
    ProfessionalHeader,
