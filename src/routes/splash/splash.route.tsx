@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '@hooks/shared';
 import { Splash } from '@screens/public';
 
-import { PrivateRoutes } from '../private';
 import { PublicRoutes } from '../public';
+import { PrivateRoutes } from '../private';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 

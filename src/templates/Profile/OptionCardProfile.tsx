@@ -4,7 +4,7 @@ import { ChevronRight } from 'lucide-react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Animated, { SlideInLeft } from 'react-native-reanimated';
 
-import { ProfileItemCard } from '@components/Option';
+import { Option } from '@components/Option';
 
 interface OptionCardProfileProps {
    label: string;
@@ -28,18 +28,18 @@ export function OptionCardProfile({
          className="w-full base:mb-3 md:mb-4"
          onPress={onPress}
       >
-         <ProfileItemCard.Root isBackground key={label}>
-            <ProfileItemCard.Container>
-               <ProfileItemCard.Icon>{icon}</ProfileItemCard.Icon>
+         <Option.Root isBackground key={label}>
+            <Option.Container>
+               <Option.Icon>{icon}</Option.Icon>
                <Text
                   className="font-heading_md text-white"
                   style={{ fontSize: RFValue(11) }}
                >
                   {label}
                </Text>
-            </ProfileItemCard.Container>
+            </Option.Container>
             <ChevronRight size={20} className="text-white" />
-         </ProfileItemCard.Root>
+         </Option.Root>
       </TouchableOpacityAnimated>
    );
 }

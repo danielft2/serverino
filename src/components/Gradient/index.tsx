@@ -1,13 +1,19 @@
 import { LinearGradient } from 'expo-linear-gradient';
 
-export function Gradient() {
+interface GradientProps {
+   colors?: string[];
+}
+
+export function Gradient({
+   colors = [
+      'rgba(13, 158, 80, 0.07)',
+      ' rgba(11, 12, 15, 0.00) 100%',
+      'rgba(11, 12, 15, 0.00) 100%'
+   ]
+}: GradientProps) {
    return (
       <LinearGradient
-         colors={[
-            'rgba(13, 158, 80, 0.07)',
-            ' rgba(11, 12, 15, 0.00) 100%',
-            'rgba(11, 12, 15, 0.00) 100%'
-         ]}
+         colors={colors}
          style={{
             backgroundColor: 'transparent',
             position: 'absolute',

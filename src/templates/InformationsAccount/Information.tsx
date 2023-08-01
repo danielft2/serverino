@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Text, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { ProfileItemCard } from '@components/Option';
+import { Option } from '@components/Option';
 import { styled } from 'nativewind';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -26,9 +26,9 @@ export function InformationStyled({
          className="w-full"
          {...rest}
       >
-         <ProfileItemCard.Root key={subtitle}>
-            <ProfileItemCard.Container>
-               <ProfileItemCard.Icon>{icon}</ProfileItemCard.Icon>
+         <Option.Root key={subtitle}>
+            <Option.Container>
+               <Option.Icon>{icon}</Option.Icon>
                <View className="mt-1">
                   <Text
                      className="font-heading_md text-gray-100"
@@ -43,8 +43,8 @@ export function InformationStyled({
                      {description}
                   </Text>
                </View>
-            </ProfileItemCard.Container>
-         </ProfileItemCard.Root>
+            </Option.Container>
+         </Option.Root>
       </Animated.View>
    );
 }
