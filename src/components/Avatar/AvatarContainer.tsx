@@ -30,7 +30,7 @@ export function AvatarContainer({
 
    return (
       <View
-         className={`relative overflow-hidden rounded-full border-[1.5px]
+         className={`relative overflow-hidden rounded-full border-[1.8px]
          ${border} bg-blue_dark-600`}
          style={{ width: RFValue(size), height: RFValue(size) }}
       >

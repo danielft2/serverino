@@ -7,6 +7,9 @@ export declare global {
          aplication: undefined;
          account: undefined;
          profile: undefined;
+         professional: {
+            id: string;
+         };
       }
    }
 }
