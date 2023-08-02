@@ -17,7 +17,7 @@ function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
 
    return (
       <Pressable onPress={() => navigate('professional', { id: data.uuid })}>
-         <Animated.View entering={FadeIn.delay(150 * index)}>
+         <Animated.View entering={FadeIn.delay(50 * index)}>
             <Professional.Root>
                <Professional.Header
                   areaName={data.area.nome}

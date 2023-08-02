@@ -21,14 +21,18 @@ export function TabRoutes() {
          screenOptions={{
             headerShown: false,
             tabBarHideOnKeyboard: true,
-            tabBarShowLabel: false,
             tabBarActiveTintColor: theme.colors.green[300],
             tabBarInactiveTintColor: theme.colors.gray[200],
             tabBarStyle: {
                borderTopWidth: 0,
                backgroundColor: theme.colors.blue_dark[700],
                height: RFValue(55),
+               paddingBottom: 8,
+               paddingTop: 8,
                position: 'absolute'
+            },
+            tabBarLabelStyle: {
+               fontSize: RFValue(9)
             }
          }}
          initialRouteName="feed"
@@ -39,7 +43,8 @@ export function TabRoutes() {
             options={{
                tabBarIcon: ({ color }) => (
                   <Home color={color} size={RFValue(21)} />
-               )
+               ),
+               tabBarLabel: 'Início'
             }}
          />
          <Screen
@@ -48,7 +53,8 @@ export function TabRoutes() {
             options={{
                tabBarIcon: ({ color }) => (
                   <Search color={color} size={RFValue(21)} />
-               )
+               ),
+               tabBarLabel: 'Descobrir'
             }}
          />
 
@@ -58,7 +64,8 @@ export function TabRoutes() {
             options={{
                tabBarIcon: ({ color }) => (
                   <UserCircle2 color={color} size={RFValue(21)} />
-               )
+               ),
+               tabBarLabel: 'Perfil'
             }}
          />
          <Screen
