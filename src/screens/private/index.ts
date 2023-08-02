@@ -1,6 +1,6 @@
 import { Feed } from './Feed';
 import { Profile } from './Profile';
 import { Discovery } from './Discovery';
-import { InformationsAccount } from './InformationsAccount';
+import { Account } from './Account';
 import { ProfessionalDetails } from './ProfessionalDetails';
-export { Feed, Profile, Discovery, InformationsAccount, ProfessionalDetails };
+export { Feed, Profile, Discovery, Account, ProfessionalDetails };

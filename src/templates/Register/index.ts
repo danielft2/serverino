@@ -1,3 +1,3 @@
-import { LocationData } from './LocationData';
-import { PersonalData } from './PersonalData';
-export { LocationData, PersonalData };
+import { RegisterLocationData } from './RegisterLocationData';
+import { RegisterPersonalData } from './RegisterPersonalData';
+export { RegisterLocationData, RegisterPersonalData };

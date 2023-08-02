@@ -5,7 +5,7 @@ import { Form } from '@components/Form';
 import { InputControlled } from '@components/FormControlled';
 import { useErrorMessageForm } from '@hooks/shared';
 
-export function PersonalData() {
+export function RegisterPersonalData() {
    const { get } = useErrorMessageForm();
 
    return (

@@ -7,15 +7,12 @@ import { useNavigation } from '@react-navigation/native';
 import { Gradient } from '@components/Gradient';
 import { AvatarProfile } from '@components/AvatarProfile';
 import { ButtonBack } from '@components/ButtonBack';
-import { useLazy } from '@hooks/shared';
 import { Loading } from '@components/Loading';
-import {
-   Informations,
-   UpdateInformationsModal
-} from '@templates/InformationsAccount';
-import { OptionCardProfile } from '@templates/Profile';
+import { AccountInformations, AccountUpdateModal } from '@templates/Account';
+import { ProfileOptionCard } from '@templates/Profile';
+import { useLazy } from '@hooks/shared';
 
-export function InformationsAccount() {
+export function Account() {
    const [isOpenModalUpdateInfor, setIsOpenModalUpdateInfor] = useState(false);
 
    const { navigate } = useNavigation();
@@ -34,9 +31,9 @@ export function InformationsAccount() {
             <ButtonBack onPress={() => navigate('profile')} />
             <View className="flex-1 items-center">
                <AvatarProfile />
-               <Informations />
+               <AccountInformations />
                <View className="w-full self-end">
-                  <OptionCardProfile
+                  <ProfileOptionCard
                      index={6}
                      label="Atualizar Dados"
                      icon={<FileEdit size={20} className="text-green-400" />}
@@ -45,7 +42,7 @@ export function InformationsAccount() {
                </View>
             </View>
          </SafeAreaView>
-         <UpdateInformationsModal
+         <AccountUpdateModal
             isOpen={isOpenModalUpdateInfor}
             onClose={() => setIsOpenModalUpdateInfor(false)}
          />

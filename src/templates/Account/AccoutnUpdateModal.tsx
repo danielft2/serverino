@@ -5,18 +5,18 @@ import { ButtonBack } from '@components/ButtonBack';
 import { Loading } from '@components/Loading';
 import { Gradient } from '@components/Gradient';
 
-import { UpdateInformationsForm } from './UpdateInformationsForm';
-import { UpdateInformationsSuccess } from './UpdateInformationsSucces';
+import { UpdateInformationsForm } from './components/UpdateInformationsForm';
+import { UpdateInformationsSuccess } from './components/UpdateInformationsSucces';
 
-interface UpdateInformationsModalProps {
+interface AccountUpdateModalProps {
    isOpen: boolean;
    onClose: () => void;
 }
 
-export function UpdateInformationsModal({
+export function AccountUpdateModal({
    isOpen,
    onClose
-}: UpdateInformationsModalProps) {
+}: AccountUpdateModalProps) {
    const [render, setRender] = useState(false);
    const [isUpdateSuccess, setIsUpdateSuccess] = useState(false);
 

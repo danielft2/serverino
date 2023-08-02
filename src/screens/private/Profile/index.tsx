@@ -3,7 +3,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { Gradient } from '@components/Gradient';
 import { AvatarProfile } from '@components/AvatarProfile';
-import { OptionsProfile } from '@templates/Profile';
+import { ProfileOptions } from '@templates/Profile';
 
 export function Profile() {
    const statusBarHeigth = getStatusBarHeight();
@@ -16,7 +16,7 @@ export function Profile() {
          <Gradient />
          <AvatarProfile />
          <View className="mt-4 flex-1">
-            <OptionsProfile />
+            <ProfileOptions />
          </View>
       </SafeAreaView>
    );

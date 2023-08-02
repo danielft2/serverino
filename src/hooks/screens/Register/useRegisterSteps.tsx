@@ -1,14 +1,20 @@
 import { useState } from 'react';
 
 import { RegisterDTO } from '@domain/dtos/register.dto';
-import { LocationData, PersonalData } from '@templates/Register';
+import {
+   RegisterLocationData,
+   RegisterPersonalData
+} from '@templates/Register';
 
 export enum STEPS_ENUM {
    DADOS_BASICOS,
    DADOS_ENDERECO
 }
 
-const components = [<PersonalData key={0} />, <LocationData key={1} />];
+const components = [
+   <RegisterPersonalData key={0} />,
+   <RegisterLocationData key={1} />
+];
 
 export function useRegisterSteps() {
    const [stepIndex, setStepIndex] = useState(STEPS_ENUM.DADOS_BASICOS);

@@ -1,23 +1,20 @@
 import { View, Text, Pressable } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { RotateCw } from 'lucide-react-native';
 
 import { useSession } from '@hooks/shared';
 import { Button } from '@components/Button';
+import { Loading } from '@components/Loading';
 import Worker from '@assets/ilustrations/worker.svg';
 
-import { RotateCw } from 'lucide-react-native';
-import { Loading } from '@components/Loading';
 import { theme } from '../../theme';
 
-interface ProfessionalsEmptyProps {
+interface FeedEmptyProps {
    isFetching: boolean;
    refetch: () => void;
 }
 
-export function ProfessionalsEmpty({
-   isFetching,
-   refetch
-}: ProfessionalsEmptyProps) {
+export function FeedEmpty({ isFetching, refetch }: FeedEmptyProps) {
    const { user } = useSession();
 
    return (
