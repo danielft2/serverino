@@ -5,10 +5,12 @@ import { InteractionProfessionalDTO } from '@domain/dtos/interaction.dto';
 import { ProfessionalsService } from '@services/http/professionals.service';
 
 import { useSession } from './useSession';
+import { queryClient } from '@lib/react-query';
 
 interface useProfessionalProps {
    type: number;
    user_id: number;
+   professional_id: string;
    interactions: {
       tipo_id: number;
       registro_id: number;
@@ -18,7 +20,8 @@ interface useProfessionalProps {
 export function useProfessional({
    type,
    interactions,
-   user_id
+   user_id,
+   professional_id
 }: useProfessionalProps) {
    const [stateInteraction, setStateInteraction] = useState({
       count: 0,
@@ -39,6 +42,11 @@ export function useProfessional({
    });
 
    async function handleClick() {
+      queryClient.resetQueries({
+         queryKey: ['professional-details', professional_id],
+         exact: true
+      });
+
       setStateInteraction((oldState) => ({
          count: oldState.state ? oldState.count - 1 : oldState.count + 1,
          state: !oldState.state
