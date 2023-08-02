@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FlashList } from '@shopify/flash-list';
 
 import { ProfessionalSummary } from '@components/ProfessionalSummary';
@@ -18,6 +18,8 @@ export function FeedPreview({
    professionals,
    loadMoreData
 }: FeedPreviewProps) {
+   const [isRefresh, setIsRefresh] = useState(false);
+
    const renderItem = useCallback(
       ({ item, index }) => <ProfessionalSummary data={item} index={index} />,
       []
@@ -26,6 +28,16 @@ export function FeedPreview({
       (item: ProfessionalModel) => item?.uuid,
       []
    );
+
+   function onRefreshFeed() {
+      setIsRefresh(true);
+      loadMoreData(true);
+   }
+
+   useEffect(() => {
+      if (!isFetching && isRefresh) setIsRefresh(false);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [isFetching]);
 
    return (
       <>
@@ -38,6 +50,8 @@ export function FeedPreview({
                contentContainerStyle={{ paddingBottom: 40 }}
                onEndReachedThreshold={0.1}
                onEndReached={() => loadMoreData(false)}
+               refreshing={isRefresh}
+               onRefresh={onRefreshFeed}
                estimatedItemSize={350}
                ListFooterComponent={<Loading.Default loading={isFetching} />}
                ListFooterComponentStyle={{ marginBottom: 40 }}

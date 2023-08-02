@@ -16,13 +16,14 @@ export function Feed() {
       isError,
       hasNextPage,
       refetch,
+      refresh,
       fetchNextPage
    } = useFeed();
 
    const statusBarHeigth = getStatusBarHeight();
 
    function loadMoreProfessionals(update: boolean) {
-      if (update) refetch();
+      if (update) refresh();
       else if (hasNextPage) fetchNextPage();
    }
 
