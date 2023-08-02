@@ -7,6 +7,7 @@ import { useProfessional } from '@hooks/shared';
 
 interface ProfessionalActionRecommendProps {
    user_id: number;
+   professional_id: string;
    interactions: {
       tipo_id: number;
       registro_id: number;
@@ -15,10 +16,11 @@ interface ProfessionalActionRecommendProps {
 
 export function ProfessionalActionRecommend({
    user_id,
+   professional_id,
    interactions
 }: ProfessionalActionRecommendProps) {
    const { handleClickInteraction, countInteraction, someInteraction } =
-      useProfessional({ type: 2, interactions, user_id });
+      useProfessional({ type: 2, interactions, user_id, professional_id });
 
    const styleRecommend = clsx('font-heading_md text-white', {
       'text-white': !someInteraction,

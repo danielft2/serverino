@@ -41,10 +41,12 @@ function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
                   <Professional.Actions>
                      <Professional.ActionLike
                         user_id={data.user_id}
+                        professional_id={data.uuid}
                         interactions={data.usuario.interacoes}
                      />
                      <Professional.ActionRecommend
                         user_id={data.user_id}
+                        professional_id={data.uuid}
                         interactions={data.usuario.interacoes}
                      />
                   </Professional.Actions>

@@ -12,6 +12,7 @@ import { useProfessional } from '@hooks/shared';
 
 interface ProfessionalActionLikeProps {
    user_id: number;
+   professional_id: string;
    interactions: {
       tipo_id: number;
       registro_id: number;
@@ -20,8 +21,17 @@ interface ProfessionalActionLikeProps {
 
 export function ProfessionalActionLike({
    user_id,
+   professional_id,
    interactions
 }: ProfessionalActionLikeProps) {
+   const { handleClickInteraction, countInteraction, someInteraction } =
+      useProfessional({
+         type: 1,
+         interactions,
+         user_id,
+         professional_id
+      });
+
    const shakeLike = useSharedValue(0);
 
    const shakeLikeAnimatedStyled = useAnimatedStyle(() => ({
@@ -35,13 +45,6 @@ export function ProfessionalActionLike({
 
    const onPressOut = () =>
       (shakeLike.value = withTiming(0, { duration: 200 }));
-
-   const { handleClickInteraction, countInteraction, someInteraction } =
-      useProfessional({
-         type: 1,
-         interactions,
-         user_id
-      });
 
    const styleLike = clsx('font-heading_md text-white', {
       'text-white': !someInteraction,
