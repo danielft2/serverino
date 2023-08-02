@@ -10,6 +10,7 @@ import {
 } from '@templates/ProfessionalDetails';
 import { useProfessionalDetails } from '@hooks/screens';
 import { useRoute } from '@react-navigation/native';
+import { SomethingWrong } from '@templates/Errors';
 
 type ParamsProps = {
    id: string;
@@ -19,7 +20,10 @@ export function ProfessionalDetails() {
    const { params } = useRoute();
    const { id } = params as ParamsProps;
 
-   const { professional, isLoading, isFetching } = useProfessionalDetails(id);
+   const { professional, isLoading, isFetching, isError, refetch } =
+      useProfessionalDetails(id);
+
+   if (isError) return <SomethingWrong onTryAgain={refetch} />;
 
    return (
       <SafeAreaView className="flex-1">
