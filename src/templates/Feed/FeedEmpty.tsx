@@ -1,12 +1,12 @@
 import { View, Text, Pressable } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { RotateCw } from 'lucide-react-native';
 
 import { useSession } from '@hooks/shared';
 import { Button } from '@components/Button';
+import { Loading } from '@components/Loading';
 import Worker from '@assets/ilustrations/worker.svg';
 
-import { RotateCw } from 'lucide-react-native';
-import { Loading } from '@components/Loading';
 import { theme } from '../../theme';
 
 interface FeedEmptyProps {

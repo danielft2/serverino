@@ -2,8 +2,9 @@ import { useCallback } from 'react';
 import { FlashList } from '@shopify/flash-list';
 
 import { ProfessionalSummary } from '@components/ProfessionalSummary';
-import { ProfessionalModel } from '@domain/models/professional.model';
 import { Loading } from '@components/Loading';
+import { ProfessionalModel } from '@domain/models/professional.model';
+
 import { FeedEmpty } from './FeedEmpty';
 
 interface FeedPreviewProps {

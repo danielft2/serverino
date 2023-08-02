@@ -1,2 +1,3 @@
 import { ProfileOptions } from './ProfileOptions';
-export { ProfileOptions };
+import { ProfileOptionCard } from './components/OptionCard';
+export { ProfileOptions, ProfileOptionCard };

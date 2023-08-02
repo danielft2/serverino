@@ -9,10 +9,10 @@ import { AvatarProfile } from '@components/AvatarProfile';
 import { ButtonBack } from '@components/ButtonBack';
 import { Loading } from '@components/Loading';
 import { AccountInformations, AccountUpdateModal } from '@templates/Account';
-import { OptionCardProfile } from '@templates/Profile';
+import { ProfileOptionCard } from '@templates/Profile';
 import { useLazy } from '@hooks/shared';
 
-export function InformationsAccount() {
+export function Account() {
    const [isOpenModalUpdateInfor, setIsOpenModalUpdateInfor] = useState(false);
 
    const { navigate } = useNavigation();
@@ -33,7 +33,7 @@ export function InformationsAccount() {
                <AvatarProfile />
                <AccountInformations />
                <View className="w-full self-end">
-                  <OptionCardProfile
+                  <ProfileOptionCard
                      index={6}
                      label="Atualizar Dados"
                      icon={<FileEdit size={20} className="text-green-400" />}
