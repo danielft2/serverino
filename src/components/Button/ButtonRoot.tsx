@@ -58,13 +58,13 @@ function ButtonRootStyled({
          className={cnMerge(
             ButtonVariants({ className, variant, shape, weigth }),
             {
-               'opacity-50': isLoading || disabled
+               'opacity-50': disabled
             }
          )}
          disabled={disabled}
          {...rest}
       >
-         {isLoading ? <ActivityIndicator color="green" /> : children}
+         {isLoading ? <ActivityIndicator color="white" /> : children}
       </TouchableOpacity>
    );
 }
