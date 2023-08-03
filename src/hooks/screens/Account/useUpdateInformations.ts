@@ -8,7 +8,7 @@ import { UpdateInforDTO } from '@domain/dtos';
 import { useSession, useToast } from '@hooks/shared';
 import { SessionsService } from '@services/http/session.service';
 import { ERRORS_MESSAGES } from '@services/http/errors';
-import { hideEmail } from '@utils';
+import { AppError, hideEmail } from '@utils';
 
 export function useUpdateInformations() {
    const [isUpdateSuccess, setIsUpdateSuccess] = useState(false);
@@ -36,6 +36,11 @@ export function useUpdateInformations() {
             showErrorMessage(ERRORS_MESSAGES.GENERIC_ERROR);
             if (isUpdateSuccess) setIsUpdateSuccess(false);
          }
+      },
+      onError: (error) => {
+         if (error instanceof AppError) showErrorMessage(error.message);
+         else showErrorMessage(ERRORS_MESSAGES.GENERIC_ERROR);
+         if (isUpdateSuccess) setIsUpdateSuccess(false);
       }
    });
 
