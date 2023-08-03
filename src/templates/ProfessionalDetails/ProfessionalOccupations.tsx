@@ -3,6 +3,7 @@ import { View, Text, FlatList } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { OccupationArea } from './components/OccupationArea';
+import { InformationsEmpty } from './components/InformationsEmpty';
 
 interface ProfessionalOccupationsProps {
    occupations: {
@@ -31,15 +32,19 @@ export function ProfessionalOccupations({
          >
             Áreas de atuação
          </Text>
-         <FlatList
-            data={occupations}
-            renderItem={renderItem}
-            keyExtractor={keyExtractor}
-            ItemSeparatorComponent={() => <View className="w-2"></View>}
-            horizontal
-            contentContainerStyle={{ maxHeight: 140 }}
-            showsHorizontalScrollIndicator={false}
-         />
+         {occupations.length ? (
+            <FlatList
+               data={occupations}
+               renderItem={renderItem}
+               keyExtractor={keyExtractor}
+               ItemSeparatorComponent={() => <View className="w-2"></View>}
+               horizontal
+               contentContainerStyle={{ maxHeight: 140 }}
+               showsHorizontalScrollIndicator={false}
+            />
+         ) : (
+            <InformationsEmpty />
+         )}
       </View>
    );
 }

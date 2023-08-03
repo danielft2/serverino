@@ -3,6 +3,7 @@ import { View, Text, FlatList } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { ServiceLocation } from './components/ServiceLocation';
+import { InformationsEmpty } from './components/InformationsEmpty';
 
 interface ProfessionalServiceLocationsProps {
    services: {
@@ -31,15 +32,19 @@ export function ProfessionalServiceLocations({
          >
             Locais de Atendimentos
          </Text>
-         <FlatList
-            data={services}
-            renderItem={renderItem}
-            keyExtractor={keyExtractor}
-            ItemSeparatorComponent={() => <View className="w-2"></View>}
-            contentContainerStyle={{ maxHeight: 56 }}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-         />
+         {services.length ? (
+            <FlatList
+               data={services}
+               renderItem={renderItem}
+               keyExtractor={keyExtractor}
+               ItemSeparatorComponent={() => <View className="w-2"></View>}
+               contentContainerStyle={{ maxHeight: 56 }}
+               horizontal
+               showsHorizontalScrollIndicator={false}
+            />
+         ) : (
+            <InformationsEmpty />
+         )}
       </View>
    );
 }
