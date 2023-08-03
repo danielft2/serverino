@@ -1,13 +1,11 @@
-import { View, Text, Pressable } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
-import { RotateCw } from 'lucide-react-native';
+import { View, Text, ScrollView, RefreshControl } from 'react-native';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 import { useSession } from '@hooks/shared';
 import { Button } from '@components/Button';
-import { Loading } from '@components/Loading';
 import Worker from '@assets/ilustrations/worker.svg';
 
-import { theme } from '../../theme';
+import { useEffect, useState } from 'react';
 
 interface FeedEmptyProps {
    isFetching: boolean;
@@ -15,37 +13,48 @@ interface FeedEmptyProps {
 }
 
 export function FeedEmpty({ isFetching, refetch }: FeedEmptyProps) {
+   const [refreshing, setRefreshing] = useState(false);
    const { user } = useSession();
 
+   function onRefreshFeed() {
+      setRefreshing(true);
+      refetch();
+   }
+
+   useEffect(() => {
+      if (!isFetching && refreshing) setRefreshing(false);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [isFetching]);
+
    return (
-      <View className="h-[65%] items-center">
-         <Pressable
-            onPress={refetch}
-            className="h-12 w-12 items-center justify-center rounded-full bg-blue_dark-500"
-         >
-            {isFetching && <Loading.Default color={theme.colors.white} />}
-            {!isFetching && <RotateCw size={20} className="text-white" />}
-         </Pressable>
-         <View className="flex-1 items-center justify-center space-y-4 px-4">
-            <View className="items-center">
-               <Worker width={RFValue(180)} height={RFValue(158)} />
-               <Text
-                  className="text-center font-heading_md text-white"
-                  style={{ fontSize: RFValue(13) }}
-               >
-                  {`Ainda não existe nenhum profissional cadastrado em ${user.cidade.nome} - ${user.cidade.uf.nome}`}
-               </Text>
-               <Text
-                  className="text-gray-100"
-                  style={{ fontSize: RFValue(13) }}
-               >
-                  Tente atualizar o feed ou indique um profissional.
-               </Text>
+      <ScrollView
+         contentContainerStyle={{ flex: 1 }}
+         refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefreshFeed} />
+         }
+      >
+         <View className="items-center" style={{ height: RFPercentage(75) }}>
+            <View className="flex-1 items-center justify-center space-y-4 px-4">
+               <View className="items-center">
+                  <Worker width={RFValue(180)} height={RFValue(158)} />
+                  <Text
+                     className="text-center font-heading_sm text-white"
+                     style={{ fontSize: RFValue(14) }}
+                  >
+                     {`Ainda não existe nenhum profissional cadastrado em ${user.cidade.nome} - ${user.cidade.uf.nome}`}
+                  </Text>
+                  <Text
+                     className="text-gray-100"
+                     style={{ fontSize: RFValue(13) }}
+                  >
+                     Tente atualizar o feed ou indique um profissional.
+                  </Text>
+               </View>
+               <Button.Root weigth="auto">
+                  <Button.Text>Indicar Professional</Button.Text>
+               </Button.Root>
             </View>
-            <Button.Root weigth="auto">
-               <Button.Text>Indicar Professional</Button.Text>
-            </Button.Root>
          </View>
-      </View>
+      </ScrollView>
    );
 }

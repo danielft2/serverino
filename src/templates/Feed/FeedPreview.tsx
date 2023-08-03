@@ -41,7 +41,7 @@ export function FeedPreview({
 
    return (
       <>
-         {professionals.length > 0 ? (
+         {professionals.length ? (
             <FlashList
                data={professionals}
                keyExtractor={keyExtractor}
@@ -52,7 +52,7 @@ export function FeedPreview({
                onEndReached={() => loadMoreData(false)}
                refreshing={isRefresh}
                onRefresh={onRefreshFeed}
-               estimatedItemSize={350}
+               estimatedItemSize={400}
                ListFooterComponent={<Loading.Default loading={isFetching} />}
                ListFooterComponentStyle={{ marginBottom: 40 }}
             />
