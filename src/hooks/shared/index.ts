@@ -5,6 +5,7 @@ import { useSession } from './useSession';
 import { useToast } from './useToast';
 import { useProfessional } from './useProfessional';
 import { useLazy } from './useLazy';
+import { useUpdateAvatar } from './useUpdateAvatar';
 
 export {
    useAuth,
@@ -13,5 +14,6 @@ export {
    useAdress,
    useErrorMessageForm,
    useProfessional,
-   useLazy
+   useLazy,
+   useUpdateAvatar
 };
