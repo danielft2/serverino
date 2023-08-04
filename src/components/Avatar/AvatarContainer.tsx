@@ -10,6 +10,7 @@ interface AvatarContainerProps {
    size?: number;
    border?: string;
    source: string;
+   hasLoading?: boolean;
    isLoading?: boolean;
    children?: ReactNode;
 }
@@ -18,11 +19,12 @@ export function AvatarContainer({
    size = 20,
    source,
    border = 'border-green-400',
+   hasLoading = false,
    isLoading = false,
    children
 }: AvatarContainerProps) {
    const [isErrorImage, setIsErrorImage] = useState(false);
-   const [loadingImage, setLoadingImage] = useState(true);
+   const [loadingImage, setLoadingImage] = useState(false);
 
    useEffect(() => {
       if (source) setIsErrorImage(false);
@@ -34,18 +36,19 @@ export function AvatarContainer({
          ${border} bg-blue_dark-600`}
          style={{ width: RFValue(size), height: RFValue(size) }}
       >
-         {!isErrorImage && (
+         {!isErrorImage && !isLoading && (
             <Image
                source={{ uri: source ? source : 'https://wwww' }}
                className="h-full w-full object-cover"
                onError={() => setIsErrorImage(true)}
+               onLoadStart={() => setLoadingImage(true)}
                onLoadEnd={() => setLoadingImage(false)}
             />
          )}
-         {isLoading && (
+         {hasLoading && (
             <View className="absolute left-[38%] top-[38%]">
                <Loading.Default
-                  loading={loadingImage}
+                  loading={loadingImage || isLoading}
                   size={30}
                   color={theme.colors.white}
                />

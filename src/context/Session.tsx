@@ -6,11 +6,10 @@ import { AppError } from '@utils';
 
 import { Context } from '../@types/context';
 import { useAuth } from '@hooks/shared/useAuth';
-import { useMutation } from '@tanstack/react-query';
 
 interface SessionContextData {
-   user: Partial<UserModel>;
-   updateUserStorage: (user: UserModel) => Promise<void>;
+   user: UserModel;
+   updateUserStorage: (user: UserModel, link: string) => Promise<void>;
 }
 
 export const SessionContext = createContext<SessionContextData>(
@@ -35,10 +34,10 @@ export function SessionProvider({ children }: Context) {
    }
 
    const updateUserStorage = useCallback(
-      async (userUpdate: UserModel) => {
+      async (userUpdate: UserModel, link = '') => {
          try {
-            await SessionStorage.saveSession(userUpdate, user.link);
-            setUser({ ...userUpdate, link: user.link });
+            await SessionStorage.saveSession(userUpdate, link);
+            setUser({ ...userUpdate, link: link ?? user.link });
          } catch (error) {
             if (error instanceof AppError) {
                console.log(error.message);
