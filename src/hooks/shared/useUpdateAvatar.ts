@@ -16,8 +16,10 @@ interface UserUpdateAvatarProps {
 }
 
 export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
-   const [statusCamera] = ImagePicker.useCameraPermissions();
-   const [statusLibrary] = ImagePicker.useMediaLibraryPermissions();
+   const [statusCamera, requestPermissionCamera] =
+      ImagePicker.useCameraPermissions();
+   const [statusLibrary, requestPermissionLibrary] =
+      ImagePicker.useMediaLibraryPermissions();
 
    const { user, updateUserStorage } = useSession();
    const { showErrorMessage } = useToast();
@@ -46,24 +48,26 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
       let result: ImagePickerResult;
 
       try {
-         if (type === AvatarOptions.CAMERA && statusCamera.granted) {
-            result = await ImagePicker.launchCameraAsync(imagePickerOption);
-         } else if (type === AvatarOptions.GALERY && statusLibrary.granted) {
-            result = await ImagePicker.launchImageLibraryAsync(
-               imagePickerOption
-            );
+         if (type === AvatarOptions.CAMERA) {
+            if (!statusCamera.granted && statusCamera.canAskAgain)
+               await requestPermissionCamera();
+            else if (statusCamera.granted)
+               result = await ImagePicker.launchCameraAsync(imagePickerOption);
+            else return onPermissionsDenied();
          } else {
-            showErrorMessage(APP_MESSAGES_ERROR.PERMISIONS_DENIED);
-            onClose();
-            return;
+            if (!statusLibrary.granted && statusLibrary.canAskAgain)
+               await requestPermissionLibrary();
+            else if (statusLibrary.granted)
+               result = await ImagePicker.launchImageLibraryAsync(
+                  imagePickerOption
+               );
+            else return onPermissionsDenied();
          }
       } catch (error) {
-         showErrorMessage(APP_MESSAGES_ERROR.PICKER_IMAGE_FAILED);
-         onClose();
-         return;
+         return onPickerImageFailed();
       }
 
-      if (result.canceled) return;
+      if (!result || result.canceled) return;
 
       if (result.assets[0].uri && result.assets[0].base64) {
          const imageInfor = (await FileSystem.getInfoAsync(
@@ -78,10 +82,19 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
             onClose();
             updateAvatar(base64);
          }
-      } else {
-         showErrorMessage(APP_MESSAGES_ERROR.PICKER_IMAGE_FAILED);
-         onClose();
-      }
+      } else return onPickerImageFailed();
+   }
+
+   function onPermissionsDenied() {
+      showErrorMessage(APP_MESSAGES_ERROR.PERMISIONS_DENIED);
+      onClose();
+      return;
+   }
+
+   function onPickerImageFailed() {
+      showErrorMessage(APP_MESSAGES_ERROR.PICKER_IMAGE_FAILED);
+      onClose();
+      return;
    }
 
    return {
