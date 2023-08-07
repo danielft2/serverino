@@ -4,13 +4,14 @@ import { LogOut } from 'lucide-react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Dialog } from '@components/Dialog';
-import { useAuth } from '@hooks/shared';
+import { useAuth, useFontsize } from '@hooks/shared';
 
 import { ProfileOptionCard } from './OptionCard';
 
 export function OptionCardSignOut() {
    const [isOpenDialog, setIsOpenDialog] = useState(false);
    const { signOut } = useAuth();
+   const { getFontsize } = useFontsize();
 
    return (
       <>
@@ -37,7 +38,7 @@ export function OptionCardSignOut() {
                   <Dialog.Action onPress={signOut}>
                      <Text
                         className="font-heading_md text-red-400"
-                        style={{ fontSize: RFValue(12) }}
+                        style={{ fontSize: getFontsize(12) }}
                      >
                         Sim, desejo
                      </Text>
@@ -45,7 +46,7 @@ export function OptionCardSignOut() {
                   <Dialog.Action onPress={() => setIsOpenDialog(false)}>
                      <Text
                         className="font-heading_md text-gray-100"
-                        style={{ fontSize: RFValue(12) }}
+                        style={{ fontSize: getFontsize(12) }}
                      >
                         Cancelar
                      </Text>

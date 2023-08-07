@@ -1,7 +1,7 @@
 import { TextInput, TextInputProps, View } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import { VariantProps, cva } from 'class-variance-authority';
 
+import { useFontsize } from '@hooks/shared';
 import { cnMerge } from '@utils';
 import { theme } from '../../../theme';
 
@@ -36,6 +36,8 @@ export function InputTextRoot({
    editable = true,
    ...rest
 }: InputTextRootProps) {
+   const { getFontsize } = useFontsize();
+
    return (
       <View className="relative w-full">
          <TextInput
@@ -46,7 +48,7 @@ export function InputTextRoot({
                }),
                { 'bg-blue_dark-600': !editable }
             )}
-            style={{ fontSize: RFValue(11.8) }}
+            style={{ fontSize: getFontsize(11.8) }}
             placeholderTextColor={theme.colors.gray[200]}
             editable={editable}
             {...rest}

@@ -8,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import clsx from 'clsx';
 
-import { useProfessional } from '@hooks/shared';
+import { useFontsize, useProfessional } from '@hooks/shared';
 
 interface ProfessionalActionLikeProps {
    user_id: number;
@@ -24,6 +24,8 @@ export function ProfessionalActionLike({
    professional_id,
    interactions
 }: ProfessionalActionLikeProps) {
+   const { getFontsize } = useFontsize();
+
    const { handleClickInteraction, countInteraction, someInteraction } =
       useProfessional({
          type: 1,
@@ -57,7 +59,7 @@ export function ProfessionalActionLike({
          onPressOut={onPressOut}
          hitSlop={{ top: 16, bottom: 16, left: 16, right: 16 }}
       >
-         <View className="flex-row items-center space-x-1.5">
+         <View className="flex-row items-center space-x-1 sm:space-x-1.5">
             <View className="flex-row space-x-1">
                <Animated.View style={[shakeLikeAnimatedStyled]}>
                   <ThumbsUp
@@ -67,11 +69,14 @@ export function ProfessionalActionLike({
                      size={RFValue(18)}
                   />
                </Animated.View>
-               <Text className={styleLike} style={{ fontSize: RFValue(11) }}>
+               <Text
+                  className={styleLike}
+                  style={{ fontSize: getFontsize(11) }}
+               >
                   {countInteraction}
                </Text>
             </View>
-            <Text className={styleLike} style={{ fontSize: RFValue(10) }}>
+            <Text className={styleLike} style={{ fontSize: getFontsize(10) }}>
                {someInteraction ? 'Curtido' : 'Curtir'}
             </Text>
          </View>

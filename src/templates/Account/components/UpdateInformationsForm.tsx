@@ -7,15 +7,16 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { Form } from '@components/Form';
 import { InputControlled } from '@components/FormControlled';
 import { Button } from '@components/Button';
+import { ButtonBack } from '@components/ButtonBack';
 import { useUpdateInformations } from '@hooks/screens';
 import UpdateIlustatrion from '@assets/ilustrations/update-data.svg';
 
 interface UpdateInformationsFormProps {
-   onUpdateSucess: () => void;
+   onUpdateResult: (result: boolean) => void;
 }
 
 export function UpdateInformationsForm({
-   onUpdateSucess
+   onUpdateResult
 }: UpdateInformationsFormProps) {
    const {
       createUpdateInformationsForm,
@@ -26,8 +27,8 @@ export function UpdateInformationsForm({
    } = useUpdateInformations();
 
    useEffect(() => {
-      if (isUpdateSuccess) onUpdateSucess();
-   }, [onUpdateSucess, isUpdateSuccess]);
+      if (isUpdateSuccess) onUpdateResult(true);
+   }, [onUpdateResult, isUpdateSuccess]);
 
    return (
       <View className="flex-1">
@@ -37,10 +38,11 @@ export function UpdateInformationsForm({
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ flexGrow: 1 }}
          >
+            <ButtonBack onPress={() => onUpdateResult(false)} />
             <View className="items-center">
                <UpdateIlustatrion width={RFValue(200)} height={RFValue(140)} />
             </View>
-            <View className="mb-32 flex-1 justify-between">
+            <View className="mb-28 flex-1 justify-between">
                <FormProvider {...createUpdateInformationsForm}>
                   <View className="space-y-3">
                      <View>
@@ -69,13 +71,15 @@ export function UpdateInformationsForm({
                </FormProvider>
             </View>
          </Animated.ScrollView>
-         <Button.Root
-            disabled={!isValid}
-            onPress={() => handleUpdate()}
-            isLoading={isLoading}
-         >
-            <Button.Text>Confirmar Alterações</Button.Text>
-         </Button.Root>
+         <View className="pt-4">
+            <Button.Root
+               disabled={!isValid}
+               onPress={() => handleUpdate()}
+               isLoading={isLoading}
+            >
+               <Button.Text>Confirmar Alterações</Button.Text>
+            </Button.Root>
+         </View>
       </View>
    );
 }

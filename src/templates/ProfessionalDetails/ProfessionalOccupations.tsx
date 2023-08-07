@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
+import { useFontsize } from '@hooks/shared';
+
 import { OccupationArea } from './components/OccupationArea';
 import { InformationsEmpty } from './components/InformationsEmpty';
 
@@ -16,6 +18,8 @@ interface ProfessionalOccupationsProps {
 export function ProfessionalOccupations({
    occupations
 }: ProfessionalOccupationsProps) {
+   const { getFontsize } = useFontsize();
+
    const renderItem = useCallback(
       ({ item }) => (
          <OccupationArea name={item.titulo} description={item.descricao} />
@@ -28,7 +32,7 @@ export function ProfessionalOccupations({
       <View className="mb-6">
          <Text
             className="mb-1 font-heading_md text-gray-100"
-            style={{ fontSize: RFValue(11) + 0.5 }}
+            style={{ fontSize: getFontsize(11) + 0.5 }}
          >
             Áreas de atuação
          </Text>

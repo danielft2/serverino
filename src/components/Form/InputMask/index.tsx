@@ -1,12 +1,12 @@
 import MaskInput, { MaskInputProps } from 'react-native-mask-input';
-import { RFValue } from 'react-native-responsive-fontsize';
 import { VariantProps, cva } from 'class-variance-authority';
 
 import { cnMerge } from '@utils';
-import { theme } from '../../../../tailwind.config';
+import { useFontsize } from '@hooks/shared';
+import { theme } from '../../../theme';
 
 const InputVariants = cva(
-   'rounded-full border-[0.5px] px-6 font-reading text-gray-100 base:h-11 sm:h-[52px] lg:h-14',
+   'rounded-full border-[0.5px] base:px-5 md:px-6 font-reading text-gray-100 base:h-11 sm:h-[52px] lg:h-14',
    {
       variants: {
          variant: {
@@ -34,6 +34,8 @@ export function InputTextMask({
    editable = true,
    ...rest
 }: InputTextMaskProps) {
+   const { getFontsize } = useFontsize();
+
    return (
       <MaskInput
          className={cnMerge(
@@ -43,9 +45,9 @@ export function InputTextMask({
             }),
             { 'bg-blue_dark-600': !editable }
          )}
-         style={{ fontSize: RFValue(12) }}
+         style={{ fontSize: getFontsize(12) }}
          editable={editable}
-         placeholderTextColor={theme.extend.colors.gray[200]}
+         placeholderTextColor={theme.colors.gray[200]}
          {...rest}
       />
    );

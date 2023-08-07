@@ -32,7 +32,7 @@ export function ProfessionalDetails() {
          ) : (
             <View className="flex-1">
                <ProfessionalCover coverUrl={professional?.linkImagemCapa} />
-               <View className="px-4">
+               <View className="base:px-3 sm:px-4">
                   <ProfessionalHeader
                      name={professional?.nome_fantasia}
                      avatarUrl={professional?.linkImagem}

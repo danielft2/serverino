@@ -1,16 +1,18 @@
 import { ReactNode } from 'react';
 import { Text } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+
+import { useFontsize } from '@hooks/shared';
 
 interface SuccesTitleProps {
    children: ReactNode;
 }
 
 export function SuccessTitle({ children }: SuccesTitleProps) {
+   const { getFontsize } = useFontsize();
    return (
       <Text
          className="font-heading_sm text-white"
-         style={{ fontSize: RFValue(16) }}
+         style={{ fontSize: getFontsize(16) }}
       >
          {children}
       </Text>

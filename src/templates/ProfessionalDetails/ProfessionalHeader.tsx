@@ -1,12 +1,12 @@
+import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import { CheckCircle, Star, ThumbsUp } from 'lucide-react-native';
 
 import { Avatar } from '@components/Avatar';
 import { UserIdentify } from '@components/UserIdentify';
+import { useFontsize } from '@hooks/shared';
 
 import { Result } from './components/Result';
-import { useCallback, useEffect, useState } from 'react';
 
 interface ProfessionalHeaderProps {
    name: string;
@@ -24,6 +24,8 @@ export function ProfessionalHeader({
    interactions = []
 }: ProfessionalHeaderProps) {
    const [results, setResults] = useState({ likes: 0, recommends: 0 });
+
+   const { getFontsize } = useFontsize();
 
    const getCountLikesAndRecommends = useCallback(() => {
       let likes = 0;
@@ -59,17 +61,17 @@ export function ProfessionalHeader({
             <Result result={`${results.likes} curtidas`}>
                <ThumbsUp
                   className="-mt-[2px] text-red-400"
-                  size={RFValue(14)}
+                  size={getFontsize(14)}
                />
             </Result>
             <Result result={`${results.recommends} recomend.`}>
                <CheckCircle
                   className="-mt-[2px] text-green-400"
-                  size={RFValue(14)}
+                  size={getFontsize(14)}
                />
             </Result>
             <Result result="Novo">
-               <Star className="-mt-[2px] text-white" size={RFValue(14)} />
+               <Star className="-mt-[2px] text-white" size={getFontsize(14)} />
             </Result>
          </View>
       </View>

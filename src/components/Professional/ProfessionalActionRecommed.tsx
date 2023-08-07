@@ -3,7 +3,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { CheckCircle } from 'lucide-react-native';
 import clsx from 'clsx';
 
-import { useProfessional } from '@hooks/shared';
+import { useFontsize, useProfessional } from '@hooks/shared';
 
 interface ProfessionalActionRecommendProps {
    user_id: number;
@@ -19,6 +19,8 @@ export function ProfessionalActionRecommend({
    professional_id,
    interactions
 }: ProfessionalActionRecommendProps) {
+   const { getFontsize } = useFontsize();
+
    const { handleClickInteraction, countInteraction, someInteraction } =
       useProfessional({ type: 2, interactions, user_id, professional_id });
 
@@ -42,12 +44,15 @@ export function ProfessionalActionRecommend({
                />
                <Text
                   className={styleRecommend}
-                  style={{ fontSize: RFValue(11) }}
+                  style={{ fontSize: getFontsize(11) }}
                >
                   {countInteraction}
                </Text>
             </View>
-            <Text className={styleRecommend} style={{ fontSize: RFValue(10) }}>
+            <Text
+               className={styleRecommend}
+               style={{ fontSize: getFontsize(10) }}
+            >
                {someInteraction ? 'Recomendado' : 'Recomendar'}
             </Text>
          </View>

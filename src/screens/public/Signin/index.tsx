@@ -14,9 +14,12 @@ import { useNavigation } from '@react-navigation/native';
 import Logo from '@assets/logo.svg';
 import { background } from '@styles/background-image';
 import { SigninForm } from '@templates/Signin';
+import { useFontsize } from '@hooks/shared';
 
 export function Signin() {
    const { navigate } = useNavigation();
+   const { getFontsize } = useFontsize();
+
    return (
       <SafeAreaView className="flex-1 bg-gray-950">
          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -32,7 +35,7 @@ export function Signin() {
                      <View className="w-full items-center">
                         <Logo width={RFValue(140)} height={RFValue(60)} />
                         <Text
-                           className="w-[85%] text-center text-zinc-500"
+                           className="w-[85%] text-center text-gray-200"
                            style={{
                               fontSize: RFValue(13.5),
                               lineHeight: RFValue(19)
@@ -45,8 +48,8 @@ export function Signin() {
                      </View>
                      <View className="flex-row items-center justify-center space-x-1">
                         <Text
-                           className="font-heading_md text-zinc-400"
-                           style={{ fontSize: RFValue(11) }}
+                           className="font-heading_md text-gray-100"
+                           style={{ fontSize: getFontsize(11) }}
                         >
                            Ainda não tem uma conta?{''}
                         </Text>
@@ -60,8 +63,8 @@ export function Signin() {
                            onPress={() => navigate('register')}
                         >
                            <Text
-                              className="font-heading_md text-green-700"
-                              style={{ fontSize: RFValue(11) }}
+                              className="font-heading_md text-green-400"
+                              style={{ fontSize: getFontsize(11) }}
                            >
                               Cadastre-se agora
                            </Text>

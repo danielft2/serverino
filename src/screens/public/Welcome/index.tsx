@@ -45,7 +45,7 @@ export function Welcome() {
                      Em busca de um Profissional?{'\n'}Está no lugar certo!
                   </Text>
                   <Text
-                     className="font-reading text-gray-300"
+                     className="font-reading text-gray-200"
                      style={{
                         fontSize: RFValue(13.5),
                         lineHeight: RFValue(19)
