@@ -36,8 +36,8 @@ export function SessionProvider({ children }: Context) {
    const updateUserStorage = useCallback(
       async (userUpdate: UserModel, link = '') => {
          try {
-            await SessionStorage.saveSession(userUpdate, link);
             setUser({ ...userUpdate, link: link ?? user.link });
+            await SessionStorage.saveSession(userUpdate, link);
          } catch (error) {
             if (error instanceof AppError) {
                console.log(error.message);
