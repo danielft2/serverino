@@ -6,12 +6,14 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { Button } from '@components/Button';
 import SomethingWrongIlustration from '@assets/ilustrations/something-wrong.svg';
 import Logo from '@assets/logo.svg';
+import { useFontsize } from '@hooks/shared';
 
 interface SomethingWrongProps {
    onTryAgain: () => void;
 }
 
 export function SomethingWrong({ onTryAgain }: SomethingWrongProps) {
+   const { getFontsize } = useFontsize();
    const statusBarHeigth = getStatusBarHeight();
 
    return (
@@ -28,7 +30,7 @@ export function SomethingWrong({ onTryAgain }: SomethingWrongProps) {
          />
          <View
             className="items-center justify-center"
-            style={{ height: RFPercentage(80) }}
+            style={{ height: RFPercentage(75) }}
          >
             <SomethingWrongIlustration
                width={RFValue(150)}
@@ -36,11 +38,14 @@ export function SomethingWrong({ onTryAgain }: SomethingWrongProps) {
             />
             <Text
                className="mt-2 text-center font-heading_sm text-white"
-               style={{ fontSize: RFValue(16) }}
+               style={{ fontSize: getFontsize(15) }}
             >
                Erro inesperado ao carregar
             </Text>
-            <Text className="-mt-1 mb-4 max-w-[90%] text-center text-gray-100">
+            <Text
+               className="-mt-1 mb-4 max-w-[90%] text-center text-gray-100"
+               style={{ fontSize: getFontsize(13) }}
+            >
                Ocorreu um erro inesperado, espere alguns segundos e tente
                novamente.
             </Text>

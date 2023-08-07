@@ -25,6 +25,11 @@ export function AccountUpdateModal({
       setRender(false);
    }
 
+   function onUpdateResult(result: boolean) {
+      if (result) setIsUpdateSuccess(true);
+      else onClose();
+   }
+
    return (
       <Modal.Root
          isOpen={isOpen}
@@ -34,14 +39,11 @@ export function AccountUpdateModal({
       >
          <Modal.Content>
             <Gradient />
-            <ButtonBack onPress={onClose} />
             {render ? (
                !isUpdateSuccess ? (
-                  <UpdateInformationsForm
-                     onUpdateSucess={() => setIsUpdateSuccess(true)}
-                  />
+                  <UpdateInformationsForm onUpdateResult={onUpdateResult} />
                ) : (
-                  <UpdateInformationsSuccess />
+                  <UpdateInformationsSuccess onClose={onClose} />
                )
             ) : (
                <Loading.Background loading />

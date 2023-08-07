@@ -6,6 +6,7 @@ import { VariantProps, cva } from 'class-variance-authority';
 import clsx from 'clsx';
 
 import { cnMerge } from '@utils';
+import { useFontsize } from '@hooks/shared';
 
 export const toastMessageVariants = cva(
    'h-12 w-auto flex-row items-center justify-center space-x-1 rounded-md px-4',
@@ -29,13 +30,15 @@ interface ToastMessageProps
 }
 
 export function ToastMessage({ msg, variant, ...rest }: ToastMessageProps) {
+   const { getFontsize } = useFontsize();
+
    const style = clsx('text-gray-50', {
       'text-red-800': variant === 'error'
    });
    return (
       <View className={cnMerge(toastMessageVariants({ variant }), { ...rest })}>
-         <AlertCircle size={RFValue(14)} className={style} />
-         <Text className={style} style={{ fontSize: RFValue(12) }}>
+         <AlertCircle size={getFontsize(14)} className={style} />
+         <Text className={style} style={{ fontSize: getFontsize(12) }}>
             {msg}
          </Text>
       </View>

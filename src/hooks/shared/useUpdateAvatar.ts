@@ -29,6 +29,7 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
       mutationFn: (image: string) =>
          SessionsService.updateAvatar(user.id, image),
       onSuccess: (data) => {
+         console.log(data.meta.results.link);
          updateUserStorage(user, data.meta.results.link);
       },
       onError: () => {

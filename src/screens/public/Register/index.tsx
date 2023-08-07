@@ -9,11 +9,12 @@ import { Header } from '@components/Header';
 import { Loading } from '@components/Loading';
 import { ProgessBar } from '@components/ProgressBar';
 import { useRegisterSteps, useRegisterForm, STEPS_ENUM } from '@hooks/screens';
-import { useLazy } from '@hooks/shared';
+import { useFontsize, useLazy } from '@hooks/shared';
 
 export function Register() {
    const { render } = useLazy();
    const { goBack } = useNavigation();
+   const { getFontsize } = useFontsize();
 
    const {
       createRegisterForm,
@@ -51,7 +52,7 @@ export function Register() {
          className="relative flex-1 space-y-6 bg-blue_dark-900 pb-4"
          style={{ paddingTop: getStatusBarHeight() + 10 }}
       >
-         <View className="mb-4 base:px-3 md:px-4">
+         <View className="mb-4 base:px-3 sm:px-4">
             <Header
                onHandleClickButton={
                   step_index === 0 ? goBack : () => handleChange(step_index - 1)
@@ -59,11 +60,14 @@ export function Register() {
             >
                <Text
                   className="-mb-1 text-center font-heading_md text-gray-200"
-                  style={{ fontSize: 13 }}
+                  style={{ fontSize: getFontsize(12) }}
                >
                   {`Etapa ${step_index + 1}/2`}
                </Text>
-               <Text className="text-center font-heading_md text-white">
+               <Text
+                  className="text-center font-heading_md text-white"
+                  style={{ fontSize: getFontsize(13) }}
+               >
                   {current_step_name}
                </Text>
             </Header>
@@ -71,7 +75,7 @@ export function Register() {
          <ProgessBar totalItems={2} totalItemsCompleted={step_index + 1} />
 
          <ScrollView>
-            <View className="px-4 pb-48">
+            <View className="pb-48 base:px-3 sm:px-4">
                <FormProvider {...createRegisterForm}>
                   {current_step}
                </FormProvider>

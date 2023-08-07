@@ -1,11 +1,11 @@
 import { ScrollView, View } from 'react-native';
 import { Mail, MapPin, Phone, UserCircle2 } from 'lucide-react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 import { hideEmail, hidePhone } from '@utils';
 import { useSession } from '@hooks/shared';
 
 import { Information } from './components/Information';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 export function AccountInformations() {
    const { user } = useSession();

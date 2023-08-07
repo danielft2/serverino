@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { ChevronRight } from 'lucide-react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import Animated, { SlideInLeft } from 'react-native-reanimated';
 
 import { Option } from '@components/Option';
+import { useFontsize } from '@hooks/shared';
 
 interface ProfileOptionCardProps {
    label: string;
@@ -22,6 +22,8 @@ export function ProfileOptionCard({
    onPress,
    index
 }: ProfileOptionCardProps) {
+   const { getFontsize } = useFontsize();
+
    return (
       <TouchableOpacityAnimated
          entering={SlideInLeft.duration(200 * index)}
@@ -33,7 +35,7 @@ export function ProfileOptionCard({
                <Option.Icon>{icon}</Option.Icon>
                <Text
                   className="font-heading_md text-white"
-                  style={{ fontSize: RFValue(11) }}
+                  style={{ fontSize: getFontsize(11) }}
                >
                   {label}
                </Text>

@@ -12,7 +12,7 @@ export function ProfileOptions() {
    return (
       <>
          <ScrollView className="flex-grow" showsVerticalScrollIndicator={false}>
-            <View className="mb-3 w-full border-b border-blue_dark-300">
+            <View className="mb-3 w-full border-b border-blue_dark-400">
                <ProfileOptionCard
                   index={1}
                   label="Informações da Conta"
@@ -25,7 +25,7 @@ export function ProfileOptions() {
                   icon={<Lock size={RFValue(20)} className="text-white" />}
                />
             </View>
-            <View className="mb-3 w-full border-b border-blue_dark-300">
+            <View className="mb-3 w-full border-b border-blue_dark-400">
                <ProfileOptionCard
                   index={3}
                   label="Torna-se Licenciado"

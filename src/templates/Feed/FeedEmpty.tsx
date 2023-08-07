@@ -1,7 +1,7 @@
 import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
-import { useSession } from '@hooks/shared';
+import { useFontsize, useSession } from '@hooks/shared';
 import { Button } from '@components/Button';
 import Worker from '@assets/ilustrations/worker.svg';
 
@@ -15,6 +15,7 @@ interface FeedEmptyProps {
 export function FeedEmpty({ isFetching, refetch }: FeedEmptyProps) {
    const [refreshing, setRefreshing] = useState(false);
    const { user } = useSession();
+   const { getFontsize } = useFontsize();
 
    function onRefreshFeed() {
       setRefreshing(true);
@@ -39,13 +40,13 @@ export function FeedEmpty({ isFetching, refetch }: FeedEmptyProps) {
                   <Worker width={RFValue(180)} height={RFValue(158)} />
                   <Text
                      className="text-center font-heading_sm text-white"
-                     style={{ fontSize: RFValue(14) }}
+                     style={{ fontSize: getFontsize(14) }}
                   >
                      {`Ainda não existe nenhum profissional cadastrado em ${user.cidade.nome} - ${user.cidade.uf.nome}`}
                   </Text>
                   <Text
                      className="text-gray-100"
-                     style={{ fontSize: RFValue(13) }}
+                     style={{ fontSize: getFontsize(13) }}
                   >
                      Tente atualizar o feed ou indique um profissional.
                   </Text>

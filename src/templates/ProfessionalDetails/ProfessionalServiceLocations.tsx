@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+
+import { useFontsize } from '@hooks/shared';
 
 import { ServiceLocation } from './components/ServiceLocation';
 import { InformationsEmpty } from './components/InformationsEmpty';
@@ -16,6 +17,8 @@ interface ProfessionalServiceLocationsProps {
 export function ProfessionalServiceLocations({
    services
 }: ProfessionalServiceLocationsProps) {
+   const { getFontsize } = useFontsize();
+
    const renderItem = useCallback(
       ({ item }) => (
          <ServiceLocation locationName={`${item.nome} - ${item.uf}`} />
@@ -28,7 +31,7 @@ export function ProfessionalServiceLocations({
       <View className="w-full">
          <Text
             className="mb-1 font-heading_md text-gray-100"
-            style={{ fontSize: RFValue(11) + 0.5 }}
+            style={{ fontSize: getFontsize(11) + 0.5 }}
          >
             Locais de Atendimentos
          </Text>

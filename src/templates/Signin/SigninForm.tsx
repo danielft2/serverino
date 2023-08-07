@@ -5,14 +5,17 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Button } from '@components/Button';
 import { InputControlled } from '@components/FormControlled';
-import { useSignin } from '@hooks/screens/Signin/useSignin';
+import { useSignin } from '@hooks/screens';
+import { useFontsize } from '@hooks/shared';
 
 export function SigninForm() {
+   const { getFontsize } = useFontsize();
+
    const { createSigninForm, getValues, isValid, handleSignin, isLoading } =
       useSignin();
 
    return (
-      <View className="mt-12 w-full space-y-3">
+      <View className="mt-12 w-full space-y-2 sm:space-y-3">
          <FormProvider {...createSigninForm}>
             <View className="space-y-3">
                <View>
@@ -34,8 +37,8 @@ export function SigninForm() {
          </FormProvider>
          <TouchableOpacity>
             <Text
-               className="ml-1 font-heading_md text-green-700"
-               style={{ fontSize: RFValue(11) }}
+               className="ml-1 font-heading_md text-green-500"
+               style={{ fontSize: getFontsize(11) }}
             >
                Esqueceu a senha?
             </Text>

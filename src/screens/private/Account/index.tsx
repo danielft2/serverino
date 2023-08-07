@@ -24,7 +24,7 @@ export function Account() {
    return (
       <>
          <SafeAreaView
-            className="relative flex-1  bg-blue_dark-900 base:px-3 md:px-4"
+            className="relative flex-1 bg-blue_dark-900 base:px-3 md:px-4"
             style={{ paddingTop: statusBarHeigth + 10 }}
          >
             <Gradient />
