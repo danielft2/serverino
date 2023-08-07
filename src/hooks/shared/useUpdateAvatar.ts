@@ -22,7 +22,7 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
       ImagePicker.useMediaLibraryPermissions();
 
    const { user, updateUserStorage } = useSession();
-   const { showErrorMessage } = useToast();
+   const { showBasicMessage } = useToast();
 
    const { isLoading, mutateAsync: updateAvatar } = useMutation({
       mutationKey: ['updateUserAvatar'],
@@ -32,7 +32,7 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
          updateUserStorage(user, data.meta.results.link);
       },
       onError: () => {
-         showErrorMessage(ERRORS_MESSAGES.GENERIC_ERROR);
+         showBasicMessage(ERRORS_MESSAGES.GENERIC_ERROR);
       }
    });
 
@@ -75,7 +75,7 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
          )) as any;
 
          if (imageInfor.size && imageInfor.size / 1024 / 1024 > 5) {
-            showErrorMessage(APP_MESSAGES_ERROR.PICKER_IMAGE_SIZE);
+            showBasicMessage(APP_MESSAGES_ERROR.PICKER_IMAGE_SIZE);
             onClose();
          } else {
             const base64 = `data:image/jpeg;base64,${result.assets[0].base64}`;
@@ -86,13 +86,13 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
    }
 
    function onPermissionsDenied() {
-      showErrorMessage(APP_MESSAGES_ERROR.PERMISIONS_DENIED);
+      showBasicMessage(APP_MESSAGES_ERROR.PERMISIONS_DENIED);
       onClose();
       return;
    }
 
    function onPickerImageFailed() {
-      showErrorMessage(APP_MESSAGES_ERROR.PICKER_IMAGE_FAILED);
+      showBasicMessage(APP_MESSAGES_ERROR.PICKER_IMAGE_FAILED);
       onClose();
       return;
    }

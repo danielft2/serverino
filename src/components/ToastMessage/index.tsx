@@ -1,36 +1,41 @@
 import { View, Text } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { BaseToastProps } from 'react-native-toast-message';
-
-import { theme } from '../../theme';
-
-import clsx from 'clsx';
+import { BaseToastProps, ToastProps } from 'react-native-toast-message';
 import { AlertCircle } from 'lucide-react-native';
+import { VariantProps, cva } from 'class-variance-authority';
+import clsx from 'clsx';
 
-interface ToastMessageProps {
+import { cnMerge } from '@utils';
+
+export const toastMessageVariants = cva(
+   'h-12 w-auto flex-row items-center justify-center space-x-1 rounded-md px-4',
+   {
+      variants: {
+         variant: {
+            basic: 'bg-blue_dark-300',
+            error: 'bg-red-200'
+         }
+      },
+      defaultVariants: {
+         variant: 'basic'
+      }
+   }
+);
+
+interface ToastMessageProps
+   extends ToastProps,
+      VariantProps<typeof toastMessageVariants> {
    msg: string;
-   type: 'sucess' | 'error' | 'base';
 }
 
-export function ToastMessage({ msg, type }: ToastMessageProps) {
+export function ToastMessage({ msg, variant, ...rest }: ToastMessageProps) {
+   const style = clsx('text-gray-50', {
+      'text-red-800': variant === 'error'
+   });
    return (
-      <View
-         className={clsx(
-            'h-10 w-auto flex-row items-center justify-center space-x-1 rounded-md px-4',
-            {
-               'bg-red-200': type === 'error',
-               'bg-gray-800': type === 'base'
-            }
-         )}
-      >
-         <AlertCircle size={RFValue(14)} color={theme.colors.red[700]} />
-         <Text
-            className={clsx('', {
-               'text-red-800': type === 'error',
-               'text-gray-300': type === 'base'
-            })}
-            style={{ fontSize: RFValue(12) }}
-         >
+      <View className={cnMerge(toastMessageVariants({ variant }), { ...rest })}>
+         <AlertCircle size={RFValue(14)} className={style} />
+         <Text className={style} style={{ fontSize: RFValue(12) }}>
             {msg}
          </Text>
       </View>
@@ -38,7 +43,11 @@ export function ToastMessage({ msg, type }: ToastMessageProps) {
 }
 
 export const toastConfig = {
-   error: ({ text2 }: BaseToastProps) => (
-      <ToastMessage msg={text2} type="error" />
+   error: ({ text2, ...rest }: BaseToastProps) => (
+      <ToastMessage msg={text2} variant="error" {...rest} />
+   ),
+
+   basic: ({ text2, ...rest }: BaseToastProps) => (
+      <ToastMessage msg={text2} variant="basic" {...rest} />
    )
 };
