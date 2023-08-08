@@ -9,10 +9,7 @@ import { useAuth } from '@hooks/shared/useAuth';
 
 interface SessionContextData {
    user: UserModel;
-   updateUserStorage: (
-      user: UserModel,
-      newLinkAvatar?: string
-   ) => Promise<void>;
+   updateUserStorage: (user: UserModel) => Promise<void>;
 }
 
 export const SessionContext = createContext<SessionContextData>(
@@ -33,18 +30,18 @@ export function SessionProvider({ children }: Context) {
 
    async function getUserStorage() {
       const userStorage = await SessionStorage.retrieveSession();
-      console.log(userStorage);
       setUser(userStorage);
    }
 
    const updateUserStorage = useCallback(
-      async (userUpdate: UserModel, newLinkAvatar = '') => {
+      async (userUpdate: UserModel) => {
+         const avatarUrl = userUpdate?.link ? userUpdate.link : user.link;
          try {
             setUser({
                ...userUpdate,
-               link: newLinkAvatar ? newLinkAvatar : user.link
+               link: avatarUrl
             });
-            await SessionStorage.saveSession(userUpdate, newLinkAvatar);
+            await SessionStorage.saveSession(userUpdate, user.link);
          } catch (error) {
             if (error instanceof AppError) {
                console.log(error.message);

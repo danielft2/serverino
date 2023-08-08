@@ -27,8 +27,8 @@ export function AvatarContainer({
    const [loadingImage, setLoadingImage] = useState(false);
 
    useEffect(() => {
-      if (source) setIsErrorImage(false);
-   }, [source]);
+      if (source || isLoading) setIsErrorImage(false);
+   }, [source, isLoading]);
 
    return (
       <View
