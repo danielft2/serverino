@@ -49,7 +49,8 @@ export function ProfessionalHeader({
                <Avatar.Container
                   source={avatarUrl}
                   size={110}
-                  border="border-white"
+                  border="white"
+                  borderSize="md"
                   hasLoading
                >
                   <Avatar.Fallback name={name ?? ''} size={18} />
