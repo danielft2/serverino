@@ -22,10 +22,15 @@ export function ProfessionalOccupations({
 
    const renderItem = useCallback(
       ({ item }) => (
-         <OccupationArea name={item.titulo} description={item.descricao} />
+         <OccupationArea
+            name={item.titulo}
+            description={item.descricao}
+            isOnly={occupations.length === 1}
+         />
       ),
-      []
+      [occupations.length]
    );
+
    const keyExtractor = useCallback((item: any) => item?.id, []);
 
    return (

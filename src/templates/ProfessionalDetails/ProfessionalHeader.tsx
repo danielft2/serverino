@@ -45,7 +45,7 @@ export function ProfessionalHeader({
    return (
       <View className="mb-6 space-y-2">
          <View className="items-center">
-            <Avatar.Root className="-mt-16">
+            <Avatar.Root className="-mt-20">
                <Avatar.Container
                   source={avatarUrl}
                   size={110}

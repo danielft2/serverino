@@ -5,12 +5,13 @@ import {
    ProfessionalHeader,
    ProfessionalOccupations,
    ProfessionalServiceLocations,
-   ProfessionalSkeleton,
    ProfessionalTalk
 } from '@templates/ProfessionalDetails';
 import { useProfessionalDetails } from '@hooks/screens';
 import { useRoute } from '@react-navigation/native';
 import { SomethingWrong } from '@templates/Errors';
+import { Loading } from '@components/Loading';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 type ParamsProps = {
    id: string;
@@ -28,11 +29,14 @@ export function ProfessionalDetails() {
    return (
       <SafeAreaView className="flex-1">
          {isLoading || isFetching ? (
-            <ProfessionalSkeleton />
+            <Loading.Background loading />
          ) : (
             <View className="flex-1">
                <ProfessionalCover coverUrl={professional?.linkImagemCapa} />
-               <View className="base:px-3 sm:px-4">
+               <Animated.View
+                  className="base:px-3 sm:px-4"
+                  entering={FadeIn.delay(150)}
+               >
                   <ProfessionalHeader
                      name={professional?.nome_fantasia}
                      avatarUrl={professional?.linkImagem}
@@ -45,7 +49,7 @@ export function ProfessionalDetails() {
                   <ProfessionalServiceLocations
                      services={professional?.atendimentos}
                   />
-               </View>
+               </Animated.View>
                <ProfessionalTalk
                   numberPhone={professional?.usuario?.telefone}
                />

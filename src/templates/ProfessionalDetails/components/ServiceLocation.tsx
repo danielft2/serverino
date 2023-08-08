@@ -17,10 +17,10 @@ export function ServiceLocationStyled({
 
    return (
       <View
-         className="flex-grow flex-row items-center justify-center space-x-2 rounded-md bg-blue_dark-600 px-3 py-2 base:h-10 sm:h-12"
+         className="flex-grow flex-row items-center justify-center space-x-1.5 rounded-md bg-blue_dark-600 px-3 py-2 base:h-10 sm:h-10"
          {...rest}
       >
-         <MapPin size={getFontsize(16)} className="text-red-400" />
+         <MapPin size={getFontsize(15)} className="text-red-400" />
          <Text
             className="-mb-[1.5px] font-heading_md text-gray-100"
             style={{ fontSize: getFontsize(11) }}
