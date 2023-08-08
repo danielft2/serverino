@@ -8,7 +8,7 @@ interface ProfessionalContentProps {
 export function ProfessionalContent({ coverUrl }: ProfessionalContentProps) {
    return (
       <View className="w-full base:max-h-52 sm:max-h-56">
-         <ImageLoading imageUrl={coverUrl ?? 'https://'} />
+         <ImageLoading imageUrl={coverUrl} />
       </View>
    );
 }
