@@ -64,7 +64,7 @@ function ButtonRootStyled({
          disabled={disabled || isLoading}
          {...rest}
       >
-         {isLoading ? <ActivityIndicator color="white" /> : children}
+         {isLoading ? <ActivityIndicator size={24} color="white" /> : children}
       </TouchableOpacity>
    );
 }
