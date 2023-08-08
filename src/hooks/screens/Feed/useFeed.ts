@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+
 import { ProfessionalsService } from '@services/http/professionals.service';
 import { useSession } from '@hooks/shared';
 import { queryClient } from '@lib/react-query';
@@ -29,6 +31,10 @@ export function useFeed() {
          exact: true
       });
    }
+
+   useEffect(() => {
+      if (user.cidade.id) refetch();
+   }, [user.cidade.id, refetch]);
 
    return {
       data,
