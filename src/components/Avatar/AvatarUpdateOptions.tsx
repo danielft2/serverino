@@ -21,7 +21,7 @@ export function AvatarUpdateOptions({
    onClose,
    onUpdate
 }: AvatarUpdateOptionProps) {
-   const { width } = useWindowDimensions();
+   const { width, height } = useWindowDimensions();
 
    return (
       <Modal
@@ -32,6 +32,7 @@ export function AvatarUpdateOptions({
          animationInTiming={500}
          animationOutTiming={400}
          deviceWidth={width}
+         deviceHeight={height + 100}
          statusBarTranslucent
          backdropOpacity={0.5}
          hideModalContentWhileAnimating={true}

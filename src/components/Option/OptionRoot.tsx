@@ -11,9 +11,9 @@ export function OptionRoot({ children, isBackground }: OptionRootProps) {
    return (
       <View
          className={clsx(
-            'w-full base:rounded-lg base:py-2 md:rounded-xl md:py-3 lg:py-3.5',
+            'w-full base:rounded-lg base:py-2 md:rounded-xl md:py-2.5 lg:py-3.5',
             {
-               'flex-row items-center justify-between bg-blue_dark-600 px-4 lg:px-5':
+               'flex-row items-center justify-between bg-blue_dark-500 px-4 lg:px-5':
                   isBackground
             }
          )}
