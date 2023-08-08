@@ -23,7 +23,8 @@ export function AvatarProfile() {
                <Avatar.Container
                   source={user.link}
                   size={110}
-                  border="border-white"
+                  border="white"
+                  borderSize="md"
                   hasLoading
                   isLoading={isLoading}
                >
