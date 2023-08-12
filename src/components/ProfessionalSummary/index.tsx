@@ -16,7 +16,7 @@ function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
    const { navigate } = useNavigation();
 
    return (
-      <Pressable onPress={() => navigate('professional', { id: data.uuid })}>
+      <Pressable onPress={() => navigate('professional', { uuid: data.uuid })}>
          <Animated.View entering={FadeIn.delay(50 * index)}>
             <Professional.Root>
                <Professional.Header
@@ -40,14 +40,16 @@ function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
 
                   <Professional.Actions>
                      <Professional.ActionLike
-                        user_id={data.user_id}
-                        professional_id={data.uuid}
+                        professional_id={data.user_id}
+                        professional_uuid={data.uuid}
                         interactions={data.usuario.interacoes}
+                        professionalIndex={index}
                      />
                      <Professional.ActionRecommend
-                        user_id={data.user_id}
-                        professional_id={data.uuid}
+                        professional_id={data.user_id}
+                        professional_uuid={data.uuid}
                         interactions={data.usuario.interacoes}
+                        professionalIndex={index}
                      />
                   </Professional.Actions>
                </View>

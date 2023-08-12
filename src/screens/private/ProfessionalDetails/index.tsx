@@ -1,4 +1,6 @@
 import { SafeAreaView, View } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 import {
    ProfessionalCover,
@@ -7,22 +9,20 @@ import {
    ProfessionalServiceLocations,
    ProfessionalTalk
 } from '@templates/ProfessionalDetails';
-import { useProfessionalDetails } from '@hooks/screens';
-import { useRoute } from '@react-navigation/native';
 import { SomethingWrong } from '@templates/Errors';
 import { Loading } from '@components/Loading';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import { useProfessionalDetails } from '@hooks/screens';
 
 type ParamsProps = {
-   id: string;
+   uuid: string;
 };
 
 export function ProfessionalDetails() {
    const { params } = useRoute();
-   const { id } = params as ParamsProps;
+   const { uuid } = params as ParamsProps;
 
    const { professional, isLoading, isFetching, isError, refetch } =
-      useProfessionalDetails(id);
+      useProfessionalDetails(uuid);
 
    if (isError) return <SomethingWrong onTryAgain={refetch} />;
 
