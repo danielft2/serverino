@@ -4,38 +4,27 @@ import { CheckCircle } from 'lucide-react-native';
 import clsx from 'clsx';
 
 import { useFontsize } from '@hooks/shared';
-import { useProfessional } from '@hooks/components';
-import { ProfessionalInteraction } from '@domain/types';
+import { InteractionActionProps } from '@domain/types';
 
 export function ProfessionalActionRecommend({
-   professional_id,
-   professional_uuid,
-   professionalIndex,
-   interactions
-}: Partial<ProfessionalInteraction>) {
+   countInteractions,
+   interactionMine,
+   onInteraction
+}: InteractionActionProps) {
    const { getFontsize } = useFontsize();
 
-   const { handleClickInteraction, countInteraction, someInteraction } =
-      useProfessional({
-         type: 2,
-         interactions,
-         professional_uuid,
-         professional_id,
-         professionalIndex
-      });
-
    const styleRecommend = clsx('font-heading_md text-white', {
-      'text-white': !someInteraction,
-      'text-green-400': someInteraction
+      'text-white': !interactionMine,
+      'text-green-400': interactionMine
    });
 
    return (
-      <TouchableOpacity onPress={handleClickInteraction}>
+      <TouchableOpacity onPress={onInteraction}>
          <View className="flex-row items-center space-x-1.5">
             <View className="flex-row space-x-1">
                <CheckCircle
                   className={`${
-                     someInteraction ? 'text-green-400' : 'text-white'
+                     interactionMine ? 'text-green-400' : 'text-white'
                   } `}
                   size={RFValue(16)}
                />
@@ -43,14 +32,14 @@ export function ProfessionalActionRecommend({
                   className={styleRecommend}
                   style={{ fontSize: getFontsize(11) }}
                >
-                  {countInteraction}
+                  {countInteractions}
                </Text>
             </View>
             <Text
                className={styleRecommend}
                style={{ fontSize: getFontsize(10) }}
             >
-               {someInteraction ? 'Recomendado' : 'Recomendar'}
+               {interactionMine ? 'Recomendado' : 'Recomendar'}
             </Text>
          </View>
       </TouchableOpacity>

@@ -1,19 +1,42 @@
-import { memo } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { Professional } from '@components/Professional';
-import { ProfessionalModel } from '@domain/models/professional.model';
-import { useNavigation } from '@react-navigation/native';
+import { ProfessionalModel } from '@domain/models';
+import { InteractionTypes } from '@domain/types';
+import { useProfessional } from '@hooks/components';
+import { useFeedInteractions } from '@hooks/screens/Feed/useFeeedInteractions';
+import { memo } from 'react';
 
 interface ProfessionalSummaryProps {
    data: ProfessionalModel;
    index: number;
 }
 
-function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
+function ProfessionalSummaryMemo({ data, index }: ProfessionalSummaryProps) {
    const { navigate } = useNavigation();
+   const { handleInteraction } = useFeedInteractions();
+   const { likeInteractions, recommendsInteractions } = useProfessional({
+      interactions: data.usuario.interacoes
+   });
+
+   function handleClickAction(actionType: InteractionTypes) {
+      handleInteraction({
+         professional_uuid: data.uuid,
+         professional_id: data.user_id,
+         professionalIndex: index,
+         interactionType: actionType,
+         newInteraction: verifyIfNewInteraction(actionType)
+      });
+   }
+
+   function verifyIfNewInteraction(actionType: InteractionTypes) {
+      if (actionType === InteractionTypes.LIKE)
+         return !likeInteractions.interactionMine;
+      else return !recommendsInteractions.interactionMine;
+   }
 
    return (
       <Pressable onPress={() => navigate('professional', { uuid: data.uuid })}>
@@ -40,16 +63,18 @@ function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
 
                   <Professional.Actions>
                      <Professional.ActionLike
-                        professional_id={data.user_id}
-                        professional_uuid={data.uuid}
-                        interactions={data.usuario.interacoes}
-                        professionalIndex={index}
+                        countInteractions={likeInteractions.count}
+                        interactionMine={likeInteractions.interactionMine}
+                        onInteraction={() =>
+                           handleClickAction(InteractionTypes.LIKE)
+                        }
                      />
                      <Professional.ActionRecommend
-                        professional_id={data.user_id}
-                        professional_uuid={data.uuid}
-                        interactions={data.usuario.interacoes}
-                        professionalIndex={index}
+                        countInteractions={recommendsInteractions.count}
+                        interactionMine={recommendsInteractions.interactionMine}
+                        onInteraction={() =>
+                           handleClickAction(InteractionTypes.RECOMMEND)
+                        }
                      />
                   </Professional.Actions>
                </View>
@@ -59,4 +84,4 @@ function ProfessionalSummaryRoot({ data, index }: ProfessionalSummaryProps) {
    );
 }
 
-export const ProfessionalSummary = memo(ProfessionalSummaryRoot);
+export const ProfessionalSummary = memo(ProfessionalSummaryMemo);

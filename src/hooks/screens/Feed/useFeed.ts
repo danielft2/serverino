@@ -4,7 +4,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { queryClient } from '@lib/react-query';
 import { ProfessionalsService } from '@services/http/professionals.service';
 import { useSession } from '@hooks/shared';
-import { APP_MESSAGES } from '@constants';
+import { APP_CONSTANTS } from '@constants';
 
 export function useFeed() {
    const { user } = useSession();
@@ -17,7 +17,7 @@ export function useFeed() {
       isFetching,
       isError,
       hasNextPage
-   } = useInfiniteQuery([APP_MESSAGES.QUERIES_KEYS.QUERY_FEED], {
+   } = useInfiniteQuery([APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED], {
       queryFn: ({ pageParam }) => {
          return ProfessionalsService.getAllProfessionals(
             user.cidade.id,
@@ -27,12 +27,12 @@ export function useFeed() {
       getNextPageParam: (lastpage) =>
          lastpage?.meta?.results.next_page_url?.split('=')[1],
       staleTime: Infinity,
-      keepPreviousData: true
+      notifyOnChangeProps: ['data', 'isError', 'isFetching', 'isLoading']
    });
 
    function refresh() {
       queryClient.resetQueries({
-         queryKey: [APP_MESSAGES.QUERIES_KEYS.QUERY_FEED],
+         queryKey: [APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED],
          exact: true
       });
    }

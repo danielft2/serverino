@@ -1,13 +1,15 @@
-import { APP_MESSAGES } from '@constants';
+import { APP_CONSTANTS } from '@constants';
 import { z } from 'zod';
 
 export const UpdateInformationsScheme = z
    .object({
       nome: z
          .string()
-         .nonempty(APP_MESSAGES.SCHEMES_VALIDATIONS.FIELD_REQUIRED),
+         .nonempty(APP_CONSTANTS.SCHEMES_VALIDATIONS.FIELD_REQUIRED),
       email: z.string().optional(),
-      cep: z.string().nonempty(APP_MESSAGES.SCHEMES_VALIDATIONS.FIELD_REQUIRED),
+      cep: z
+         .string()
+         .nonempty(APP_CONSTANTS.SCHEMES_VALIDATIONS.FIELD_REQUIRED),
       cidade: z.string(),
       cidade_id: z.string(),
       uf: z.string()
