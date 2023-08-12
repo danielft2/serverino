@@ -17,22 +17,11 @@ export function useFeedInteractions() {
    const { user } = useSession();
 
    const { mutateAsync: interactionProfessional } = useMutation(
-      async ({
-         professional_id,
-         professional_uuid,
-         tipo_id
-      }: InteractionProfessionalDTO) => {
+      async ({ professional_id, tipo_id }: InteractionProfessionalDTO) => {
          try {
             await ProfessionalsService.interactionProfessional({
                professional_id,
                tipo_id
-            });
-            queryClient.resetQueries({
-               queryKey: [
-                  APP_CONSTANTS.QUERIES_KEYS.PROFESSIONAL_DETAILS,
-                  professional_uuid
-               ],
-               exact: true
             });
          } catch (error) {
             queryClient.setQueryData(
@@ -105,6 +94,14 @@ export function useFeedInteractions() {
             queryClient.getQueryData([APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED])
          );
 
+         queryClient.resetQueries({
+            queryKey: [
+               APP_CONSTANTS.QUERIES_KEYS.PROFESSIONAL_DETAILS,
+               professional_uuid
+            ],
+            exact: true
+         });
+
          queryClient.setQueryData(
             [APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED],
             (oldFeed: InfiniteData<Response<ProfessionalsListResponse>>) => {
@@ -120,7 +117,6 @@ export function useFeedInteractions() {
 
          interactionProfessional({
             professional_id,
-            professional_uuid,
             tipo_id: interactionType
          });
       },
