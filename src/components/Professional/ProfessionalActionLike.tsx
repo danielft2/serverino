@@ -8,26 +8,15 @@ import Animated, {
 } from 'react-native-reanimated';
 import clsx from 'clsx';
 
-import { ProfessionalInteraction } from '@domain/types';
+import { InteractionActionProps } from '@domain/types';
 import { useFontsize } from '@hooks/shared';
-import { useProfessional } from '@hooks/components';
 
 export function ProfessionalActionLike({
-   professional_id,
-   professional_uuid,
-   professionalIndex,
-   interactions
-}: Partial<ProfessionalInteraction>) {
+   countInteractions,
+   interactionMine,
+   onInteraction
+}: InteractionActionProps) {
    const { getFontsize } = useFontsize();
-
-   const { handleClickInteraction, countInteraction, someInteraction } =
-      useProfessional({
-         type: 1,
-         interactions,
-         professional_id,
-         professional_uuid,
-         professionalIndex
-      });
 
    const shakeLike = useSharedValue(0);
 
@@ -36,16 +25,16 @@ export function ProfessionalActionLike({
    }));
 
    function handleLike() {
+      onInteraction();
       shakeLike.value = withTiming(-20, { duration: 200 });
-      handleClickInteraction();
    }
 
    const onPressOut = () =>
       (shakeLike.value = withTiming(0, { duration: 200 }));
 
    const styleLike = clsx('font-heading_md text-white', {
-      'text-white': !someInteraction,
-      'text-red-400': someInteraction
+      'text-white': !interactionMine,
+      'text-red-400': interactionMine
    });
 
    return (
@@ -55,7 +44,7 @@ export function ProfessionalActionLike({
                <Animated.View style={[shakeLikeAnimatedStyled]}>
                   <ThumbsUp
                      className={`-mt-[2px] ${
-                        someInteraction ? 'text-red-400' : 'text-white'
+                        interactionMine ? 'text-red-400' : 'text-white'
                      } `}
                      size={RFValue(18)}
                   />
@@ -64,11 +53,11 @@ export function ProfessionalActionLike({
                   className={styleLike}
                   style={{ fontSize: getFontsize(11) }}
                >
-                  {countInteraction}
+                  {countInteractions}
                </Text>
             </View>
             <Text className={styleLike} style={{ fontSize: getFontsize(10) }}>
-               {someInteraction ? 'Curtido' : 'Curtir'}
+               {interactionMine ? 'Curtido' : 'Curtir'}
             </Text>
          </View>
       </Pressable>

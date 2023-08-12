@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AvatarOptions } from '@domain/types/avatar-options';
 import { SessionsService } from '@services/http/session.service';
 import { ERRORS_MESSAGES } from '@services/http/errors';
-import { APP_MESSAGES } from '@constants';
+import { APP_CONSTANTS } from '@constants';
 
 import { useToast } from '../shared/useToast';
 import { useSession } from '../shared/useSession';
@@ -75,7 +75,7 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
          )) as any;
 
          if (imageInfor.size && imageInfor.size / 1024 / 1024 > 5) {
-            showBasicMessage(APP_MESSAGES.UPDATE_AVATAR.PICKER_IMAGE_SIZE);
+            showBasicMessage(APP_CONSTANTS.UPDATE_AVATAR.PICKER_IMAGE_SIZE);
             onClose();
          } else {
             const base64 = `data:image/jpeg;base64,${result.assets[0].base64}`;
@@ -86,13 +86,13 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
    }
 
    function onPermissionsDenied() {
-      showBasicMessage(APP_MESSAGES.UPDATE_AVATAR.PERMISIONS_DENIED);
+      showBasicMessage(APP_CONSTANTS.UPDATE_AVATAR.PERMISIONS_DENIED);
       onClose();
       return;
    }
 
    function onPickerImageFailed() {
-      showBasicMessage(APP_MESSAGES.UPDATE_AVATAR.PICKER_IMAGE_FAILED);
+      showBasicMessage(APP_CONSTANTS.UPDATE_AVATAR.PICKER_IMAGE_FAILED);
       onClose();
       return;
    }

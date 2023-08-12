@@ -1,4 +1,11 @@
 import { AvatarOptions } from './avatar-options';
-import { ProfessionalInteraction } from './professional-interaction-props';
+import { InteractionTypes } from './interaction-types';
+import { InteractionActionProps } from './interaction-action-props';
+import { InteractionParams } from './interaction-params';
 
-export { AvatarOptions, ProfessionalInteraction };
+export {
+   AvatarOptions,
+   InteractionTypes,
+   InteractionActionProps,
+   InteractionParams
+};

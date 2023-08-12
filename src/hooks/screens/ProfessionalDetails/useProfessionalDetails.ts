@@ -2,13 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 
 import { ProfessionalModel } from '@domain/models';
 import { ProfessionalsService } from '@services/http/professionals.service';
-import { APP_MESSAGES } from '@constants';
+import { APP_CONSTANTS } from '@constants';
 
 export function useProfessionalDetails(professional_id: string) {
    const { data, isLoading, isFetching, isError, isSuccess, refetch } =
       useQuery({
          queryKey: [
-            APP_MESSAGES.QUERIES_KEYS.PROFESSIONAL_DETAILS,
+            APP_CONSTANTS.QUERIES_KEYS.PROFESSIONAL_DETAILS,
             professional_id
          ],
          queryFn: () =>

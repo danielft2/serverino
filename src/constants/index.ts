@@ -1,4 +1,4 @@
-export const APP_MESSAGES = {
+export const APP_CONSTANTS = {
    SCHEMES_VALIDATIONS: {
       FIELD_REQUIRED: 'Campo obrigatório.',
       PHONE_INVALID: 'O telefone precisa ser válido.',
