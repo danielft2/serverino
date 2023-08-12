@@ -9,7 +9,7 @@ export type ProfessionalModel = {
       nome: string;
       telefone: string;
       interacoes: {
-         id: number;
+         id?: number;
          user_id: number;
          tipo_id: number;
          registro_id: number;

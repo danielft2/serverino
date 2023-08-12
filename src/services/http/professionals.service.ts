@@ -19,13 +19,13 @@ export const ProfessionalsService = {
    },
 
    async interactionProfessional({
-      user_id,
+      professional_id,
       tipo_id
    }: InteractionProfessionalDTO) {
       return (
          await privateAPI.post('/app/contas/interacao', {
             tipo_id,
-            user_id
+            user_id: professional_id
          })
       ).data;
    }

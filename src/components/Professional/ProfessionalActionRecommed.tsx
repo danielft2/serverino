@@ -3,26 +3,26 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { CheckCircle } from 'lucide-react-native';
 import clsx from 'clsx';
 
-import { useFontsize, useProfessional } from '@hooks/shared';
-
-interface ProfessionalActionRecommendProps {
-   user_id: number;
-   professional_id: string;
-   interactions: {
-      tipo_id: number;
-      registro_id: number;
-   }[];
-}
+import { useFontsize } from '@hooks/shared';
+import { useProfessional } from '@hooks/components';
+import { ProfessionalInteraction } from '@domain/types';
 
 export function ProfessionalActionRecommend({
-   user_id,
    professional_id,
+   professional_uuid,
+   professionalIndex,
    interactions
-}: ProfessionalActionRecommendProps) {
+}: Partial<ProfessionalInteraction>) {
    const { getFontsize } = useFontsize();
 
    const { handleClickInteraction, countInteraction, someInteraction } =
-      useProfessional({ type: 2, interactions, user_id, professional_id });
+      useProfessional({
+         type: 2,
+         interactions,
+         professional_uuid,
+         professional_id,
+         professionalIndex
+      });
 
    const styleRecommend = clsx('font-heading_md text-white', {
       'text-white': !someInteraction,
@@ -30,10 +30,7 @@ export function ProfessionalActionRecommend({
    });
 
    return (
-      <TouchableOpacity
-         onPress={handleClickInteraction}
-         hitSlop={{ top: 16, bottom: 16, left: 16, right: 16 }}
-      >
+      <TouchableOpacity onPress={handleClickInteraction}>
          <View className="flex-row items-center space-x-1.5">
             <View className="flex-row space-x-1">
                <CheckCircle

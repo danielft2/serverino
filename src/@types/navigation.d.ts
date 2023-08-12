@@ -8,7 +8,7 @@ export declare global {
          account: undefined;
          profile: undefined;
          professional: {
-            id: string;
+            uuid: string;
          };
       }
    }

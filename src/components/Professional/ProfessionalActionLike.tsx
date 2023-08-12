@@ -8,30 +8,25 @@ import Animated, {
 } from 'react-native-reanimated';
 import clsx from 'clsx';
 
-import { useFontsize, useProfessional } from '@hooks/shared';
-
-interface ProfessionalActionLikeProps {
-   user_id: number;
-   professional_id: string;
-   interactions: {
-      tipo_id: number;
-      registro_id: number;
-   }[];
-}
+import { ProfessionalInteraction } from '@domain/types';
+import { useFontsize } from '@hooks/shared';
+import { useProfessional } from '@hooks/components';
 
 export function ProfessionalActionLike({
-   user_id,
    professional_id,
+   professional_uuid,
+   professionalIndex,
    interactions
-}: ProfessionalActionLikeProps) {
+}: Partial<ProfessionalInteraction>) {
    const { getFontsize } = useFontsize();
 
    const { handleClickInteraction, countInteraction, someInteraction } =
       useProfessional({
          type: 1,
          interactions,
-         user_id,
-         professional_id
+         professional_id,
+         professional_uuid,
+         professionalIndex
       });
 
    const shakeLike = useSharedValue(0);
@@ -54,11 +49,7 @@ export function ProfessionalActionLike({
    });
 
    return (
-      <Pressable
-         onPressIn={handleLike}
-         onPressOut={onPressOut}
-         hitSlop={{ top: 16, bottom: 16, left: 16, right: 16 }}
-      >
+      <Pressable onPressIn={handleLike} onPressOut={onPressOut}>
          <View className="flex-row items-center space-x-1 sm:space-x-1.5">
             <View className="flex-row space-x-1">
                <Animated.View style={[shakeLikeAnimatedStyled]}>
