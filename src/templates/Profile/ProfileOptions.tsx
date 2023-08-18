@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { UserCog, Lock, FileBadge2, Briefcase } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import { ChangePassword } from '@components/ChangePassword';
 
 import { ProfileOptionCard } from './components/OptionCard';
 import { OptionCardSignOut } from './components/OptionCardSignOut';
 
 export function ProfileOptions() {
    const { navigate } = useNavigation();
+   const [isOpenChangePassword, setIsOpenChangePassword] = useState(false);
 
    return (
       <>
@@ -22,6 +26,7 @@ export function ProfileOptions() {
                index={2}
                label="Alterar Senha"
                icon={<Lock size={RFValue(20)} className="text-white" />}
+               onPress={() => setIsOpenChangePassword(true)}
             />
             <ProfileOptionCard
                index={3}
@@ -35,6 +40,10 @@ export function ProfileOptions() {
             />
             <OptionCardSignOut />
          </ScrollView>
+         <ChangePassword
+            isOpen={isOpenChangePassword}
+            onClose={() => setIsOpenChangePassword(false)}
+         />
       </>
    );
 }

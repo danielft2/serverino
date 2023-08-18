@@ -1,4 +1,4 @@
-import { UpdateInforDTO } from '@domain/dtos';
+import { UpdateInforDTO, updatePasswordDTO } from '@domain/dtos';
 import { privateAPI } from '@lib/axios';
 import { Response } from './responses';
 import { UserModel } from '@domain/models';
@@ -9,6 +9,11 @@ export const SessionsService = {
       return (
          await privateAPI.put<Response<UserModel>>('/users/atualizacao', data)
       ).data;
+   },
+
+   async updatePassword(data: updatePasswordDTO) {
+      return (await privateAPI.post<Response<any>>('/users/muda-senha', data))
+         .data;
    },
 
    async updateAvatar(userId: number, image: string) {
