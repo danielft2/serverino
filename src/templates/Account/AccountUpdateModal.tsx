@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { Modal } from '@components/Modal';
-import { ButtonBack } from '@components/ButtonBack';
 import { Loading } from '@components/Loading';
 import { Gradient } from '@components/Gradient';
 
