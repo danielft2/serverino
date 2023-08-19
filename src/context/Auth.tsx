@@ -12,6 +12,8 @@ import { AppError } from '@utils';
 import { privateAPI } from '@lib/axios';
 
 import { Context } from '../@types/context';
+import { queryClient } from '@lib/react-query';
+import { APP_CONSTANTS } from '@constants';
 
 interface AuthContextData {
    token: string;
@@ -58,6 +60,7 @@ export function AuthProvider({ children }: Context) {
    const signOut = useCallback(async () => {
       try {
          setToken('');
+         queryClient.resetQueries([APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED]);
          await Promise.all([
             SessionStorage.closeSession(),
             AuthStorage.deleteToken()
