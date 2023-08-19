@@ -61,6 +61,11 @@ export function AuthProvider({ children }: Context) {
       try {
          setToken('');
          queryClient.resetQueries([APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED]);
+         queryClient.resetQueries({
+            queryKey: [APP_CONSTANTS.QUERIES_KEYS.PROFESSIONAL_DETAILS],
+            exact: false
+         });
+
          await Promise.all([
             SessionStorage.closeSession(),
             AuthStorage.deleteToken()
