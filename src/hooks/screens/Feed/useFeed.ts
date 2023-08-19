@@ -18,10 +18,11 @@ export function useFeed() {
       isError,
       hasNextPage
    } = useInfiniteQuery([APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED], {
-      queryFn: ({ pageParam }) => {
+      queryFn: ({ pageParam, signal }) => {
          return ProfessionalsService.getAllProfessionals(
             user.cidade.id,
-            pageParam
+            pageParam,
+            signal
          );
       },
       getNextPageParam: (lastpage) =>

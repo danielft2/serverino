@@ -6,6 +6,7 @@
      "orientation": "portrait",
      "icon": "./assets/adaptive-icon.png",
      "userInterfaceStyle": "dark",
+     "jsEngine": "hermes",
      "splash": {
         "resizeMode": "cover",
         "backgroundColor": "#000000"
@@ -38,10 +39,10 @@
      },
      "plugins": [
         [
-          "expo-image-picker",
-          {
-            "photosPermission": "The app accesses your photos to let you share them with your friends."
-          }
+           "expo-image-picker",
+           {
+              "photosPermission": "The app accesses your photos to let you share them with your friends."
+           }
         ]
      ]
   }

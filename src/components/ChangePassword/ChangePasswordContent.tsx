@@ -1,5 +1,5 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native';
-import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { FormProvider } from 'react-hook-form';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -45,10 +45,7 @@ export function ChangePasswordContent({ onClose }: ChangePasswordContentProps) {
          >
             <ButtonBack onPress={onClose} />
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-               <View
-                  className="flex-1 justify-between"
-                  style={{ marginBottom: RFPercentage(40) }}
-               >
+               <View className="flex-1 justify-between">
                   <View className="w-full">
                      <View className="self-center">
                         <ChangePasswordIlus
@@ -70,14 +67,14 @@ export function ChangePasswordContent({ onClose }: ChangePasswordContentProps) {
                   </View>
                </View>
             </TouchableWithoutFeedback>
+            <Button.Root
+               disabled={!isValid}
+               isLoading={isLoading}
+               onPress={handleChangeConfirm}
+            >
+               <Button.Text>Alterar senha</Button.Text>
+            </Button.Root>
          </Animated.ScrollView>
-         <Button.Root
-            disabled={!isValid}
-            isLoading={isLoading}
-            onPress={handleChangeConfirm}
-         >
-            <Button.Text>Alterar senha</Button.Text>
-         </Button.Root>
       </>
    );
 }
