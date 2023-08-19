@@ -11,8 +11,8 @@ export function useProfessionalDetails(professional_id: string) {
             APP_CONSTANTS.QUERIES_KEYS.PROFESSIONAL_DETAILS,
             professional_id
          ],
-         queryFn: () =>
-            ProfessionalsService.getOneProfessional(professional_id),
+         queryFn: ({ signal }) =>
+            ProfessionalsService.getOneProfessional(professional_id, signal),
          staleTime: 1000 * 60 * 10 // Data is valid for 10 minutes
       });
 
