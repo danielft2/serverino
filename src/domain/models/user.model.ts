@@ -1,7 +1,7 @@
 export type UserModel = {
    id: number;
-   tipo_id: number;
-   status_id: number;
+   tipo_id: string;
+   status_id: string;
 
    nome: string;
    telefone: string;

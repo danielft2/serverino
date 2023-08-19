@@ -4,8 +4,8 @@ import { ImagePickerOptions, ImagePickerResult } from 'expo-image-picker';
 import { useMutation } from '@tanstack/react-query';
 
 import { AvatarOptions } from '@domain/types/avatar-options';
-import { SessionsService } from '@services/http/session.service';
-import { ERRORS_MESSAGES } from '@services/http/errors';
+import { SessionsService } from '@services/session.service';
+import { ERRORS_MESSAGES } from '@services/errors';
 import { APP_CONSTANTS } from '@constants';
 
 import { useToast } from '../shared/useToast';

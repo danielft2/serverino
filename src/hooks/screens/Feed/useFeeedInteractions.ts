@@ -4,8 +4,8 @@ import { InfiniteData, useMutation } from '@tanstack/react-query';
 
 import { InteractionProfessionalDTO } from '@domain/dtos';
 import { InteractionParams } from '@domain/types';
-import { ProfessionalsListResponse, Response } from '@services/http/responses';
-import { ProfessionalsService } from '@services/http/professionals.service';
+import { ProfessionalsListResponse, Response } from '@services/responses';
+import { ProfessionalsService } from '@services/professionals.service';
 import { useSession } from '@hooks/shared';
 import { queryClient } from '@lib/react-query';
 import { APP_CONSTANTS } from '@constants';

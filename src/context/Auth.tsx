@@ -4,8 +4,8 @@ import { AxiosError } from 'axios';
 import { SigninDTO } from '@domain/dtos';
 import { RegisterDTO } from '@domain/dtos/register.dto';
 import { UserModel } from '@domain/models';
-import { AuthService } from '@services/http/auth.service';
-import { ERRORS_MESSAGES } from '@services/http/errors';
+import { AuthService } from '@services/auth.service';
+import { ERRORS_MESSAGES } from '@services/errors';
 import { AuthStorage } from '@storage/auth-storage';
 import { SessionStorage } from '@storage/session-storage';
 import { AppError } from '@utils';
@@ -32,17 +32,21 @@ export function AuthProvider({ children }: Context) {
    async function register(data: RegisterDTO) {
       try {
          const response = await AuthService.register(data);
-         if (response.data.meta.results.telefone[0])
+         if (response.meta.status_code === 201) {
+            const { user, token } = response.meta.results;
+            await saveTokenAndUser(token, user);
+         } else if (response.meta.results.telefone[0]) {
             throw new AppError(ERRORS_MESSAGES.PHONE_ALREDY_EXISTS);
+         }
       } catch (error) {
          if (error.message === ERRORS_MESSAGES.PHONE_ALREDY_EXISTS) throw error;
-         throw error;
+         throw new AppError(ERRORS_MESSAGES.GENERIC_ERROR);
       }
    }
 
    async function signin(data: SigninDTO) {
       try {
-         const response = (await AuthService.singIn(data)).data;
+         const response = await AuthService.singIn(data);
          await saveTokenAndUser(response.token.access_token, response.user);
       } catch (error) {
          if (error instanceof AxiosError && error.response.status == 401)
@@ -53,11 +57,11 @@ export function AuthProvider({ children }: Context) {
 
    const signOut = useCallback(async () => {
       try {
+         setToken('');
          await Promise.all([
             SessionStorage.closeSession(),
             AuthStorage.deleteToken()
          ]);
-         setToken('');
       } catch (error) {
          throw new AppError(ERRORS_MESSAGES.GENERIC_ERROR);
       }
@@ -79,6 +83,7 @@ export function AuthProvider({ children }: Context) {
             setRefreshSession(user);
             setToken(token);
          } catch (error) {
+            console.log(error);
             signOut();
          }
       },

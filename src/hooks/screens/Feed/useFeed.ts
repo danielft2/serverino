@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { queryClient } from '@lib/react-query';
-import { ProfessionalsService } from '@services/http/professionals.service';
+import { ProfessionalsService } from '@services/professionals.service';
 import { useSession } from '@hooks/shared';
 import { APP_CONSTANTS } from '@constants';
 

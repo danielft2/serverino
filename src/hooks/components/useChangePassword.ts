@@ -4,8 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 
 import { updatePasswordDTO } from '@domain/dtos';
-import { SessionsService } from '@services/http/session.service';
-import { ERRORS_MESSAGES } from '@services/http/errors';
+import { SessionsService } from '@services/session.service';
+import { ERRORS_MESSAGES } from '@services/errors';
 import { useToast } from '@hooks/shared';
 import { ChangePasswordScheme } from '@validation';
 import { AppError } from '@utils';

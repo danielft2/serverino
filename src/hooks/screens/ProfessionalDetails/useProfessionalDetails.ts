@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { ProfessionalModel } from '@domain/models';
-import { ProfessionalsService } from '@services/http/professionals.service';
+import { ProfessionalsService } from '@services/professionals.service';
 import { APP_CONSTANTS } from '@constants';
 
 export function useProfessionalDetails(professional_id: string) {

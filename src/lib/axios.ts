@@ -2,7 +2,7 @@ import { API_URL } from '@env';
 import { AuthStorage } from '@storage/auth-storage';
 import axios, { AxiosInstance } from 'axios';
 import { AppError } from '../utils/app-error';
-import { ERRORS_MESSAGES } from '@services/http/errors';
+import { ERRORS_MESSAGES } from '@services/errors';
 
 type RegisterInterceptorTokenProps = {
    signOut: () => void;
