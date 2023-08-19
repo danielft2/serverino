@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { RegisterDTO } from '@domain/dtos/register.dto';
 import { useAuth, useToast } from '@hooks/shared';
-import { AppError } from '@utils';
 import { RegisterScheme, RegisterDefaultScheme } from '@validation';
 
 export function useRegisterForm() {
@@ -40,9 +39,7 @@ export function useRegisterForm() {
          setLoading(true);
          await register(user);
       } catch (error) {
-         if (error instanceof AppError) {
-            showErrorMessage(error.message);
-         }
+         showErrorMessage(error.message);
       } finally {
          setLoading(false);
       }

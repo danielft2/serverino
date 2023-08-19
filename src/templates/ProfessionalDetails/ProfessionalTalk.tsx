@@ -6,7 +6,7 @@ import * as Linking from 'expo-linking';
 import { Loading } from '@components/Loading';
 import { Option } from '@components/Option';
 import { TalkProfessionalType } from '@domain/types';
-import { ERRORS_MESSAGES } from '@services/http/errors';
+import { ERRORS_MESSAGES } from '@services/errors';
 import { useFontsize, useToast } from '@hooks/shared';
 
 interface ProfessionalTalkProps {

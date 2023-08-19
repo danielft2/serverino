@@ -6,8 +6,8 @@ import { useMutation } from '@tanstack/react-query';
 import { UpdateInformationsScheme } from '@validation';
 import { UpdateInforDTO } from '@domain/dtos';
 import { useSession, useToast } from '@hooks/shared';
-import { SessionsService } from '@services/http/session.service';
-import { ERRORS_MESSAGES } from '@services/http/errors';
+import { SessionsService } from '@services/session.service';
+import { ERRORS_MESSAGES } from '@services/errors';
 import { AppError, hideEmail } from '@utils';
 
 export function useUpdateInformations() {
