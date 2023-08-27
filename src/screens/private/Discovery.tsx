@@ -1,9 +1,27 @@
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
+import Logo from '@assets/logo.svg';
+import { DiscoveryIntro, DiscoverySearchBar } from '@templates/Discovery';
 
 export function Discovery() {
+   const statusBarHeigth = getStatusBarHeight();
+
    return (
-      <SafeAreaView className="flex-1 items-center justify-center bg-blue_dark-900">
-         <Text className="text-white">Conhecer Profissionais</Text>
+      <SafeAreaView
+         className="relative flex-1 px-3"
+         style={{ paddingTop: statusBarHeigth }}
+      >
+         <Logo
+            width={RFValue(110)}
+            height={RFValue(40)}
+            className="mb-3 mr-2 self-center"
+         />
+         <View className="flex-1">
+            <DiscoverySearchBar />
+            <DiscoveryIntro />
+         </View>
       </SafeAreaView>
    );
 }
