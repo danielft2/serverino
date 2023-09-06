@@ -6,7 +6,7 @@ import { useFontsize } from '@hooks/shared';
 interface ProfessionalHeaderProps {
    avatarUrl: string;
    fullName: string;
-   areaName: string;
+   areaName?: string;
 }
 
 export function ProfessionalHeader({
@@ -23,12 +23,14 @@ export function ProfessionalHeader({
             </Avatar.Container>
          </Avatar.Root>
          <View className="">
-            <Text
-               className="-mb-1 font-heading_md text-green-400"
-               style={{ fontSize: getFontsize(11) }}
-            >
-               {areaName}
-            </Text>
+            {areaName && (
+               <Text
+                  className="-mb-1 font-heading_md text-green-400"
+                  style={{ fontSize: getFontsize(11) }}
+               >
+                  {areaName}
+               </Text>
+            )}
             <Text
                className="truncate font-heading_md text-white"
                style={{ fontSize: getFontsize(11) }}

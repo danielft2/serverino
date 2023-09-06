@@ -1,5 +1,4 @@
 import { View, Text } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 import { useFontsize } from '@hooks/shared';
 

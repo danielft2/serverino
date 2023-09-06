@@ -1,16 +1,45 @@
-import { SafeAreaView, Text, View } from 'react-native';
+import { useMemo, useRef, useState } from 'react';
+import { SafeAreaView, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { BottomSheetModalMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
 
-import Logo from '@assets/logo.svg';
+import { ItemSelect } from '@domain/types';
+import { BottomSheet } from '@components/BottomSheet';
+import { ProfessionalsPreview } from '@components/ProfessionalsPreview';
 import { DiscoveryIntro, DiscoverySearchBar } from '@templates/Discovery';
+import { useProfessionalAreas } from '@hooks/shared';
+import { useDiscovery } from '@hooks/screens';
+import Logo from '@assets/logo.svg';
 
 export function Discovery() {
+   const [areaSelected, setAreaSelected] = useState<ItemSelect | null>(null);
+
+   const { getAreas } = useProfessionalAreas();
+   const { data, isLoading, isFetching, hasNextPage, refresh, fetchNextPage } =
+      useDiscovery({ area_id: areaSelected?.value });
+
+   const bottomRef = useRef<BottomSheetModalMethods>(null);
    const statusBarHeigth = getStatusBarHeight();
+
+   function verifyLoadMoreProfessionals(update = false) {
+      if (update) refresh();
+      else if (hasNextPage) fetchNextPage();
+   }
+
+   const profressionals = useMemo(
+      () => data?.pages?.flatMap((page) => page?.meta.results.data),
+      [data]
+   );
+
+   function onChangeArea(area: ItemSelect) {
+      bottomRef.current?.dismiss();
+      setTimeout(() => setAreaSelected(area), 300);
+   }
 
    return (
       <SafeAreaView
-         className="relative flex-1 px-3"
+         className="relative flex-1"
          style={{ paddingTop: statusBarHeigth }}
       >
          <Logo
@@ -19,9 +48,30 @@ export function Discovery() {
             className="mb-3 mr-2 self-center"
          />
          <View className="flex-1">
-            <DiscoverySearchBar />
-            <DiscoveryIntro />
+            <View className="mb-6">
+               <DiscoverySearchBar
+                  onSearch={() => bottomRef.current?.present()}
+                  placeholder={areaSelected?.label}
+               />
+            </View>
+            <ProfessionalsPreview
+               isFetching={isFetching}
+               isLoading={isLoading && !!areaSelected}
+               professionals={profressionals}
+               onEndReached={verifyLoadMoreProfessionals}
+               previewEmpty={<DiscoveryIntro />}
+            />
          </View>
+         <BottomSheet.Root
+            ref={bottomRef}
+            onDismiss={() => bottomRef.current?.close()}
+         >
+            <BottomSheet.Select
+               data={getAreas()}
+               isLoading={false}
+               onChange={onChangeArea}
+            />
+         </BottomSheet.Root>
       </SafeAreaView>
    );
 }

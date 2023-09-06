@@ -1,6 +1,7 @@
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { SplashRoutes } from './splash/splash.route';
 import { theme } from '../theme';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 const navigationTheme = {
    ...DefaultTheme,
@@ -13,7 +14,9 @@ const navigationTheme = {
 export function Routes() {
    return (
       <NavigationContainer theme={navigationTheme}>
-         <SplashRoutes />
+         <BottomSheetModalProvider>
+            <SplashRoutes />
+         </BottomSheetModalProvider>
       </NavigationContainer>
    );
 }

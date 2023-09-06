@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { InteractionTypes } from '@domain/types';
-import { useSession } from '../shared/useSession';
+import { useSession } from '@hooks/shared';
 
 interface UseProfessionalProps {
    interactions: {

@@ -5,6 +5,7 @@ import { useSession } from './useSession';
 import { useToast } from './useToast';
 import { useLazy } from './useLazy';
 import { useFontsize } from './useFontsize';
+import { useProfessionalAreas } from './useProfessionalAreas';
 
 export {
    useAuth,
@@ -13,5 +14,6 @@ export {
    useAdress,
    useErrorMessageForm,
    useLazy,
-   useFontsize
+   useFontsize,
+   useProfessionalAreas
 };

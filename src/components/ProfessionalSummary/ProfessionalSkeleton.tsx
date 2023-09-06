@@ -1,9 +1,15 @@
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+
 import { Professional } from '@components/Professional';
 
-export function ProfessionalSkeleton() {
+export function ProfessionalsSkeleton() {
    return (
-      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+      <Animated.ScrollView
+         contentContainerStyle={{ paddingBottom: 100 }}
+         entering={FadeIn.delay(100)}
+         exiting={FadeOut.delay(100)}
+      >
          <View className="space-y-4">
             <View>
                <Professional.Skeleton />
@@ -15,6 +21,6 @@ export function ProfessionalSkeleton() {
                <Professional.Skeleton />
             </View>
          </View>
-      </ScrollView>
+      </Animated.ScrollView>
    );
 }
