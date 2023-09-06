@@ -2,7 +2,7 @@ import { SafeAreaView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import { ProfessionalSkeleton } from '@components/ProfessionalSummary/ProfessionalSkeleton';
+import { ProfessionalsSkeleton } from '@components/ProfessionalSummary/ProfessionalSkeleton';
 import { FeedPreview } from '@templates/Feed';
 import { SomethingWrong } from '@templates/Errors';
 import { useFeed } from '@hooks/screens';
@@ -44,7 +44,7 @@ export function Feed() {
             className="mb-3 mr-2 self-center"
          />
          {isLoading && isFetching ? (
-            <ProfessionalSkeleton />
+            <ProfessionalsSkeleton />
          ) : (
             <FeedPreview
                professionals={profressionals?.length ? profressionals : []}

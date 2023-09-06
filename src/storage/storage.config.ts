@@ -1,2 +1,3 @@
 export const TOKEN_KEY = 'SERVERINO_TOKEN';
 export const SESSION_KEY = 'SERVERINO_SESSION';
+export const DISCOVERY_KEY = 'DISCOVERY';

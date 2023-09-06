@@ -15,7 +15,9 @@ export const APP_CONSTANTS = {
 
    QUERIES_KEYS: {
       QUERY_FEED: 'professionals-feed',
-      PROFESSIONAL_DETAILS: 'professional-details'
+      PROFESSIONAL_DETAILS: 'professional-details',
+      PROFESSIONALS_AREAS: 'professionals-areas',
+      PROFESSIONAL_BY_AREA: 'professionals-by-area'
    },
 
    MUTATIONS_KEYS: {

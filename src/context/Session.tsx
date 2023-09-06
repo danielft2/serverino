@@ -3,9 +3,10 @@ import { createContext, useCallback, useEffect, useState } from 'react';
 import { UserModel } from '@domain/models';
 import { SessionStorage } from '@storage/session-storage';
 import { AppError } from '@utils';
+import { useAuth } from '@hooks/shared/useAuth';
+import { useProfessionalAreas } from '@hooks/shared/useProfessionalAreas';
 
 import { Context } from '../@types/context';
-import { useAuth } from '@hooks/shared/useAuth';
 
 interface SessionContextData {
    user: UserModel;
@@ -18,20 +19,16 @@ export const SessionContext = createContext<SessionContextData>(
 
 export function SessionProvider({ children }: Context) {
    const [user, setUser] = useState<UserModel>(null);
+   const { fetchAreas } = useProfessionalAreas();
    const { refreshSession } = useAuth();
 
-   useEffect(() => {
-      getUserStorage();
-   }, []);
-
-   useEffect(() => {
-      if (refreshSession?.id) setUser(refreshSession);
-   }, [refreshSession]);
-
-   async function getUserStorage() {
+   const getUserStorage = useCallback(async () => {
       const userStorage = await SessionStorage.retrieveSession();
-      setUser(userStorage);
-   }
+      if (userStorage) {
+         fetchAreas();
+         setUser(userStorage);
+      }
+   }, [fetchAreas]);
 
    const updateUserStorage = useCallback(
       async (userUpdate: UserModel) => {
@@ -50,6 +47,17 @@ export function SessionProvider({ children }: Context) {
       },
       [user?.link]
    );
+
+   useEffect(() => {
+      getUserStorage();
+   }, [getUserStorage]);
+
+   useEffect(() => {
+      if (refreshSession?.id) {
+         fetchAreas();
+         setUser(refreshSession);
+      }
+   }, [refreshSession, fetchAreas]);
 
    return (
       <SessionContext.Provider value={{ user, updateUserStorage }}>

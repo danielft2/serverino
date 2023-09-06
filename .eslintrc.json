@@ -33,6 +33,7 @@
       "no-useless-escape": "off",
       "no-undef": "off",
       "no-async-promise-executor": "off",
+      "react/display-name": "off",
       "prettier/prettier": [
          "error",
          {

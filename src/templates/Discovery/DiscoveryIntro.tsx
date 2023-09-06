@@ -9,8 +9,8 @@ export function DiscoveryIntro() {
 
    return (
       <View
-         className="items-center justify-center"
-         style={{ marginTop: RFPercentage(20) }}
+         className="items-center justify-center px-3"
+         style={{ marginTop: RFPercentage(15) }}
       >
          <DisoveryProfessional width={RFValue(160)} height={RFValue(160)} />
          <Text
