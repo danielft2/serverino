@@ -9,7 +9,7 @@ interface UseDiscoveryProps {
 }
 
 export function useDiscovery({ area_id = '-1' }: UseDiscoveryProps) {
-   const { data, isLoading, isFetching, hasNextPage, fetchNextPage } =
+   const { data, isLoading, isError, isFetching, hasNextPage, fetchNextPage } =
       useInfiniteQuery({
          queryKey: [APP_CONSTANTS.QUERIES_KEYS.PROFESSIONAL_BY_AREA, area_id],
          queryFn: ({ pageParam, signal }) => {
@@ -37,6 +37,7 @@ export function useDiscovery({ area_id = '-1' }: UseDiscoveryProps) {
       isFetching,
       hasNextPage,
       fetchNextPage,
-      refresh
+      refresh,
+      isError
    };
 }

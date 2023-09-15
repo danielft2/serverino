@@ -11,13 +11,21 @@ import { DiscoveryIntro, DiscoverySearchBar } from '@templates/Discovery';
 import { useProfessionalAreas } from '@hooks/shared';
 import { useDiscovery } from '@hooks/screens';
 import Logo from '@assets/logo.svg';
+import { SomethingWrong } from '@templates/Errors';
 
 export function Discovery() {
    const [areaSelected, setAreaSelected] = useState<ItemSelect | null>(null);
 
    const { getAreas } = useProfessionalAreas();
-   const { data, isLoading, isFetching, hasNextPage, refresh, fetchNextPage } =
-      useDiscovery({ area_id: areaSelected?.value });
+   const {
+      data,
+      isLoading,
+      isError,
+      isFetching,
+      hasNextPage,
+      refresh,
+      fetchNextPage
+   } = useDiscovery({ area_id: areaSelected?.value });
 
    const bottomRef = useRef<BottomSheetModalMethods>(null);
    const statusBarHeigth = getStatusBarHeight();
@@ -36,6 +44,8 @@ export function Discovery() {
       bottomRef.current?.dismiss();
       setTimeout(() => setAreaSelected(area), 300);
    }
+
+   if (isError) return <SomethingWrong onTryAgain={refresh} />;
 
    return (
       <SafeAreaView
