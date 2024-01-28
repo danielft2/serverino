@@ -1,11 +1,11 @@
+import { useEffect, useState } from 'react';
 import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
-import { useFontsize, useSession } from '@hooks/shared';
 import { Button } from '@components/Button';
+import { useFontsize } from '@hooks/shared';
+import { useSessionStore } from '@store/session';
 import Worker from '@assets/ilustrations/worker.svg';
-
-import { useEffect, useState } from 'react';
 
 interface FeedEmptyProps {
    isFetching: boolean;
@@ -14,7 +14,8 @@ interface FeedEmptyProps {
 
 export function FeedEmpty({ isFetching, refetch }: FeedEmptyProps) {
    const [refreshing, setRefreshing] = useState(false);
-   const { user } = useSession();
+
+   const user = useSessionStore((state) => state.user);
    const { getFontsize } = useFontsize();
 
    function onRefreshFeed() {

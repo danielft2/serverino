@@ -5,16 +5,17 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 import { Gradient } from '@components/Gradient';
 import { Header } from '@components/Header';
 import { OtpInputs } from '@templates/ActivateAccount/OtpInputs';
-import { useAuth, useFontsize, useSession } from '@hooks/shared';
+import { useAuth, useFontsize } from '@hooks/shared';
 import { useActivateAccount } from '@hooks/screens';
 import { hidePhone } from '@utils';
 
 import Logo from '@assets/logo.svg';
 import OtpMessage from '@assets/ilustrations/otp-message.svg';
 import { Loading } from '@components/Loading';
+import { useSessionStore } from '@store/session';
 
 export function ActivateAccount() {
-   const { user } = useSession();
+   const user = useSessionStore((state) => state.user);
    const { signOut } = useAuth();
    const { getFontsize } = useFontsize();
    const { handleValidateCodeOtp, isLoading } = useActivateAccount();

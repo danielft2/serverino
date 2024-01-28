@@ -1,12 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ActivateAccount, ProfessionalDetails } from '@screens/private';
 import { TabRoutes } from './tabs';
-import { useSession } from '@hooks/shared';
+import { useSessionStore } from '@store/session';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
 export function PrivateRoutes() {
-   const { user } = useSession();
+   const user = useSessionStore((state) => state.user);
    return (
       <Navigator
          screenOptions={{

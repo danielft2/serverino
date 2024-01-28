@@ -21,6 +21,7 @@ module.exports = function (api) {
                   '@domain': './src/domain',
                   '@lib': './src/lib',
                   '@storage': './src/storage',
+                  '@store': './src/store',
                   '@utils': './src/utils',
                   '@constants': './src/constants',
                   '@validation': './src/validation',

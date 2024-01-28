@@ -9,12 +9,13 @@
          "@domain/*": ["./src/domain/*"],
          "@services/*": ["./src/services/*"],
          "@storage/*": ["./src/storage/*"],
+         "@store/*": ["./src/store/*"],
          "@utils": ["./src/utils"],
          "@constants": ["./src/constants"],
          "@validation": ["./src/validation"],
          "@lib/*": ["./src/lib/*"],
          "@styles/*": ["./src/styles/*"],
-			"@assets/*": ["./assets/*"],
+         "@assets/*": ["./assets/*"],
          "@theme": ["./src/theme"]
       }
    },

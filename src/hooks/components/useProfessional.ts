@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { InteractionTypes } from '@domain/types';
-import { useSession } from '@hooks/shared';
+import { useSessionStore } from '@store/session';
 
 interface UseProfessionalProps {
    interactions: {
@@ -20,7 +20,7 @@ export function useProfessional({ interactions }: UseProfessionalProps) {
       interactionMine: false
    });
 
-   const { user } = useSession();
+   const user = useSessionStore((state) => state.user);
 
    const calculateInteractions = useCallback(() => {
       const likes = { count: 0, someInteraction: false };

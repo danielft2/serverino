@@ -3,12 +3,12 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { Avatar } from '@components/Avatar';
 import { UserIdentify } from '@components/UserIdentify';
-import { useSession } from '@hooks/shared';
 import { useUpdateAvatar } from '@hooks/components';
+import { useSessionStore } from '@store/session';
 
 export function AvatarProfile() {
    const [isUpdateAvatar, setIsUpdateAvatar] = useState(false);
-   const { user } = useSession();
+   const user = useSessionStore((state) => state.user);
 
    const onClose = () => setIsUpdateAvatar(false);
 

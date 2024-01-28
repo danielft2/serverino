@@ -6,7 +6,7 @@ import { InteractionProfessionalDTO } from '@domain/dtos';
 import { InteractionParams } from '@domain/types';
 import { ProfessionalsListResponse, Response } from '@services/responses';
 import { ProfessionalsService } from '@services/professionals.service';
-import { useSession } from '@hooks/shared';
+import { useSessionStore } from '@store/session';
 import { queryClient } from '@lib/react-query';
 import { APP_CONSTANTS } from '@constants';
 
@@ -14,7 +14,7 @@ export function useFeedInteractions() {
    const [oldFeedCache, setOldFeedCache] = useState<InfiniteData<
       Response<ProfessionalsListResponse>
    > | null>(null);
-   const { user } = useSession();
+   const user = useSessionStore((state) => state.user);
 
    const { mutateAsync: interactionProfessional } = useMutation(
       async ({ professional_id, tipo_id }: InteractionProfessionalDTO) => {

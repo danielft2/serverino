@@ -3,11 +3,11 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { queryClient } from '@lib/react-query';
 import { ProfessionalsService } from '@services/professionals.service';
-import { useSession } from '@hooks/shared';
+import { useSessionStore } from '@store/session';
 import { APP_CONSTANTS } from '@constants';
 
 export function useFeed() {
-   const { user } = useSession();
+   const user = useSessionStore((state) => state.user);
 
    const {
       data,

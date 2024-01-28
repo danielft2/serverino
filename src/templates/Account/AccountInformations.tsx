@@ -3,12 +3,12 @@ import { Mail, MapPin, Phone, UserCircle2 } from 'lucide-react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { hideEmail, hidePhone } from '@utils';
-import { useSession } from '@hooks/shared';
 
 import { Information } from './components/Information';
+import { useSessionStore } from '@store/session';
 
 export function AccountInformations() {
-   const { user } = useSession();
+   const user = useSessionStore((state) => state.user);
 
    return (
       <>

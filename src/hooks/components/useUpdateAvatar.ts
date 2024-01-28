@@ -9,7 +9,8 @@ import { ERRORS_MESSAGES } from '@services/errors';
 import { APP_CONSTANTS } from '@constants';
 
 import { useToast } from '../shared/useToast';
-import { useSession } from '../shared/useSession';
+import { useSession } from '@hooks/shared';
+import { useSessionStore } from '@store/session';
 
 interface UserUpdateAvatarProps {
    onClose: () => void;
@@ -21,7 +22,8 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
    const [statusLibrary, requestPermissionLibrary] =
       ImagePicker.useMediaLibraryPermissions();
 
-   const { user, updateUserStorage } = useSession();
+   const user = useSessionStore((state) => state.user);
+   const { updateSession } = useSession();
    const { showBasicMessage } = useToast();
 
    const { isLoading, mutateAsync: updateAvatar } = useMutation({
@@ -29,7 +31,7 @@ export function useUpdateAvatar({ onClose }: UserUpdateAvatarProps) {
       mutationFn: (image: string) =>
          SessionsService.updateAvatar(user.id, image),
       onSuccess: (data) => {
-         updateUserStorage({ ...user, link: data.meta.results.link });
+         updateSession({ ...user, link: data.meta.results.link });
       },
       onError: () => {
          showBasicMessage(ERRORS_MESSAGES.GENERIC_ERROR);

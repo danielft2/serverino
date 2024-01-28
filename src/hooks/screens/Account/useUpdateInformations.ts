@@ -9,11 +9,13 @@ import { useSession, useToast } from '@hooks/shared';
 import { SessionsService } from '@services/session.service';
 import { ERRORS_MESSAGES } from '@services/errors';
 import { AppError, hideEmail } from '@utils';
+import { useSessionStore } from '@store/session';
 
 export function useUpdateInformations() {
    const [isUpdateSuccess, setIsUpdateSuccess] = useState(false);
 
-   const { user, updateUserStorage } = useSession();
+   const user = useSessionStore((state) => state.user);
+   const { updateSession } = useSession();
    const { showErrorMessage } = useToast();
    const createUpdateInformationsForm = useForm<UpdateInforDTO>({
       resolver: zodResolver(UpdateInformationsScheme)
@@ -31,7 +33,7 @@ export function useUpdateInformations() {
       onSuccess: (data) => {
          if (data.meta.status_code === 204) {
             setIsUpdateSuccess(true);
-            updateUserStorage(data.meta.results);
+            updateSession(data.meta.results);
          } else {
             showErrorMessage(ERRORS_MESSAGES.GENERIC_ERROR);
             if (isUpdateSuccess) setIsUpdateSuccess(false);

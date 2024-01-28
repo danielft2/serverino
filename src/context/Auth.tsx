@@ -8,12 +8,13 @@ import { AuthService } from '@services/auth.service';
 import { ERRORS_MESSAGES } from '@services/errors';
 import { AuthStorage } from '@storage/auth-storage';
 import { SessionStorage } from '@storage/session-storage';
+import { useSession } from '../hooks/shared/useSession';
 import { AppError } from '@utils';
 import { privateAPI } from '@lib/axios';
-
-import { Context } from '../@types/context';
 import { queryClient } from '@lib/react-query';
 import { APP_CONSTANTS } from '@constants';
+
+import { Context } from '../@types/context';
 
 interface AuthContextData {
    token: string;
@@ -30,6 +31,7 @@ export const AuthContext = createContext<AuthContextData>(
 export function AuthProvider({ children }: Context) {
    const [token, setToken] = useState('');
    const [refreshSession, setRefreshSession] = useState<UserModel>(null);
+   const { updateSession } = useSession();
 
    async function register(data: RegisterDTO) {
       try {
@@ -75,11 +77,16 @@ export function AuthProvider({ children }: Context) {
       }
    }, []);
 
-   const getTokenStorage = useCallback(async () => {
-      const token = await AuthStorage.retrieveToken();
-      privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
-      setToken(token);
-   }, []);
+   const getTokenAndUserInStorage = useCallback(async () => {
+      const results = await Promise.all([
+         AuthStorage.retrieveToken(),
+         SessionStorage.retrieveSession()
+      ]);
+
+      privateAPI.defaults.headers['Authorization'] = `Bearer ${results[0]}`;
+      updateSession(results[1]);
+      setToken(results[0]);
+   }, [updateSession]);
 
    const saveTokenAndUser = useCallback(
       async (token: string, user: UserModel) => {
@@ -88,14 +95,14 @@ export function AuthProvider({ children }: Context) {
                (AuthStorage.saveToken(token), SessionStorage.saveSession(user))
             ]);
             privateAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
-            setRefreshSession(user);
+            updateSession(user);
             setToken(token);
          } catch (error) {
             console.log(error);
             signOut();
          }
       },
-      [signOut]
+      [signOut, updateSession]
    );
 
    const updateRefreshToken = useCallback((token: string) => {
@@ -103,8 +110,8 @@ export function AuthProvider({ children }: Context) {
    }, []);
 
    useEffect(() => {
-      getTokenStorage();
-   }, [getTokenStorage]);
+      getTokenAndUserInStorage();
+   }, [getTokenAndUserInStorage]);
 
    useEffect(() => {
       const subscribe = privateAPI.registerInterceptorToken({
