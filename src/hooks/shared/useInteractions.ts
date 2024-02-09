@@ -6,11 +6,12 @@ import { InteractionProfessionalDTO } from '@domain/dtos';
 import { InteractionParams } from '@domain/types';
 import { ProfessionalsListResponse, Response } from '@services/responses';
 import { ProfessionalsService } from '@services/professionals.service';
-import { useSession } from '@hooks/shared';
 import { queryClient } from '@lib/react-query';
 import { APP_CONSTANTS } from '@constants';
 
-export function useFeedInteractions() {
+import { useSession } from './useSession';
+
+export function useInteractions(queryKey: string[]) {
    const [oldFeedCache, setOldFeedCache] = useState<InfiniteData<
       Response<ProfessionalsListResponse>
    > | null>(null);
@@ -24,10 +25,7 @@ export function useFeedInteractions() {
                tipo_id
             });
          } catch (error) {
-            queryClient.setQueryData(
-               [APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED],
-               () => oldFeedCache
-            );
+            queryClient.setQueryData(queryKey, () => oldFeedCache);
          }
       }
    );
@@ -62,7 +60,6 @@ export function useFeedInteractions() {
                draftState.pages[pageInteraction].meta.results.data[
                   professional_index
                ].usuario.interacoes;
-
             if (newInteraction) {
                interactions.push({
                   tipo_id: interactionType,
@@ -71,7 +68,7 @@ export function useFeedInteractions() {
                });
             } else {
                const indexInteractionMine = interactions.findIndex(
-                  (item) =>
+                  (item: any) =>
                      item.registro_id === user.id &&
                      item.tipo_id == interactionType
                );
@@ -90,9 +87,7 @@ export function useFeedInteractions() {
          interactionType,
          newInteraction
       }: Partial<InteractionParams>) => {
-         setOldFeedCache(
-            queryClient.getQueryData([APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED])
-         );
+         setOldFeedCache(queryClient.getQueryData(queryKey));
 
          queryClient.resetQueries({
             queryKey: [
@@ -103,7 +98,7 @@ export function useFeedInteractions() {
          });
 
          queryClient.setQueryData(
-            [APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED],
+            queryKey,
             (oldFeed: InfiniteData<Response<ProfessionalsListResponse>>) => {
                return modifyCacheInteraction({
                   oldFeed,
@@ -120,7 +115,7 @@ export function useFeedInteractions() {
             tipo_id: interactionType
          });
       },
-      [interactionProfessional, modifyCacheInteraction]
+      [interactionProfessional, modifyCacheInteraction, queryKey]
    );
 
    return {

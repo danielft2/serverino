@@ -21,7 +21,9 @@ export function FeedPreview({
    const [isRefresh, setIsRefresh] = useState(false);
 
    const renderItem = useCallback(
-      ({ item, index }) => <ProfessionalSummary data={item} index={index} />,
+      ({ item, index }) => (
+         <ProfessionalSummary isFeedProfessional data={item} index={index} />
+      ),
       []
    );
    const keyExtractor = useCallback(

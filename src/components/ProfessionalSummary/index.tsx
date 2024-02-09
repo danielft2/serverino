@@ -1,6 +1,5 @@
 import { memo } from 'react';
-import { View, Text, Pressable } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { View, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -8,16 +7,29 @@ import { Professional } from '@components/Professional';
 import { ProfessionalModel } from '@domain/models';
 import { InteractionTypes } from '@domain/types';
 import { useProfessional } from '@hooks/components';
-import { useFeedInteractions } from '@hooks/screens';
+import { useInteractions } from '@hooks/shared';
+import { APP_CONSTANTS } from '@constants';
 
 interface ProfessionalSummaryProps {
    data: ProfessionalModel;
    index: number;
+   isFeedProfessional?: boolean;
+   areaId?: string;
 }
 
-function ProfessionalSummaryMemo({ data, index }: ProfessionalSummaryProps) {
+function ProfessionalSummaryMemo({
+   data,
+   index,
+   isFeedProfessional,
+   areaId
+}: ProfessionalSummaryProps) {
    const { navigate } = useNavigation();
-   const { handleInteraction } = useFeedInteractions();
+   const { handleInteraction } = useInteractions(
+      isFeedProfessional
+         ? [APP_CONSTANTS.QUERIES_KEYS.QUERY_FEED]
+         : [APP_CONSTANTS.QUERIES_KEYS.PROFESSIONAL_BY_AREA, areaId]
+   );
+
    const { likeInteractions, recommendsInteractions } = useProfessional({
       interactions: data.usuario.interacoes
    });

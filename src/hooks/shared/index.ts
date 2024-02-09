@@ -6,6 +6,7 @@ import { useToast } from './useToast';
 import { useLazy } from './useLazy';
 import { useFontsize } from './useFontsize';
 import { useProfessionalAreas } from './useProfessionalAreas';
+import { useInteractions } from './useInteractions';
 
 export {
    useAuth,
@@ -15,5 +16,6 @@ export {
    useErrorMessageForm,
    useLazy,
    useFontsize,
-   useProfessionalAreas
+   useProfessionalAreas,
+   useInteractions
 };

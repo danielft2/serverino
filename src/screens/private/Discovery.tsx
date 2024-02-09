@@ -65,6 +65,7 @@ export function Discovery() {
                />
             </View>
             <ProfessionalsPreview
+               areaId={areaSelected?.value}
                isFetching={isFetching}
                isLoading={isLoading && !!areaSelected}
                professionals={profressionals}

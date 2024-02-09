@@ -7,8 +7,10 @@ import { Loading } from '@components/Loading';
 import { ProfessionalModel } from '@domain/models/professional.model';
 
 interface ProfessionalsPreviewProps {
+   isFeed?: boolean;
    isFetching: boolean;
    isLoading: boolean;
+   areaId?: string;
    professionals: ProfessionalModel[];
    previewEmpty: ReactNode;
    onEndReached: (refetch?: boolean) => void;
@@ -17,6 +19,7 @@ interface ProfessionalsPreviewProps {
 export function ProfessionalsPreview({
    isFetching,
    isLoading,
+   areaId,
    professionals = [],
    previewEmpty,
    onEndReached
@@ -24,8 +27,10 @@ export function ProfessionalsPreview({
    const [isRefresh, setIsRefresh] = useState(false);
 
    const renderItem = useCallback(
-      ({ item, index }) => <ProfessionalSummary data={item} index={index} />,
-      []
+      ({ item, index }) => (
+         <ProfessionalSummary areaId={areaId} data={item} index={index} />
+      ),
+      [areaId]
    );
    const keyExtractor = useCallback((item: ProfessionalModel) => item.uuid, []);
 
