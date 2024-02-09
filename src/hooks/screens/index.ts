@@ -4,7 +4,6 @@ import { useRegisterSteps } from './Register/useRegisterSteps';
 import { STEPS_ENUM } from './Register/useRegisterSteps';
 import { useActivateAccount } from './ActivateAccount/useActivateAccount';
 import { useFeed } from './Feed/useFeed';
-import { useFeedInteractions } from './Feed/useFeeedInteractions';
 import { useUpdateInformations } from './Account/useUpdateInformations';
 import { useProfessionalDetails } from './ProfessionalDetails/useProfessionalDetails';
 import { useDiscovery } from './Discovery/useDiscovery';
@@ -15,7 +14,6 @@ export {
    useActivateAccount,
    STEPS_ENUM,
    useFeed,
-   useFeedInteractions,
    useUpdateInformations,
    useProfessionalDetails,
    useDiscovery
