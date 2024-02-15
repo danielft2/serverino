@@ -1,23 +1,21 @@
 {
-   "compilerOptions": {
-      "paths": {
-         "@screens/*": ["./src/screens/*"],
-         "@templates/*": ["./src/templates/*"],
-         "@components/*": ["./src/components/*"],
-         "@hooks/*": ["./src/hooks/*"],
-         "@contexts/*": ["./src/context/*"],
-         "@domain/*": ["./src/domain/*"],
-         "@services/*": ["./src/services/*"],
-         "@storage/*": ["./src/storage/*"],
-         "@utils": ["./src/utils"],
-         "@constants": ["./src/constants"],
-         "@validation": ["./src/validation"],
-         "@lib/*": ["./src/lib/*"],
-         "@styles/*": ["./src/styles/*"],
-			"@assets/*": ["./assets/*"],
-         "@theme": ["./src/theme"]
-      }
-   },
-   "extends": "expo/tsconfig.base",
-   "typeRoots": ["./src/@types"]
+  "compilerOptions": {
+    "paths": {
+      "@screens/*": ["./src/screens/*"],
+      "@templates/*": ["./src/templates/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks": ["./src/hooks"],
+      "@contexts/*": ["./src/context/*"],
+      "@domain/*": ["./src/domain/*"],
+      "@services/*": ["./src/services/*"],
+      "@storage/*": ["./src/storage/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@constants": ["./src/constants"],
+      "@validation": ["./src/validation"],
+      "@libs/*": ["./src/libs/*"],
+      "@assets/*": ["./assets/*"],
+    }
+  },
+  "extends": "expo/tsconfig.base",
+  "typeRoots": ["./src/types"]
 }

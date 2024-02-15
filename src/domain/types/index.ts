@@ -6,10 +6,10 @@ import { TalkProfessionalType } from './talk-professional-types';
 import { ItemSelect } from './item-select.model';
 
 export {
-   AvatarOptions,
-   InteractionTypes,
-   InteractionActionProps,
-   InteractionParams,
-   TalkProfessionalType,
-   ItemSelect
+  AvatarOptions,
+  InteractionTypes,
+  InteractionActionProps,
+  InteractionParams,
+  TalkProfessionalType,
+  ItemSelect
 };

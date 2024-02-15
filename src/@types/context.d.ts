@@ -1,3 +1,3 @@
 export type Context = {
-   children: React.ReactNode;
+  children: React.ReactNode;
 };

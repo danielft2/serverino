@@ -1,4 +1,4 @@
 export enum TalkProfessionalType {
-   WHATSAPP,
-   PHONE
+  WHATSAPP,
+  PHONE
 }

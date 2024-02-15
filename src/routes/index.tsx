@@ -4,19 +4,19 @@ import { theme } from '../theme';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 const navigationTheme = {
-   ...DefaultTheme,
-   colors: {
-      ...DefaultTheme.colors,
-      background: theme.colors.blue_dark[900]
-   }
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: theme.colors.blue_dark[900]
+  }
 };
 
 export function Routes() {
-   return (
-      <NavigationContainer theme={navigationTheme}>
-         <BottomSheetModalProvider>
-            <SplashRoutes />
-         </BottomSheetModalProvider>
-      </NavigationContainer>
-   );
+  return (
+    <NavigationContainer theme={navigationTheme}>
+      <BottomSheetModalProvider>
+        <SplashRoutes />
+      </BottomSheetModalProvider>
+    </NavigationContainer>
+  );
 }

@@ -1,49 +1,49 @@
 {
   "expo": {
-     "name": "Serverino",
-     "slug": "serverino",
-     "version": "1.0.0",
-     "orientation": "portrait",
-     "icon": "./assets/adaptive-icon.png",
-     "userInterfaceStyle": "dark",
-     "jsEngine": "hermes",
-     "splash": {
-        "resizeMode": "cover",
+    "name": "Serverino",
+    "slug": "serverino",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/adaptive-icon.png",
+    "userInterfaceStyle": "dark",
+    "jsEngine": "hermes",
+    "splash": {
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
-     },
-     "assetBundlePatterns": ["**/*"],
-     "ios": {
-        "supportsTablet": true
-     },
-     "android": {
-        "adaptiveIcon": {
-           "foregroundImage": "./assets/adaptive-icon.png",
-           "backgroundColor": "#000000"
-        },
-        "package": "com.danielfdev.serverino",
-        "softwareKeyboardLayoutMode": "pan"
-     },
-     "web": {
-        "favicon": "./assets/favicon.png"
-     },
-     "extra": {
-        "eas": {
-           "projectId": "59370202-bf0c-4919-8596-8efafd096cf1"
+      },
+      "package": "com.danielfdev.serverino",
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "59370202-bf0c-4919-8596-8efafd096cf1"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/59370202-bf0c-4919-8596-8efafd096cf1"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
-     },
-     "runtimeVersion": {
-        "policy": "sdkVersion"
-     },
-     "updates": {
-        "url": "https://u.expo.dev/59370202-bf0c-4919-8596-8efafd096cf1"
-     },
-     "plugins": [
-        [
-           "expo-image-picker",
-           {
-              "photosPermission": "The app accesses your photos to let you share them with your friends."
-           }
-        ]
-     ]
+      ]
+    ]
   }
 }

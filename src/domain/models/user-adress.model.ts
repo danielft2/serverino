@@ -1,6 +1,6 @@
 export type UserAdressModel = {
-   cep: string;
-   cidade: string;
-   cidade_id: string;
-   uf: string;
+  cep: string;
+  cidade: string;
+  cidade_id: string;
+  uf: string;
 };

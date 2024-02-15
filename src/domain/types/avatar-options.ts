@@ -1,4 +1,4 @@
 export enum AvatarOptions {
-   CAMERA,
-   GALERY
+  CAMERA,
+  GALERY
 }
