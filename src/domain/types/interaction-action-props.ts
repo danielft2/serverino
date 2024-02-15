@@ -1,5 +1,5 @@
 export type InteractionActionProps = {
-   countInteractions: number;
-   interactionMine: boolean;
-   onInteraction?: () => void;
+  countInteractions: number;
+  interactionMine: boolean;
+  onInteraction?: () => void;
 };

@@ -1,14 +1,14 @@
-import { Feed } from './Feed';
-import { Profile } from './Profile';
-import { Discovery } from './Discovery';
-import { Account } from './Account';
-import { ActivateAccount } from './ActivateAccount';
-import { ProfessionalDetails } from './ProfessionalDetails';
+import { Feed } from './feed';
+import { Profile } from './profile';
+import { Discovery } from './discovery';
+import { Account } from './account';
+import { ActivateAccount } from './activate-account';
+import { ProfessionalDetails } from './professional-details';
 export {
-   Feed,
-   Profile,
-   Discovery,
-   Account,
-   ActivateAccount,
-   ProfessionalDetails
+  Feed,
+  Profile,
+  Discovery,
+  Account,
+  ActivateAccount,
+  ProfessionalDetails
 };

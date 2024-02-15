@@ -2,7 +2,7 @@ import tailwindConfig from '../../tailwind.config';
 import resolveConfig from 'tailwindcss/resolveConfig';
 
 type TailwindTheme = typeof tailwindConfig.theme &
-   typeof tailwindConfig.theme.extend;
+  typeof tailwindConfig.theme.extend;
 
 const tailwindResolvedConfig = resolveConfig(tailwindConfig);
 

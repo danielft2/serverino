@@ -1,4 +1,4 @@
 export enum InteractionTypes {
-   LIKE = 1,
-   RECOMMEND = 2
+  LIKE = 1,
+  RECOMMEND = 2
 }

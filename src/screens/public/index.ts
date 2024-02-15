@@ -1,5 +1,5 @@
-import { Register } from './Register';
-import { Signin } from './Signin';
-import { Splash } from './Splash';
-import { Welcome } from './Welcome';
+import { Register } from './register';
+import { Signin } from './signin';
+import { Splash } from './splash';
+import { Welcome } from './welcome';
 export { Splash, Welcome, Signin, Register };
